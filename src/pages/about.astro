@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="À propos — Aurélie Tesson" description="Développeuse Full-Stack Symfony avec 5+ ans d'expérience. Spécialisée en architecture logicielle, APIs REST et intégration IA.">
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="max-w-3xl">
+        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">À propos</span>
+        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Développeuse passionnée par les <span class="gradient-text">solutions robustes</span></h1>
+        <p class="text-lg text-text-muted leading-relaxed mb-8">
+          Depuis plus de 5 ans, je conçois et développe des applications web complexes. Mon expertise couvre l'ensemble du cycle de développement : de l'architecture à la mise en production.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <h2 class="text-2xl font-bold mb-8">Compétences techniques</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">PHP 8.x</span>
+            <span class="tech-badge">Symfony 6/7</span>
+            <span class="tech-badge">API Platform</span>
+            <span class="tech-badge">Doctrine ORM</span>
+            <span class="tech-badge">PHPUnit</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">Base de données</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Redis</span>
+            <span class="tech-badge">Elasticsearch</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">DevOps</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Linux</span>
+            <span class="tech-badge">Nginx</span>
+            <span class="tech-badge">CI/CD</span>
+            <span class="tech-badge">Git</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">APIs & Intégrations</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">REST</span>
+            <span class="tech-badge">GraphQL</span>
+            <span class="tech-badge">JWT</span>
+            <span class="tech-badge">OAuth</span>
+            <span class="tech-badge">Webhooks</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">Intelligence Artificielle</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">OpenAI API</span>
+            <span class="tech-badge">Claude API</span>
+            <span class="tech-badge">LangChain</span>
+            <span class="tech-badge">RAG</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-4 text-accent-primary">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-badge">JavaScript ES6+</span>
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">Twig</span>
+            <span class="tech-badge">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <h2 class="text-2xl font-bold mb-8">Ma philosophie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card">
+          <div class="text-3xl mb-4">🎯</div>
+          <h3 class="font-semibold mb-2">Pragmatisme</h3>
+          <p class="text-sm text-text-muted">Des solutions qui répondent aux vrais besoins, sans sur-ingénierie. Le code doit servir le métier.</p>
+        </div>
+        <div class="card">
+          <div class="text-3xl mb-4">📐</div>
+          <h3 class="font-semibold mb-2">Qualité</h3>
+          <p class="text-sm text-text-muted">Code testé, documenté et maintenable. Les bonnes pratiques ne sont pas négociables.</p>
+        </div>
+        <div class="card">
+          <div class="text-3xl mb-4">🤝</div>
+          <h3 class="font-semibold mb-2">Communication</h3>
+          <p class="text-sm text-text-muted">Transparence sur l'avancement, les difficultés et les choix techniques. Pas de mauvaises surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 border border-accent-primary/20 rounded-3xl p-12 text-center">
+        <h2 class="text-2xl font-bold mb-4">Envie d'en savoir plus ?</h2>
+        <p class="text-text-muted mb-8">Discutons de votre projet et voyons comment je peux vous aider.</p>
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
+</Layout>

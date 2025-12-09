@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    slug: 'wms',
+    title: 'WMS — Warehouse Management System',
+    description: 'Système de gestion d\'entrepôt complet en production 24/7',
+    icon: '📦',
+    tags: ['Symfony 6', 'API REST', 'Redis', 'SSE'],
+    status: 'En production',
+    type: 'Application métier'
+  },
+  {
+    slug: 'logidoc-ai',
+    title: 'LogiDoc AI',
+    description: 'API d\'analyse documentaire avec LLM pour extraction intelligente',
+    icon: '🤖',
+    tags: ['Symfony', 'OpenAI', 'RAG', 'API Platform'],
+    status: 'En production',
+    type: 'API IA'
+  },
+  {
+    slug: 'realtime-dashboard',
+    title: 'Realtime Dashboard',
+    description: 'Dashboard e-commerce temps réel avec WebSockets',
+    icon: '📊',
+    tags: ['Symfony', 'Mercure', 'Chart.js', 'Docker'],
+    status: 'Projet personnel',
+    type: 'Dashboard'
+  },
+  {
+    slug: 'saas-boilerplate',
+    title: 'SaaS Boilerplate',
+    description: 'Template multi-tenant API Platform prêt à l\'emploi',
+    icon: '🏢',
+    tags: ['API Platform', 'Multi-tenant', 'Stripe', 'JWT'],
+    status: 'Open source',
+    type: 'Boilerplate'
+  },
+  {
+    slug: 'stock-api',
+    title: 'Stock API',
+    description: 'API de gestion de stock avec optimisation des requêtes',
+    icon: '📈',
+    tags: ['Symfony', 'Doctrine', 'Redis', 'REST'],
+    status: 'Projet personnel',
+    type: 'API'
+  },
+  {
+    slug: 'task-queue-api',
+    title: 'Task Queue API',
+    description: 'Système de file d\'attente pour tâches asynchrones',
+    icon: '⚡',
+    tags: ['Symfony Messenger', 'RabbitMQ', 'Redis', 'Docker'],
+    status: 'Open source',
+    type: 'Infrastructure'
+  }
+];
+---
+
+<Layout title="Projets — Aurélie Tesson" description="Découvrez mes réalisations : applications métier, APIs, intégrations IA et projets open source.">
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="max-w-3xl">
+        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">Projets</span>
+        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Mes <span class="gradient-text">réalisations</span></h1>
+        <p class="text-lg text-text-muted leading-relaxed">
+          Applications métier en production, APIs, intégrations IA et contributions open source. Découvrez mes projets les plus significatifs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <a href={`/projets/${project.slug}`} class="card group block">
+            <div class="flex items-start justify-between mb-4">
+              <span class="text-4xl">{project.icon}</span>
+              <span class="text-xs bg-accent-emerald/15 text-accent-emerald px-2 py-1 rounded">{project.status}</span>
+            </div>
+            <span class="text-xs text-text-muted mb-2 block">{project.type}</span>
+            <h3 class="font-bold mb-2 group-hover:text-accent-primary transition-colors">{project.title}</h3>
+            <p class="text-sm text-text-muted mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="tech-badge text-xs">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 border border-accent-primary/20 rounded-3xl p-12 text-center">
+        <h2 class="text-2xl font-bold mb-4">Un projet similaire ?</h2>
+        <p class="text-text-muted mb-8">Discutons de vos besoins et voyons comment je peux vous aider.</p>
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
+</Layout>

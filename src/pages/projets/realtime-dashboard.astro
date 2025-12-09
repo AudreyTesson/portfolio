@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Realtime Dashboard | Aurélie Tesson" description="Dashboard e-commerce temps réel avec WebSockets et visualisations interactives.">
+  <section class="pt-32 pb-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
+      <div class="flex flex-wrap gap-4 mb-4">
+        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">Dashboard</span>
+        <span class="bg-accent-tertiary/15 text-accent-tertiary px-4 py-1.5 rounded-full text-sm font-medium">Projet personnel</span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Realtime Dashboard</h1>
+      <p class="text-xl text-text-muted max-w-3xl">Dashboard e-commerce temps réel avec visualisation des KPIs, commandes et stock en direct via WebSockets.</p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-12">
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
+            <p class="text-text-muted leading-relaxed">
+              Un dashboard temps réel pour e-commerce permettant de visualiser instantanément les commandes entrantes, l'évolution du chiffre d'affaires, les niveaux de stock et les alertes critiques. Utilise Mercure pour la diffusion des événements en temps réel.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="card">
+                <span class="text-2xl mb-3 block">📊</span>
+                <h4 class="font-semibold mb-2">Charts temps réel</h4>
+                <p class="text-sm text-text-muted">Graphiques mis à jour instantanément avec Chart.js</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔔</span>
+                <h4 class="font-semibold mb-2">Notifications</h4>
+                <p class="text-sm text-text-muted">Alertes push pour commandes et ruptures de stock</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">📱</span>
+                <h4 class="font-semibold mb-2">Responsive</h4>
+                <p class="text-sm text-text-muted">Interface adaptée mobile et tablette</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🎨</span>
+                <h4 class="font-semibold mb-2">Thèmes</h4>
+                <p class="text-sm text-text-muted">Mode clair/sombre et personnalisation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="font-semibold mb-4">Stack</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Symfony</span>
+              <span class="tech-badge">Mercure</span>
+              <span class="tech-badge">Chart.js</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+          </div>
+
+          <div class="card text-center">
+            <h3 class="font-semibold mb-4">Code source</h3>
+            <a href="https://github.com/aurelie-tech/realtime-dashboard" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
+              <span>🐙</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+            <h3 class="font-semibold mb-3">Un projet similaire ?</h3>
+            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

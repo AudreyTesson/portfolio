@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="LogiDoc AI — API d'analyse documentaire | Aurélie Tesson" description="API d'analyse documentaire avec LLM pour extraction intelligente de données.">
+  <section class="pt-32 pb-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
+      <div class="flex flex-wrap gap-4 mb-4">
+        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">API IA</span>
+        <span class="bg-accent-emerald/15 text-accent-emerald px-4 py-1.5 rounded-full text-sm font-medium">En production</span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">LogiDoc AI</h1>
+      <p class="text-xl text-text-muted max-w-3xl">API d'analyse documentaire avec LLM pour extraction intelligente de données depuis documents PDF, images et fichiers structurés.</p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-12">
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
+            <p class="text-text-muted leading-relaxed mb-4">
+              LogiDoc AI est une API REST permettant d'analyser automatiquement des documents (factures, bons de livraison, contrats) et d'en extraire les informations clés grâce à l'intelligence artificielle.
+            </p>
+            <p class="text-text-muted leading-relaxed">
+              Le système utilise une architecture RAG (Retrieval Augmented Generation) pour contextualiser les réponses et améliorer la précision de l'extraction.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="card">
+                <span class="text-2xl mb-3 block">📄</span>
+                <h4 class="font-semibold mb-2">Extraction PDF</h4>
+                <p class="text-sm text-text-muted">OCR intelligent et parsing de documents PDF complexes</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🧠</span>
+                <h4 class="font-semibold mb-2">Analyse LLM</h4>
+                <p class="text-sm text-text-muted">Intégration OpenAI/Claude pour compréhension contextuelle</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔍</span>
+                <h4 class="font-semibold mb-2">RAG Pipeline</h4>
+                <p class="text-sm text-text-muted">Recherche vectorielle pour améliorer les réponses</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔌</span>
+                <h4 class="font-semibold mb-2">API REST</h4>
+                <p class="text-sm text-text-muted">Endpoints documentés avec OpenAPI/Swagger</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="font-semibold mb-4">Stack</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Symfony</span>
+              <span class="tech-badge">API Platform</span>
+              <span class="tech-badge">OpenAI</span>
+              <span class="tech-badge">Claude</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+          </div>
+
+          <div class="card text-center">
+            <h3 class="font-semibold mb-4">Code source</h3>
+            <a href="https://github.com/aurelie-tech/logidoc-ai" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
+              <span>🐙</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+            <h3 class="font-semibold mb-3">Un projet similaire ?</h3>
+            <p class="text-sm text-text-muted mb-4">Besoin d'intégrer de l'IA dans votre application ?</p>
+            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

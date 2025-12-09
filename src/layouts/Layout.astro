@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Développeuse Full-Stack PHP/Symfony et Tech Lead. Architecture robuste, intégration IA, DevOps. Disponible en remote." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <!-- Aurora Background -->
+  <div class="aurora">
+    <div class="aurora-layer"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full py-4 z-50 bg-bg-dark/90 backdrop-blur-xl border-b border-border">
+    <div class="max-w-6xl mx-auto px-[6%] flex justify-between items-center">
+      <a href="/" class="text-xl font-bold gradient-text">aurelie.dev</a>
+      <ul class="hidden md:flex list-none gap-10">
+        <li><a href="/about" class="text-text-muted hover:text-text-primary transition-colors text-sm font-medium">À propos</a></li>
+        <li><a href="/services" class="text-text-muted hover:text-text-primary transition-colors text-sm font-medium">Services</a></li>
+        <li><a href="/projets" class="text-text-muted hover:text-text-primary transition-colors text-sm font-medium">Projets</a></li>
+        <li><a href="/contact" class="text-text-muted hover:text-text-primary transition-colors text-sm font-medium">Contact</a></li>
+      </ul>
+      <a href="/contact" class="hidden md:inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:-translate-y-0.5 transition-all shadow-lg shadow-blue-500/30">Me contacter</a>
+      <button id="mobileMenuBtn" class="md:hidden bg-transparent border-none text-text-primary text-2xl cursor-pointer">☰</button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden flex-col px-[6%] gap-4 py-4 bg-bg-dark/95 border-t border-border">
+      <a href="/about" class="text-text-muted hover:text-text-primary py-2">À propos</a>
+      <a href="/services" class="text-text-muted hover:text-text-primary py-2">Services</a>
+      <a href="/projets" class="text-text-muted hover:text-text-primary py-2">Projets</a>
+      <a href="/contact" class="text-text-muted hover:text-text-primary py-2">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-16 border-t border-border bg-bg-darker/50">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <span class="text-xl font-bold gradient-text">aurelie.dev</span>
+          <p class="text-text-muted mt-3 text-sm">Développeuse Full-Stack Symfony & Tech Lead</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold mb-4">Navigation</h4>
+          <ul class="list-none space-y-2">
+            <li><a href="/about" class="text-text-muted hover:text-accent-primary text-sm transition-colors">À propos</a></li>
+            <li><a href="/services" class="text-text-muted hover:text-accent-primary text-sm transition-colors">Services</a></li>
+            <li><a href="/projets" class="text-text-muted hover:text-accent-primary text-sm transition-colors">Projets</a></li>
+            <li><a href="/contact" class="text-text-muted hover:text-accent-primary text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold mb-4">Projets</h4>
+          <ul class="list-none space-y-2">
+            <li><a href="/projets/wms" class="text-text-muted hover:text-accent-primary text-sm transition-colors">WMS</a></li>
+            <li><a href="/projets/logidoc-ai" class="text-text-muted hover:text-accent-primary text-sm transition-colors">LogiDoc AI</a></li>
+            <li><a href="/projets/realtime-dashboard" class="text-text-muted hover:text-accent-primary text-sm transition-colors">Realtime Dashboard</a></li>
+            <li><a href="/projets/saas-boilerplate" class="text-text-muted hover:text-accent-primary text-sm transition-colors">SaaS Boilerplate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold mb-4">Me suivre</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-surface border border-border rounded-lg text-text-muted hover:border-accent-primary hover:text-accent-primary transition-all hover:-translate-y-1 text-sm font-semibold">in</a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-surface border border-border rounded-lg text-text-muted hover:border-accent-primary hover:text-accent-primary transition-all hover:-translate-y-1 text-sm font-semibold">gh</a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-surface border border-border rounded-lg text-text-muted hover:border-accent-primary hover:text-accent-primary transition-all hover:-translate-y-1 text-sm font-semibold">𝕏</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between pt-8 border-t border-border text-text-subtle text-sm gap-2">
+        <span>© 2025 Aurélie Tesson</span>
+        <span>100% Remote</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+      menu?.classList.toggle('flex');
+    });
+  </script>
+</body>
+</html>

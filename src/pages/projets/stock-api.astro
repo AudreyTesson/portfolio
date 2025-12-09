@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Stock API | Aurélie Tesson" description="API de gestion de stock avec optimisation des requêtes et cache Redis.">
+  <section class="pt-32 pb-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
+      <div class="flex flex-wrap gap-4 mb-4">
+        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">API</span>
+        <span class="bg-accent-tertiary/15 text-accent-tertiary px-4 py-1.5 rounded-full text-sm font-medium">Projet personnel</span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Stock API</h1>
+      <p class="text-xl text-text-muted max-w-3xl">API REST performante pour gestion de stock avec cache Redis et optimisation Doctrine.</p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
+          <p class="text-text-muted leading-relaxed">
+            API de gestion de stock conçue pour la haute performance. Utilise des stratégies de cache avancées avec Redis, des requêtes Doctrine optimisées et une architecture pensée pour la scalabilité.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="font-semibold mb-4">Stack</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">Symfony</span>
+              <span class="tech-badge">Doctrine</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">REST</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+          </div>
+
+          <div class="card text-center">
+            <a href="https://github.com/aurelie-tech/stock-api" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
+              <span>🐙</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,269 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="WMS — Warehouse Management System | Aurélie Tesson" description="Système de gestion d'entrepôt complet en production. Architecture Symfony, API REST, temps réel SSE, multi-supports.">
+  <!-- Project Header -->
+  <section class="pt-32 pb-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
+      <div class="flex flex-wrap gap-4 mb-4">
+        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">Application métier</span>
+        <span class="bg-accent-emerald/15 text-accent-emerald px-4 py-1.5 rounded-full text-sm font-medium">En production 24/7</span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">WMS — Warehouse Management System</h1>
+      <p class="text-xl text-text-muted max-w-3xl">Système de gestion d'entrepôt complet pour la logistique industrielle. Architecture Symfony pilotée de A à Z.</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-8">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card text-center">
+          <span class="text-3xl font-bold text-accent-primary block">24/7</span>
+          <span class="text-sm text-text-muted">En production</span>
+        </div>
+        <div class="card text-center">
+          <span class="text-3xl font-bold text-accent-primary block">50+</span>
+          <span class="text-sm text-text-muted">Utilisateurs actifs</span>
+        </div>
+        <div class="card text-center">
+          <span class="text-3xl font-bold text-accent-primary block">100k+</span>
+          <span class="text-sm text-text-muted">Opérations/mois</span>
+        </div>
+        <div class="card text-center">
+          <span class="text-3xl font-bold text-accent-primary block">6</span>
+          <span class="text-sm text-text-muted">Mois de développement</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-12">
+          <!-- Overview -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
+            <p class="text-text-muted leading-relaxed mb-4">
+              Un système de gestion d'entrepôt (WMS) complet conçu pour optimiser l'ensemble des opérations logistiques : réception des marchandises, stockage, préparation de commandes (picking), réapprovisionnement, transferts internes et expédition.
+            </p>
+            <p class="text-text-muted leading-relaxed">
+              L'application gère des flux complexes avec plusieurs types d'utilisateurs (opérateurs, managers, administrateurs) et supporte différents devices : PWA web, application Android, et terminaux RF industriels.
+            </p>
+          </div>
+
+          <!-- Défis techniques -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Les défis techniques</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="card">
+                <span class="text-2xl mb-3 block">⚡</span>
+                <h4 class="font-semibold mb-2">Temps réel multi-opérateurs</h4>
+                <p class="text-sm text-text-muted">Synchronisation instantanée des missions entre opérateurs via SSE, avec transfert et logs détaillés.</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔐</span>
+                <h4 class="font-semibold mb-2">Sécurité multi-rôles</h4>
+                <p class="text-sm text-text-muted">Gestion fine des permissions avec JWT et système de rôles granulaire (10+ rôles différents).</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">📱</span>
+                <h4 class="font-semibold mb-2">Multi-supports</h4>
+                <p class="text-sm text-text-muted">Interface adaptée aux écrans tactiles, navigateurs desktop et terminaux RF industriels.</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">📦</span>
+                <h4 class="font-semibold mb-2">Colisage intelligent</h4>
+                <p class="text-sm text-text-muted">Optimisation du conditionnement selon le format conteneur avec règles métier configurables.</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔄</span>
+                <h4 class="font-semibold mb-2">Workflows complexes</h4>
+                <p class="text-sm text-text-muted">Gestion d'états métier avec Symfony Workflow pour des transitions validées et traçables.</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">📊</span>
+                <h4 class="font-semibold mb-2">Traçabilité & Audit</h4>
+                <p class="text-sm text-text-muted">Logs métier horodatés par opérateur pour audit facilité et calcul des primes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Workflow métier</h2>
+            <p class="text-text-muted mb-6">Exemple de workflow géré par Symfony Workflow : le cycle de vie d'une mission de préparation de commande.</p>
+            <div class="card overflow-x-auto">
+              <div class="flex items-center gap-2 min-w-max justify-center py-4">
+                <div class="flex flex-col items-center px-3 py-2 bg-text-subtle/10 rounded-lg">
+                  <span class="text-lg">📝</span>
+                  <span class="text-xs mt-1">Création</span>
+                </div>
+                <span class="text-text-muted">→</span>
+                <div class="flex flex-col items-center px-3 py-2 bg-text-subtle/10 rounded-lg">
+                  <span class="text-lg">⏳</span>
+                  <span class="text-xs mt-1">En attente</span>
+                </div>
+                <span class="text-text-muted">→</span>
+                <div class="flex flex-col items-center px-3 py-2 bg-accent-primary/20 rounded-lg">
+                  <span class="text-lg">👤</span>
+                  <span class="text-xs mt-1">Assignée</span>
+                </div>
+                <span class="text-text-muted">→</span>
+                <div class="flex flex-col items-center px-3 py-2 bg-accent-primary/20 rounded-lg">
+                  <span class="text-lg">📦</span>
+                  <span class="text-xs mt-1">Picking</span>
+                </div>
+                <span class="text-text-muted">→</span>
+                <div class="flex flex-col items-center px-3 py-2 bg-yellow-500/20 rounded-lg">
+                  <span class="text-lg">✓</span>
+                  <span class="text-xs mt-1">Préparée</span>
+                </div>
+                <span class="text-text-muted">→</span>
+                <div class="flex flex-col items-center px-3 py-2 bg-accent-emerald/20 rounded-lg">
+                  <span class="text-lg">✅</span>
+                  <span class="text-xs mt-1">Terminée</span>
+                </div>
+              </div>
+              <div class="text-center mt-4 text-xs text-text-muted">
+                <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-accent-primary"></span> Géré par Symfony Workflow</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modules -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Modules clés</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left py-3 font-semibold">Module</th>
+                    <th class="text-left py-3 font-semibold">Fonctionnalité</th>
+                    <th class="text-left py-3 font-semibold">Impact</th>
+                  </tr>
+                </thead>
+                <tbody class="text-text-muted">
+                  <tr class="border-b border-border">
+                    <td class="py-3 font-medium text-text-primary">Préparation commandes</td>
+                    <td class="py-3">Interface mobile pour scanner conteneurs et gérer colis</td>
+                    <td class="py-3 text-accent-emerald">-30% temps de préparation</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 font-medium text-text-primary">Réapprovisionnement</td>
+                    <td class="py-3">Génération automatique des missions et suivi temps réel</td>
+                    <td class="py-3 text-accent-emerald">Meilleure rotation stocks</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 font-medium text-text-primary">Logs métier</td>
+                    <td class="py-3">Historique complet des actions par opérateur</td>
+                    <td class="py-3 text-accent-emerald">Audit facilité, suivi primes</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="py-3 font-medium text-text-primary">Conteneurs</td>
+                    <td class="py-3">Gestion palette/carton/colis avec scan QR</td>
+                    <td class="py-3 text-accent-emerald">-60% erreurs colisage</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Résultats</h2>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="card text-center bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+                <span class="text-3xl font-bold text-accent-primary block">+40%</span>
+                <span class="text-sm text-text-muted">Productivité picking</span>
+              </div>
+              <div class="card text-center bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+                <span class="text-3xl font-bold text-accent-primary block">-60%</span>
+                <span class="text-sm text-text-muted">Erreurs préparation</span>
+              </div>
+              <div class="card text-center bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+                <span class="text-3xl font-bold text-accent-primary block">99.9%</span>
+                <span class="text-sm text-text-muted">Uptime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="font-semibold mb-4">Mon rôle</h3>
+            <p class="font-medium text-accent-primary mb-3">Tech Lead & Seule développeuse</p>
+            <ul class="text-sm text-text-muted space-y-2">
+              <li class="flex items-center gap-2"><span class="text-accent-primary">→</span> Architecture complète du système</li>
+              <li class="flex items-center gap-2"><span class="text-accent-primary">→</span> Développement backend & frontend</li>
+              <li class="flex items-center gap-2"><span class="text-accent-primary">→</span> APIs REST et temps réel SSE</li>
+              <li class="flex items-center gap-2"><span class="text-accent-primary">→</span> DevOps et déploiement</li>
+              <li class="flex items-center gap-2"><span class="text-accent-primary">→</span> Documentation technique</li>
+            </ul>
+          </div>
+
+          <div class="card text-center">
+            <h3 class="font-semibold mb-4">Code source</h3>
+            <div class="inline-flex items-center gap-2 bg-text-subtle/20 text-text-muted px-4 py-2 rounded-lg">
+              <span>🔒</span>
+              <span>Code privé</span>
+            </div>
+            <p class="text-xs text-text-muted mt-3">Projet propriétaire — disponible sur demande lors d'un entretien.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="font-semibold mb-4">Stack</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">PHP 8.2</span>
+              <span class="tech-badge">Symfony 6.3</span>
+              <span class="tech-badge">MySQL 8.1</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">API REST</span>
+              <span class="tech-badge">JWT</span>
+              <span class="tech-badge">SSE</span>
+              <span class="tech-badge">Docker</span>
+              <span class="tech-badge">Nginx</span>
+              <span class="tech-badge">PHPUnit</span>
+            </div>
+          </div>
+
+          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+            <h3 class="font-semibold mb-3">Un projet similaire ?</h3>
+            <p class="text-sm text-text-muted mb-4">Discutons de vos besoins en logistique ou gestion métier.</p>
+            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="py-20 border-t border-border bg-surface-light">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <h2 class="text-2xl font-bold mb-8 text-center">Autres projets</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/projets/logidoc-ai" class="card group">
+          <span class="text-3xl mb-4 block">🤖</span>
+          <h4 class="font-semibold group-hover:text-accent-primary transition-colors">LogiDoc AI</h4>
+          <p class="text-sm text-text-muted">API d'analyse documentaire avec LLM</p>
+        </a>
+        <a href="/projets/realtime-dashboard" class="card group">
+          <span class="text-3xl mb-4 block">📊</span>
+          <h4 class="font-semibold group-hover:text-accent-primary transition-colors">Realtime Dashboard</h4>
+          <p class="text-sm text-text-muted">Dashboard e-commerce temps réel</p>
+        </a>
+        <a href="/projets/saas-boilerplate" class="card group">
+          <span class="text-3xl mb-4 block">🏢</span>
+          <h4 class="font-semibold group-hover:text-accent-primary transition-colors">SaaS Boilerplate</h4>
+          <p class="text-sm text-text-muted">Template multi-tenant API Platform</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="SaaS Boilerplate | Aurélie Tesson" description="Template multi-tenant API Platform prêt à l'emploi pour démarrer rapidement un projet SaaS.">
+  <section class="pt-32 pb-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
+      <div class="flex flex-wrap gap-4 mb-4">
+        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">Boilerplate</span>
+        <span class="bg-accent-emerald/15 text-accent-emerald px-4 py-1.5 rounded-full text-sm font-medium">Open source</span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold mb-4">SaaS Boilerplate</h1>
+      <p class="text-xl text-text-muted max-w-3xl">Template multi-tenant API Platform avec authentification, facturation Stripe et gestion des abonnements intégrée.</p>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-12">
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
+            <p class="text-text-muted leading-relaxed">
+              Un boilerplate complet pour démarrer rapidement un projet SaaS. Inclut l'authentification JWT, la gestion multi-tenant, l'intégration Stripe pour les paiements et abonnements, et une structure de code prête pour la production.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités incluses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="card">
+                <span class="text-2xl mb-3 block">🏢</span>
+                <h4 class="font-semibold mb-2">Multi-tenant</h4>
+                <p class="text-sm text-text-muted">Isolation des données par organisation</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">🔐</span>
+                <h4 class="font-semibold mb-2">Auth JWT</h4>
+                <p class="text-sm text-text-muted">Authentification sécurisée avec refresh tokens</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">💳</span>
+                <h4 class="font-semibold mb-2">Stripe</h4>
+                <p class="text-sm text-text-muted">Paiements et abonnements intégrés</p>
+              </div>
+              <div class="card">
+                <span class="text-2xl mb-3 block">📧</span>
+                <h4 class="font-semibold mb-2">Emails</h4>
+                <p class="text-sm text-text-muted">Templates transactionnels configurés</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="font-semibold mb-4">Stack</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-badge">API Platform</span>
+              <span class="tech-badge">Symfony</span>
+              <span class="tech-badge">JWT</span>
+              <span class="tech-badge">Stripe</span>
+              <span class="tech-badge">PostgreSQL</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+          </div>
+
+          <div class="card text-center">
+            <h3 class="font-semibold mb-4">Code source</h3>
+            <a href="https://github.com/aurelie-tech/saas-boilerplate" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
+              <span>🐙</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
+            <h3 class="font-semibold mb-3">Besoin d'aide ?</h3>
+            <p class="text-sm text-text-muted mb-4">Je peux personnaliser ce boilerplate pour votre projet.</p>
+            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

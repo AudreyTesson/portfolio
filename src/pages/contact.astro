@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact — Aurélie Tesson" description="Discutons de votre projet. Disponible pour missions freelance, conseil et collaboration.">
+  <section class="pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="max-w-3xl">
+        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">Contact</span>
+        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Parlons de votre <span class="gradient-text">projet</span></h1>
+        <p class="text-lg text-text-muted leading-relaxed">
+          Disponible pour des missions freelance, du conseil ou des collaborations. N'hésitez pas à me contacter pour discuter de vos besoins.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-[6%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div>
+          <h2 class="text-2xl font-bold mb-8">Me contacter</h2>
+          <div class="space-y-6">
+            <div class="card">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">📧</div>
+                <div>
+                  <h3 class="font-semibold">Email</h3>
+                  <a href="mailto:contact@aurelie.dev" class="text-text-muted hover:text-accent-primary transition-colors">contact@aurelie.dev</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">💼</div>
+                <div>
+                  <h3 class="font-semibold">LinkedIn</h3>
+                  <a href="#" class="text-text-muted hover:text-accent-primary transition-colors">linkedin.com/in/aurelie-tesson</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">🐙</div>
+                <div>
+                  <h3 class="font-semibold">GitHub</h3>
+                  <a href="#" class="text-text-muted hover:text-accent-primary transition-colors">github.com/aurelie-tech</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <h3 class="font-semibold mb-4">Disponibilité</h3>
+            <div class="flex items-center gap-2 text-accent-emerald">
+              <span class="w-2 h-2 bg-accent-emerald rounded-full animate-pulse-dot"></span>
+              <span>Disponible pour nouvelles missions</span>
+            </div>
+            <p class="text-text-muted text-sm mt-2">100% remote • France / Europe</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold mb-8">Envoyer un message</h2>
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-2">Nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
+                placeholder="Votre nom"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
+                placeholder="votre@email.com"
+              />
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium mb-2">Sujet</label>
+              <select
+                id="subject"
+                name="subject"
+                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
+              >
+                <option value="">Sélectionnez un sujet</option>
+                <option value="projet">Nouveau projet</option>
+                <option value="conseil">Conseil / Audit</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-2">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors resize-none"
+                placeholder="Décrivez votre projet ou votre besoin..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full justify-center">
+              Envoyer le message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
