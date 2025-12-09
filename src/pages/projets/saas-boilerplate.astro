@@ -2,85 +2,205 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="SaaS Boilerplate | Aurélie Tesson" description="Template multi-tenant API Platform prêt à l'emploi pour démarrer rapidement un projet SaaS.">
-  <section class="pt-32 pb-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
-      <div class="flex flex-wrap gap-4 mb-4">
-        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">Boilerplate</span>
-        <span class="bg-accent-emerald/15 text-accent-emerald px-4 py-1.5 rounded-full text-sm font-medium">Open source</span>
+<Layout title="SaaS Boilerplate — Multi-tenant API Platform | Aurélie Tesson" description="Template SaaS multi-tenant avec API Platform. Gestion des tenants, abonnements et authentification JWT RS256." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">Boilerplate</span>
+        <span class="project-status-open">Open Source</span>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-bold mb-4">SaaS Boilerplate</h1>
-      <p class="text-xl text-text-muted max-w-3xl">Template multi-tenant API Platform avec authentification, facturation Stripe et gestion des abonnements intégrée.</p>
+      <h1>SaaS Boilerplate</h1>
+      <p class="project-subtitle">Template multi-tenant prêt à l'emploi pour démarrer rapidement un projet SaaS. Gestion des tenants, abonnements et isolation des données.</p>
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-2 space-y-12">
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
-            <p class="text-text-muted leading-relaxed">
-              Un boilerplate complet pour démarrer rapidement un projet SaaS. Inclut l'authentification JWT, la gestion multi-tenant, l'intégration Stripe pour les paiements et abonnements, et une structure de code prête pour la production.
-            </p>
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le projet</h2>
+            <p>Un boilerplate complet pour démarrer un projet SaaS multi-tenant en quelques minutes. Architecture moderne avec API Platform pour une API REST/GraphQL auto-documentée et isolation des données par tenant.</p>
+            <p>Ce template inclut tout le nécessaire : authentification sécurisée, gestion des organisations, système de rôles, et structure prête pour l'intégration de paiements.</p>
           </div>
 
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités incluses</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="card">
-                <span class="text-2xl mb-3 block">🏢</span>
-                <h4 class="font-semibold mb-2">Multi-tenant</h4>
-                <p class="text-sm text-text-muted">Isolation des données par organisation</p>
+          <div class="content-section">
+            <h2>Fonctionnalités incluses</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Multi-tenancy</strong>
+                  <span>Isolation des données par organisation avec filtre Doctrine automatique</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🔐</span>
-                <h4 class="font-semibold mb-2">Auth JWT</h4>
-                <p class="text-sm text-text-muted">Authentification sécurisée avec refresh tokens</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>API Platform</strong>
+                  <span>API REST & GraphQL avec documentation OpenAPI auto-générée</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">💳</span>
-                <h4 class="font-semibold mb-2">Stripe</h4>
-                <p class="text-sm text-text-muted">Paiements et abonnements intégrés</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>JWT RS256</strong>
+                  <span>Authentification asymétrique sécurisée avec refresh tokens</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">📧</span>
-                <h4 class="font-semibold mb-2">Emails</h4>
-                <p class="text-sm text-text-muted">Templates transactionnels configurés</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Système de rôles</strong>
+                  <span>RBAC granulaire avec permissions personnalisables</span>
+                </div>
               </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Docker ready</strong>
+                  <span>Configuration Docker complète pour dev et production</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Tests inclus</strong>
+                  <span>PHPUnit configuré avec fixtures et exemples</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>🔐</span>
+                  <p>Page de connexion</p>
+                </div>
+                <figcaption>Authentification JWT</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>🏢</span>
+                  <p>Gestion tenants</p>
+                </div>
+                <figcaption>Administration multi-tenant</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📚</span>
+                  <p>Documentation API</p>
+                </div>
+                <figcaption>Swagger UI auto-générée</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Structure du projet</h2>
+            <div class="code-structure">
+              <pre>src/
+├── Entity/
+│   ├── Tenant.php          # Organisation/Client
+│   ├── User.php            # Utilisateur multi-tenant
+│   └── Project.php         # Exemple d'entité tenant-aware
+├── Security/
+│   ├── TenantFilter.php    # Filtre automatique par tenant
+│   └── JWTAuthenticator.php
+├── ApiResource/
+│   └── ...                 # Ressources API Platform
+└── Service/
+    └── TenantContext.php   # Contexte tenant courant</pre>
             </div>
           </div>
         </div>
 
-        <div class="space-y-6">
-          <div class="card">
-            <h3 class="font-semibold mb-4">Stack</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">API Platform</span>
-              <span class="tech-badge">Symfony</span>
-              <span class="tech-badge">JWT</span>
-              <span class="tech-badge">Stripe</span>
-              <span class="tech-badge">PostgreSQL</span>
-              <span class="tech-badge">Docker</span>
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.4</span>
+              <span class="stack-badge backend">Symfony 7</span>
+              <span class="stack-badge api">API Platform</span>
+              <span class="stack-badge db">PostgreSQL</span>
+              <span class="stack-badge api">JWT RS256</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">GitHub Actions</span>
             </div>
           </div>
 
-          <div class="card text-center">
-            <h3 class="font-semibold mb-4">Code source</h3>
-            <a href="https://github.com/aurelie-tech/saas-boilerplate" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
-              <span>🐙</span>
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/aurelie-tech/saas-boilerplate" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
 
-          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
-            <h3 class="font-semibold mb-3">Besoin d'aide ?</h3>
-            <p class="text-sm text-text-muted mb-4">Je peux personnaliser ce boilerplate pour votre projet.</p>
-            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin d'un SaaS ?</h3>
+            <p>Je peux vous aider à développer votre produit SaaS de A à Z.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Discuter du projet</a>
           </div>
-        </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="other-projects">
+    <div class="container">
+      <h2>Autres projets</h2>
+      <div class="other-projects-grid">
+        <a href="/projets/wms" class="other-project-card">
+          <span class="other-project-icon">🏭</span>
+          <h4>WMS</h4>
+          <p>Système de gestion d'entrepôt</p>
+        </a>
+        <a href="/projets/logidoc-ai" class="other-project-card">
+          <span class="other-project-icon">🤖</span>
+          <h4>LogiDoc AI</h4>
+          <p>Analyse documentaire IA</p>
+        </a>
+        <a href="/projets/stock-api" class="other-project-card">
+          <span class="other-project-icon">📦</span>
+          <h4>Stock API</h4>
+          <p>API REST gestion de stock</p>
+        </a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .project-status-open {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .code-structure {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .code-structure pre {
+    margin: 0;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+</style>

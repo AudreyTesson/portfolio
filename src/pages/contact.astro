@@ -2,120 +2,138 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact — Aurélie Tesson" description="Discutons de votre projet. Disponible pour missions freelance, conseil et collaboration.">
-  <section class="pt-32 pb-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="max-w-3xl">
-        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">Contact</span>
-        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Parlons de votre <span class="gradient-text">projet</span></h1>
-        <p class="text-lg text-text-muted leading-relaxed">
-          Disponible pour des missions freelance, du conseil ou des collaborations. N'hésitez pas à me contacter pour discuter de vos besoins.
-        </p>
-      </div>
+<Layout title="Contact — Aurélie Tesson" description="Contactez-moi pour discuter de votre projet. Développeuse Full-Stack Symfony disponible en remote." activePage="contact">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-tag">Contact</span>
+      <h1>Parlons de votre <span class="gradient">projet</span></h1>
+      <p>Une idée ? Un besoin ? Discutons-en. Réponse sous 48h.</p>
     </div>
   </section>
 
-  <!-- Contact Grid -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Contact Info -->
-        <div>
-          <h2 class="text-2xl font-bold mb-8">Me contacter</h2>
-          <div class="space-y-6">
-            <div class="card">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">📧</div>
-                <div>
-                  <h3 class="font-semibold">Email</h3>
-                  <a href="mailto:contact@aurelie.dev" class="text-text-muted hover:text-accent-primary transition-colors">contact@aurelie.dev</a>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">💼</div>
-                <div>
-                  <h3 class="font-semibold">LinkedIn</h3>
-                  <a href="#" class="text-text-muted hover:text-accent-primary transition-colors">linkedin.com/in/aurelie-tesson</a>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-accent-primary/20 flex items-center justify-center text-xl">🐙</div>
-                <div>
-                  <h3 class="font-semibold">GitHub</h3>
-                  <a href="#" class="text-text-muted hover:text-accent-primary transition-colors">github.com/aurelie-tech</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-12">
-            <h3 class="font-semibold mb-4">Disponibilité</h3>
-            <div class="flex items-center gap-2 text-accent-emerald">
-              <span class="w-2 h-2 bg-accent-emerald rounded-full animate-pulse-dot"></span>
-              <span>Disponible pour nouvelles missions</span>
-            </div>
-            <p class="text-text-muted text-sm mt-2">100% remote • France / Europe</p>
-          </div>
-        </div>
-
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
         <!-- Contact Form -->
-        <div>
-          <h2 class="text-2xl font-bold mb-8">Envoyer un message</h2>
-          <form class="space-y-6">
-            <div>
-              <label for="name" class="block text-sm font-medium mb-2">Nom</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
-                placeholder="Votre nom"
-              />
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" name="name" required placeholder="Votre nom">
             </div>
-            <div>
-              <label for="email" class="block text-sm font-medium mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
-                placeholder="votre@email.com"
-              />
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="votre@email.com">
             </div>
-            <div>
-              <label for="subject" class="block text-sm font-medium mb-2">Sujet</label>
-              <select
-                id="subject"
-                name="subject"
-                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors"
-              >
-                <option value="">Sélectionnez un sujet</option>
-                <option value="projet">Nouveau projet</option>
-                <option value="conseil">Conseil / Audit</option>
-                <option value="collaboration">Collaboration</option>
+            <div class="form-group">
+              <label for="company">Entreprise (optionnel)</label>
+              <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
+            </div>
+            <div class="form-group">
+              <label for="project-type">Type de projet</label>
+              <select id="project-type" name="project-type" required>
+                <option value="" disabled selected>Sélectionnez...</option>
+                <option value="nouveau">Nouveau projet</option>
+                <option value="evolution">Évolution d'un projet existant</option>
+                <option value="audit">Audit / Conseil</option>
+                <option value="integration-ia">Intégration IA</option>
                 <option value="autre">Autre</option>
               </select>
             </div>
-            <div>
-              <label for="message" class="block text-sm font-medium mb-2">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                class="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-primary focus:outline-none transition-colors resize-none"
-                placeholder="Décrivez votre projet ou votre besoin..."
-              ></textarea>
+            <div class="form-group">
+              <label for="budget">Budget estimé</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Sélectionnez...</option>
+                <option value="small">&lt; 5 000 €</option>
+                <option value="medium">5 000 € - 15 000 €</option>
+                <option value="large">15 000 € - 50 000 €</option>
+                <option value="enterprise">&gt; 50 000 €</option>
+                <option value="unknown">À définir</option>
+              </select>
             </div>
-            <button type="submit" class="btn btn-primary w-full justify-center">
-              Envoyer le message
-            </button>
+            <div class="form-group full-width">
+              <label for="message">Décrivez votre projet</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Parlez-moi de votre projet, vos objectifs, vos contraintes..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit">Envoyer le message</button>
           </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="info-card">
+            <h3>Informations</h3>
+            <div class="info-items">
+              <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div class="info-text">
+                  <strong>Localisation</strong>
+                  <span>France — 100% Remote</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">📧</span>
+                <div class="info-text">
+                  <strong>Email</strong>
+                  <a href="mailto:contact@aurelie.dev">contact@aurelie.dev</a>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">⏱️</span>
+                <div class="info-text">
+                  <strong>Disponibilité</strong>
+                  <span>Lun-Ven, 9h-18h</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <span class="info-icon">⚡</span>
+                <div class="info-text">
+                  <strong>Réponse</strong>
+                  <span>Sous 48h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Réseaux</h3>
+            <div class="social-links-large">
+              <a href="#" class="social-link-large">
+                <span class="social-icon">in</span>
+                <span>LinkedIn</span>
+              </a>
+              <a href="#" class="social-link-large">
+                <span class="social-icon">gh</span>
+                <span>GitHub</span>
+              </a>
+              <a href="#" class="social-link-large">
+                <span class="social-icon">𝕏</span>
+                <span>Twitter</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="info-card highlight-card-info">
+            <h3>💡 Astuce</h3>
+            <p>Plus votre brief est détaillé, plus mon estimation sera précise. N'hésitez pas à inclure :</p>
+            <ul>
+              <li>Le contexte de votre projet</li>
+              <li>Les fonctionnalités clés</li>
+              <li>Vos délais souhaités</li>
+              <li>Votre stack actuelle (si existante)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre message ! Je vous répondrai sous 48h.');
+    });
+  </script>
 </Layout>

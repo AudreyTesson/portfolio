@@ -2,89 +2,184 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="LogiDoc AI — API d'analyse documentaire | Aurélie Tesson" description="API d'analyse documentaire avec LLM pour extraction intelligente de données.">
-  <section class="pt-32 pb-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
-      <div class="flex flex-wrap gap-4 mb-4">
-        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">API IA</span>
-        <span class="bg-accent-emerald/15 text-accent-emerald px-4 py-1.5 rounded-full text-sm font-medium">En production</span>
+<Layout title="LogiDoc AI — Analyse documentaire IA | Aurélie Tesson" description="API d'analyse documentaire avec LLM. Extraction intelligente de données depuis PDF et images via Groq." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">API IA</span>
+        <span class="project-status">En développement</span>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-bold mb-4">LogiDoc AI</h1>
-      <p class="text-xl text-text-muted max-w-3xl">API d'analyse documentaire avec LLM pour extraction intelligente de données depuis documents PDF, images et fichiers structurés.</p>
+      <h1>LogiDoc AI</h1>
+      <p class="project-subtitle">API d'analyse documentaire intelligente utilisant les LLM pour extraire et structurer automatiquement les données depuis PDF, images et documents scannés.</p>
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-2 space-y-12">
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
-            <p class="text-text-muted leading-relaxed mb-4">
-              LogiDoc AI est une API REST permettant d'analyser automatiquement des documents (factures, bons de livraison, contrats) et d'en extraire les informations clés grâce à l'intelligence artificielle.
-            </p>
-            <p class="text-text-muted leading-relaxed">
-              Le système utilise une architecture RAG (Retrieval Augmented Generation) pour contextualiser les réponses et améliorer la précision de l'extraction.
-            </p>
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le projet</h2>
+            <p>LogiDoc AI est une API REST permettant l'analyse automatisée de documents (factures, bons de livraison, formulaires) via l'intelligence artificielle. L'objectif : transformer des documents non structurés en données exploitables instantanément.</p>
+            <p>L'API utilise Groq pour bénéficier d'une inférence ultra-rapide des LLM, permettant un traitement en temps quasi-réel même sur des documents complexes.</p>
           </div>
 
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="card">
-                <span class="text-2xl mb-3 block">📄</span>
-                <h4 class="font-semibold mb-2">Extraction PDF</h4>
-                <p class="text-sm text-text-muted">OCR intelligent et parsing de documents PDF complexes</p>
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Extraction de données structurées</strong>
+                  <span>Conversion automatique PDF/images en JSON structuré</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🧠</span>
-                <h4 class="font-semibold mb-2">Analyse LLM</h4>
-                <p class="text-sm text-text-muted">Intégration OpenAI/Claude pour compréhension contextuelle</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Multi-formats</strong>
+                  <span>Support PDF, PNG, JPG, documents scannés</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🔍</span>
-                <h4 class="font-semibold mb-2">RAG Pipeline</h4>
-                <p class="text-sm text-text-muted">Recherche vectorielle pour améliorer les réponses</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>API REST documentée</strong>
+                  <span>Endpoints simples avec documentation OpenAPI</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🔌</span>
-                <h4 class="font-semibold mb-2">API REST</h4>
-                <p class="text-sm text-text-muted">Endpoints documentés avec OpenAPI/Swagger</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Prompts configurables</strong>
+                  <span>Personnalisation des extractions selon vos besoins</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📄</span>
+                  <p>Upload document</p>
+                </div>
+                <figcaption>Interface de téléversement</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>🔍</span>
+                  <p>Analyse en cours</p>
+                </div>
+                <figcaption>Traitement IA du document</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📊</span>
+                  <p>Résultats JSON</p>
+                </div>
+                <figcaption>Données structurées extraites</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Cas d'usage</h2>
+            <div class="challenges-grid">
+              <div class="challenge-card">
+                <span class="challenge-icon">📄</span>
+                <h4>Traitement de factures</h4>
+                <p>Extraction automatique : montants, dates, références, lignes de produits</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📦</span>
+                <h4>Bons de livraison</h4>
+                <p>Récupération des articles, quantités, numéros de lot</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📋</span>
+                <h4>Formulaires</h4>
+                <p>Digitalisation de formulaires papier en données structurées</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🧾</span>
+                <h4>Contrats</h4>
+                <p>Extraction des clauses clés et informations contractuelles</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="space-y-6">
-          <div class="card">
-            <h3 class="font-semibold mb-4">Stack</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">Symfony</span>
-              <span class="tech-badge">API Platform</span>
-              <span class="tech-badge">OpenAI</span>
-              <span class="tech-badge">Claude</span>
-              <span class="tech-badge">PostgreSQL</span>
-              <span class="tech-badge">Redis</span>
-              <span class="tech-badge">Docker</span>
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.4</span>
+              <span class="stack-badge backend">Symfony 7.4</span>
+              <span class="stack-badge ai">Groq API</span>
+              <span class="stack-badge ai">LLaMA</span>
+              <span class="stack-badge ai">Mixtral</span>
+              <span class="stack-badge db">MySQL</span>
+              <span class="stack-badge api">API REST</span>
+              <span class="stack-badge infra">Docker</span>
             </div>
           </div>
 
-          <div class="card text-center">
-            <h3 class="font-semibold mb-4">Code source</h3>
-            <a href="https://github.com/aurelie-tech/logidoc-ai" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
-              <span>🐙</span>
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/aurelie-tech/logidoc-ai" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
 
-          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
-            <h3 class="font-semibold mb-3">Un projet similaire ?</h3>
-            <p class="text-sm text-text-muted mb-4">Besoin d'intégrer de l'IA dans votre application ?</p>
-            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Intéressé par l'IA ?</h3>
+            <p>Je peux intégrer des LLM dans vos applications métier.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Discuter du projet</a>
           </div>
-        </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="other-projects">
+    <div class="container">
+      <h2>Autres projets</h2>
+      <div class="other-projects-grid">
+        <a href="/projets/wms" class="other-project-card">
+          <span class="other-project-icon">🏭</span>
+          <h4>WMS</h4>
+          <p>Système de gestion d'entrepôt</p>
+        </a>
+        <a href="/projets/realtime-dashboard" class="other-project-card">
+          <span class="other-project-icon">📊</span>
+          <h4>Realtime Dashboard</h4>
+          <p>Dashboard e-commerce temps réel</p>
+        </a>
+        <a href="/projets/saas-boilerplate" class="other-project-card">
+          <span class="other-project-icon">🏢</span>
+          <h4>SaaS Boilerplate</h4>
+          <p>Template multi-tenant</p>
+        </a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .project-status {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+</style>

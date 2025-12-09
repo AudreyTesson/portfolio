@@ -1,109 +1,203 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const projects = [
-  {
-    slug: 'wms',
-    title: 'WMS — Warehouse Management System',
-    description: 'Système de gestion d\'entrepôt complet en production 24/7',
-    icon: '📦',
-    tags: ['Symfony 6', 'API REST', 'Redis', 'SSE'],
-    status: 'En production',
-    type: 'Application métier'
-  },
-  {
-    slug: 'logidoc-ai',
-    title: 'LogiDoc AI',
-    description: 'API d\'analyse documentaire avec LLM pour extraction intelligente',
-    icon: '🤖',
-    tags: ['Symfony', 'OpenAI', 'RAG', 'API Platform'],
-    status: 'En production',
-    type: 'API IA'
-  },
-  {
-    slug: 'realtime-dashboard',
-    title: 'Realtime Dashboard',
-    description: 'Dashboard e-commerce temps réel avec WebSockets',
-    icon: '📊',
-    tags: ['Symfony', 'Mercure', 'Chart.js', 'Docker'],
-    status: 'Projet personnel',
-    type: 'Dashboard'
-  },
-  {
-    slug: 'saas-boilerplate',
-    title: 'SaaS Boilerplate',
-    description: 'Template multi-tenant API Platform prêt à l\'emploi',
-    icon: '🏢',
-    tags: ['API Platform', 'Multi-tenant', 'Stripe', 'JWT'],
-    status: 'Open source',
-    type: 'Boilerplate'
-  },
-  {
-    slug: 'stock-api',
-    title: 'Stock API',
-    description: 'API de gestion de stock avec optimisation des requêtes',
-    icon: '📈',
-    tags: ['Symfony', 'Doctrine', 'Redis', 'REST'],
-    status: 'Projet personnel',
-    type: 'API'
-  },
-  {
-    slug: 'task-queue-api',
-    title: 'Task Queue API',
-    description: 'Système de file d\'attente pour tâches asynchrones',
-    icon: '⚡',
-    tags: ['Symfony Messenger', 'RabbitMQ', 'Redis', 'Docker'],
-    status: 'Open source',
-    type: 'Infrastructure'
-  }
-];
 ---
 
-<Layout title="Projets — Aurélie Tesson" description="Découvrez mes réalisations : applications métier, APIs, intégrations IA et projets open source.">
-  <section class="pt-32 pb-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="max-w-3xl">
-        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">Projets</span>
-        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Mes <span class="gradient-text">réalisations</span></h1>
-        <p class="text-lg text-text-muted leading-relaxed">
-          Applications métier en production, APIs, intégrations IA et contributions open source. Découvrez mes projets les plus significatifs.
-        </p>
+<Layout title="Projets — Aurélie Tesson" description="Découvrez mes réalisations : WMS, LogiDoc AI, Realtime Dashboard et plus. Applications Symfony en production." activePage="projets">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-tag">Portfolio</span>
+      <h1>Mes <span class="gradient">réalisations</span></h1>
+      <p>Applications en production, du WMS industriel aux APIs modernes.</p>
+    </div>
+  </section>
+
+  <!-- Featured Project -->
+  <section class="featured-project-section">
+    <div class="container">
+      <div class="featured-project-card">
+        <div class="featured-badge">Projet phare</div>
+        <div class="featured-project-grid">
+          <div class="featured-project-visual">
+            <div class="browser-frame large">
+              <div class="browser-bar">
+                <span class="browser-dot red"></span>
+                <span class="browser-dot yellow"></span>
+                <span class="browser-dot green"></span>
+                <span class="browser-url">wms.app/dashboard</span>
+              </div>
+              <div class="browser-content">
+                <div class="wms-preview">
+                  <div class="wms-sidebar">
+                    <div class="wms-menu-item active"></div>
+                    <div class="wms-menu-item"></div>
+                    <div class="wms-menu-item"></div>
+                    <div class="wms-menu-item"></div>
+                  </div>
+                  <div class="wms-main">
+                    <div class="wms-stats">
+                      <div class="wms-stat"></div>
+                      <div class="wms-stat"></div>
+                      <div class="wms-stat"></div>
+                    </div>
+                    <div class="wms-table">
+                      <div class="wms-row"></div>
+                      <div class="wms-row"></div>
+                      <div class="wms-row"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="featured-project-info">
+            <h2>WMS — Warehouse Management System</h2>
+            <p class="featured-description">Système de gestion d'entrepôt complet en production. Architecture Symfony pilotée de A à Z : API REST sécurisée, temps réel SSE, workflows métier complexes, multi-supports (PWA, Android, terminaux RF).</p>
+            <div class="featured-highlights">
+              <div class="highlight-item">
+                <span class="highlight-value">24/7</span>
+                <span class="highlight-label">En production</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-value">50+</span>
+                <span class="highlight-label">Utilisateurs</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-value">100k+</span>
+                <span class="highlight-label">Ops/mois</span>
+              </div>
+            </div>
+            <div class="stack-badges-card featured">
+              <span class="stack-badge-sm backend">PHP 8.2</span>
+              <span class="stack-badge-sm backend">Symfony 6.3</span>
+              <span class="stack-badge-sm db">MySQL 8.1</span>
+              <span class="stack-badge-sm db">Redis</span>
+              <span class="stack-badge-sm api">JWT</span>
+              <span class="stack-badge-sm api">SSE</span>
+              <span class="stack-badge-sm infra">Docker</span>
+            </div>
+            <a href="/projets/wms" class="btn btn-primary">Voir le projet en détail</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Grid -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <a href={`/projets/${project.slug}`} class="card group block">
-            <div class="flex items-start justify-between mb-4">
-              <span class="text-4xl">{project.icon}</span>
-              <span class="text-xs bg-accent-emerald/15 text-accent-emerald px-2 py-1 rounded">{project.status}</span>
-            </div>
-            <span class="text-xs text-text-muted mb-2 block">{project.type}</span>
-            <h3 class="font-bold mb-2 group-hover:text-accent-primary transition-colors">{project.title}</h3>
-            <p class="text-sm text-text-muted mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span class="tech-badge text-xs">{tag}</span>
-              ))}
-            </div>
-          </a>
-        ))}
+  <!-- Other Projects -->
+  <section class="projects-grid-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Autres projets</span>
+        <h2>Réalisations récentes</h2>
+      </div>
+      <div class="projects-grid">
+        <!-- LogiDoc AI -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">🤖</span>
+            <span class="project-type">API IA</span>
+          </div>
+          <h3>LogiDoc AI</h3>
+          <p>API d'analyse documentaire avec LLM. Extraction intelligente de données depuis PDF, images et documents scannés.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.4</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm ai">Groq API</span>
+            <span class="stack-badge-sm infra">Docker</span>
+          </div>
+          <a href="/projets/logidoc-ai" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Realtime Dashboard -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">📊</span>
+            <span class="project-type">Dashboard</span>
+          </div>
+          <h3>Realtime Dashboard</h3>
+          <p>Dashboard e-commerce avec métriques temps réel via SSE. Visualisation des ventes, stocks et KPIs en direct.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.2</span>
+            <span class="stack-badge-sm api">SSE</span>
+            <span class="stack-badge-sm tool">Chart.js</span>
+          </div>
+          <a href="/projets/realtime-dashboard" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- SaaS Boilerplate -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">🏢</span>
+            <span class="project-type">Boilerplate</span>
+          </div>
+          <h3>SaaS Boilerplate</h3>
+          <p>Template multi-tenant prêt à l'emploi. Gestion des tenants, abonnements, API Platform et authentification JWT RS256.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.4</span>
+            <span class="stack-badge-sm backend">Symfony 7</span>
+            <span class="stack-badge-sm api">API Platform</span>
+            <span class="stack-badge-sm api">JWT RS256</span>
+          </div>
+          <a href="/projets/saas-boilerplate" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Stock API -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">📦</span>
+            <span class="project-type">API REST</span>
+          </div>
+          <h3>Stock API</h3>
+          <p>API RESTful de gestion de stock. CRUD complet produits/catégories, mouvements de stock, historique et rapports.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.4</span>
+            <span class="stack-badge-sm api">API Platform 4</span>
+            <span class="stack-badge-sm db">PostgreSQL</span>
+            <span class="stack-badge-sm tool">OpenAPI</span>
+          </div>
+          <a href="/projets/stock-api" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Task Queue API -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">⚡</span>
+            <span class="project-type">Queue System</span>
+          </div>
+          <h3>Task Queue API</h3>
+          <p>Système de file d'attente asynchrone avec RabbitMQ. Traitement de jobs en arrière-plan, retry et monitoring.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm api">Messenger</span>
+            <span class="stack-badge-sm tool">RabbitMQ</span>
+            <span class="stack-badge-sm infra">Docker</span>
+          </div>
+          <a href="/projets/task-queue-api" class="project-link">Découvrir →</a>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 border border-accent-primary/20 rounded-3xl p-12 text-center">
-        <h2 class="text-2xl font-bold mb-4">Un projet similaire ?</h2>
-        <p class="text-text-muted mb-8">Discutons de vos besoins et voyons comment je peux vous aider.</p>
-        <a href="/contact" class="btn btn-primary">Me contacter</a>
+  <section class="cta-home">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Un projet <span class="gradient">similaire</span> ?</h2>
+        <p>Discutons de vos besoins et voyons comment je peux vous aider.</p>
+        <a href="/contact" class="btn btn-primary">Prendre contact</a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card p {
+    flex-grow: 1;
+  }
+</style>

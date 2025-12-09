@@ -2,83 +2,227 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Realtime Dashboard | Aurélie Tesson" description="Dashboard e-commerce temps réel avec WebSockets et visualisations interactives.">
-  <section class="pt-32 pb-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
-      <div class="flex flex-wrap gap-4 mb-4">
-        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">Dashboard</span>
-        <span class="bg-accent-tertiary/15 text-accent-tertiary px-4 py-1.5 rounded-full text-sm font-medium">Projet personnel</span>
+<Layout title="Realtime Dashboard — E-commerce Analytics | Aurélie Tesson" description="Dashboard e-commerce avec métriques temps réel via SSE. Visualisation des ventes et KPIs en direct." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">Dashboard</span>
+        <span class="project-status-demo">Démo disponible</span>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Realtime Dashboard</h1>
-      <p class="text-xl text-text-muted max-w-3xl">Dashboard e-commerce temps réel avec visualisation des KPIs, commandes et stock en direct via WebSockets.</p>
+      <h1>Realtime Dashboard</h1>
+      <p class="project-subtitle">Dashboard e-commerce avec métriques temps réel via Server-Sent Events. Visualisation des ventes, stocks et KPIs en direct.</p>
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-2 space-y-12">
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
-            <p class="text-text-muted leading-relaxed">
-              Un dashboard temps réel pour e-commerce permettant de visualiser instantanément les commandes entrantes, l'évolution du chiffre d'affaires, les niveaux de stock et les alertes critiques. Utilise Mercure pour la diffusion des événements en temps réel.
-            </p>
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le projet</h2>
+            <p>Un dashboard de suivi e-commerce permettant de visualiser en temps réel les performances de vente. Les données se mettent à jour automatiquement sans rechargement de page grâce aux Server-Sent Events.</p>
+            <p>Interface moderne et responsive avec graphiques interactifs Chart.js, idéale pour une utilisation sur écran de monitoring ou tablette.</p>
           </div>
 
-          <div>
-            <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Fonctionnalités</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="card">
-                <span class="text-2xl mb-3 block">📊</span>
-                <h4 class="font-semibold mb-2">Charts temps réel</h4>
-                <p class="text-sm text-text-muted">Graphiques mis à jour instantanément avec Chart.js</p>
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Métriques temps réel</strong>
+                  <span>Ventes, CA, panier moyen mis à jour en live via SSE</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🔔</span>
-                <h4 class="font-semibold mb-2">Notifications</h4>
-                <p class="text-sm text-text-muted">Alertes push pour commandes et ruptures de stock</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Graphiques interactifs</strong>
+                  <span>Courbes, barres, donuts avec Chart.js</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">📱</span>
-                <h4 class="font-semibold mb-2">Responsive</h4>
-                <p class="text-sm text-text-muted">Interface adaptée mobile et tablette</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Alertes automatiques</strong>
+                  <span>Notifications en cas de stock bas ou objectif atteint</span>
+                </div>
               </div>
-              <div class="card">
-                <span class="text-2xl mb-3 block">🎨</span>
-                <h4 class="font-semibold mb-2">Thèmes</h4>
-                <p class="text-sm text-text-muted">Mode clair/sombre et personnalisation</p>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Export des données</strong>
+                  <span>Export CSV/Excel des rapports</span>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📈</span>
+                  <p>Dashboard principal</p>
+                </div>
+                <figcaption>Vue d'ensemble des KPIs</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📊</span>
+                  <p>Graphiques ventes</p>
+                </div>
+                <figcaption>Évolution du CA</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>🔔</span>
+                  <p>Alertes stock</p>
+                </div>
+                <figcaption>Notifications stock bas</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Architecture SSE</h2>
+            <div class="architecture-simple">
+              <div class="arch-box">
+                <strong>Client (Browser)</strong>
+                <span>EventSource API</span>
+              </div>
+              <div class="arch-arrow-h">→</div>
+              <div class="arch-box">
+                <strong>Symfony Controller</strong>
+                <span>StreamedResponse</span>
+              </div>
+              <div class="arch-arrow-h">→</div>
+              <div class="arch-box">
+                <strong>Database</strong>
+                <span>MariaDB polling</span>
+              </div>
+            </div>
+            <p class="arch-note">Les données sont poussées du serveur vers le client via SSE, sans WebSocket ni polling côté client.</p>
           </div>
         </div>
 
-        <div class="space-y-6">
-          <div class="card">
-            <h3 class="font-semibold mb-4">Stack</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">Symfony</span>
-              <span class="tech-badge">Mercure</span>
-              <span class="tech-badge">Chart.js</span>
-              <span class="tech-badge">Redis</span>
-              <span class="tech-badge">Docker</span>
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.3</span>
+              <span class="stack-badge backend">Symfony 7.2</span>
+              <span class="stack-badge api">SSE</span>
+              <span class="stack-badge db">MariaDB</span>
+              <span class="stack-badge tool">Chart.js</span>
+              <span class="stack-badge infra">Docker</span>
             </div>
           </div>
 
-          <div class="card text-center">
-            <h3 class="font-semibold mb-4">Code source</h3>
-            <a href="https://github.com/aurelie-tech/realtime-dashboard" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
-              <span>🐙</span>
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/aurelie-tech/realtime-dashboard" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
 
-          <div class="card bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-accent-primary/20">
-            <h3 class="font-semibold mb-3">Un projet similaire ?</h3>
-            <a href="/contact" class="btn btn-primary w-full justify-center text-sm">Me contacter</a>
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin d'un dashboard ?</h3>
+            <p>Je peux créer un dashboard sur mesure pour vos KPIs.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
           </div>
-        </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="other-projects">
+    <div class="container">
+      <h2>Autres projets</h2>
+      <div class="other-projects-grid">
+        <a href="/projets/wms" class="other-project-card">
+          <span class="other-project-icon">🏭</span>
+          <h4>WMS</h4>
+          <p>Système de gestion d'entrepôt</p>
+        </a>
+        <a href="/projets/logidoc-ai" class="other-project-card">
+          <span class="other-project-icon">🤖</span>
+          <h4>LogiDoc AI</h4>
+          <p>Analyse documentaire IA</p>
+        </a>
+        <a href="/projets/saas-boilerplate" class="other-project-card">
+          <span class="other-project-icon">🏢</span>
+          <h4>SaaS Boilerplate</h4>
+          <p>Template multi-tenant</p>
+        </a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .project-status-demo {
+    background: rgba(96, 165, 250, 0.15);
+    color: var(--accent-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .architecture-simple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    flex-wrap: wrap;
+  }
+
+  .arch-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .arch-box strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .arch-box span {
+    color: var(--accent-primary);
+    font-size: 0.85rem;
+  }
+
+  .arch-arrow-h {
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+  }
+
+  .arch-note {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .architecture-simple {
+      flex-direction: column;
+    }
+    .arch-arrow-h {
+      transform: rotate(90deg);
+    }
+  }
+</style>

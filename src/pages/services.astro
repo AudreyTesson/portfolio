@@ -2,115 +2,220 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Services — Aurélie Tesson" description="Développement Symfony, architecture logicielle, intégration IA, DevOps. Services sur mesure pour vos projets web.">
-  <section class="pt-32 pb-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="max-w-3xl">
-        <span class="inline-block bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-accent-primary/20">Services</span>
-        <h1 class="text-4xl lg:text-5xl font-bold mb-6">Des services adaptés à <span class="gradient-text">vos besoins</span></h1>
-        <p class="text-lg text-text-muted leading-relaxed">
-          Du développement d'applications complexes au conseil en architecture, je vous accompagne sur l'ensemble de votre projet.
-        </p>
+<Layout title="Services — Aurélie Tesson" description="Développement Symfony, intégration IA, DevOps et conseil technique. Découvrez mes services de développement full-stack." activePage="services">
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-tag">Services</span>
+      <h1>Ce que je <span class="gradient">propose</span></h1>
+      <p>Des solutions techniques sur mesure, du développement à la mise en production.</p>
+    </div>
+  </section>
+
+  <!-- Services Detail -->
+  <section class="services-detail">
+    <div class="container">
+      <div class="services-grid-full">
+        <!-- Service 1: Architecture Symfony -->
+        <div class="service-card-full">
+          <div class="service-header">
+            <div class="service-icon-large">🏗️</div>
+            <div class="service-title-group">
+              <h2>Architecture Symfony</h2>
+              <p class="service-tagline">Applications robustes et évolutives</p>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Conception et développement d'applications web professionnelles avec le framework Symfony. Une architecture pensée pour durer, maintenable et performante.</p>
+            <ul class="service-features">
+              <li>APIs REST avec API Platform</li>
+              <li>Architecture hexagonale / DDD</li>
+              <li>Authentification JWT sécurisée</li>
+              <li>Tests unitaires et fonctionnels</li>
+              <li>Documentation technique</li>
+            </ul>
+            <div class="service-tech">
+              <span class="tech-badge">PHP 8.4</span>
+              <span class="tech-badge">Symfony 7</span>
+              <span class="tech-badge">API Platform</span>
+              <span class="tech-badge">Doctrine</span>
+              <span class="tech-badge">PHPUnit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Intégration IA -->
+        <div class="service-card-full">
+          <div class="service-header">
+            <div class="service-icon-large">🤖</div>
+            <div class="service-title-group">
+              <h2>Intégration IA</h2>
+              <p class="service-tagline">LLM et automatisation intelligente</p>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Intégration d'intelligences artificielles (OpenAI, Claude, Groq) dans vos applications métier. Automatisation de processus complexes tout en gardant une architecture propre.</p>
+            <ul class="service-features">
+              <li>Analyse de documents automatisée</li>
+              <li>Chatbots et assistants contextuels</li>
+              <li>Extraction et structuration de données</li>
+              <li>RAG (Retrieval-Augmented Generation)</li>
+              <li>Fine-tuning et prompting avancé</li>
+            </ul>
+            <div class="service-tech">
+              <span class="tech-badge">OpenAI</span>
+              <span class="tech-badge">Claude API</span>
+              <span class="tech-badge">Groq</span>
+              <span class="tech-badge">LangChain</span>
+              <span class="tech-badge">Vector DB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: DevOps -->
+        <div class="service-card-full">
+          <div class="service-header">
+            <div class="service-icon-large">🚀</div>
+            <div class="service-title-group">
+              <h2>DevOps & Déploiement</h2>
+              <p class="service-tagline">Infrastructure et automatisation</p>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Mise en place d'environnements de développement et de production. Containerisation, CI/CD et monitoring pour des déploiements fiables et reproductibles.</p>
+            <ul class="service-features">
+              <li>Containerisation Docker</li>
+              <li>Pipelines CI/CD (GitHub Actions)</li>
+              <li>Configuration serveurs Linux</li>
+              <li>Reverse proxy et SSL</li>
+              <li>Monitoring et alerting</li>
+            </ul>
+            <div class="service-tech">
+              <span class="tech-badge">Docker</span>
+              <span class="tech-badge">Linux</span>
+              <span class="tech-badge">Nginx</span>
+              <span class="tech-badge">GitHub Actions</span>
+              <span class="tech-badge">Redis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Conseil -->
+        <div class="service-card-full">
+          <div class="service-header">
+            <div class="service-icon-large">💡</div>
+            <div class="service-title-group">
+              <h2>Conseil & Audit</h2>
+              <p class="service-tagline">Expertise technique à la demande</p>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Accompagnement technique pour vos projets existants ou à venir. Audit de code, optimisation de performance, formation d'équipes et définition d'architecture.</p>
+            <ul class="service-features">
+              <li>Audit de code et architecture</li>
+              <li>Optimisation de performance</li>
+              <li>Revue de sécurité</li>
+              <li>Formation équipes (Symfony, bonnes pratiques)</li>
+              <li>Accompagnement technique ponctuel</li>
+            </ul>
+            <div class="service-tech">
+              <span class="tech-badge">Code Review</span>
+              <span class="tech-badge">Architecture</span>
+              <span class="tech-badge">Performance</span>
+              <span class="tech-badge">Sécurité</span>
+              <span class="tech-badge">Formation</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Service 1 -->
-        <div class="card">
-          <div class="text-4xl mb-6">🏗️</div>
-          <h3 class="text-xl font-bold mb-4">Développement Symfony</h3>
-          <p class="text-text-muted mb-6">Applications web robustes et évolutives avec Symfony. APIs REST, systèmes métier complexes, intégrations tierces.</p>
-          <ul class="space-y-2 text-sm text-text-muted">
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Applications métier sur mesure</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> APIs REST / GraphQL</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Microservices</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Migration et refactoring</li>
-          </ul>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="card">
-          <div class="text-4xl mb-6">🤖</div>
-          <h3 class="text-xl font-bold mb-4">Intégration IA</h3>
-          <p class="text-text-muted mb-6">Intégrez l'intelligence artificielle dans vos applications. Automatisation, analyse de documents, chatbots intelligents.</p>
-          <ul class="space-y-2 text-sm text-text-muted">
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Intégration OpenAI / Claude</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> RAG (Retrieval Augmented Generation)</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Automatisation de processus</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Analyse documentaire</li>
-          </ul>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="card">
-          <div class="text-4xl mb-6">🚀</div>
-          <h3 class="text-xl font-bold mb-4">DevOps & Infrastructure</h3>
-          <p class="text-text-muted mb-6">Mise en production, containerisation, CI/CD. Une infrastructure solide pour des applications performantes.</p>
-          <ul class="space-y-2 text-sm text-text-muted">
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Docker & orchestration</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> CI/CD (GitHub Actions, GitLab)</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Monitoring & logging</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Optimisation performances</li>
-          </ul>
-        </div>
-
-        <!-- Service 4 -->
-        <div class="card">
-          <div class="text-4xl mb-6">💡</div>
-          <h3 class="text-xl font-bold mb-4">Conseil & Architecture</h3>
-          <p class="text-text-muted mb-6">Audit de code, conseil en architecture, accompagnement technique. Prenez les bonnes décisions pour votre projet.</p>
-          <ul class="space-y-2 text-sm text-text-muted">
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Audit de code</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Architecture logicielle</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Choix technologiques</li>
-            <li class="flex items-center gap-2"><span class="text-accent-emerald">✓</span> Formation équipes</li>
-          </ul>
-        </div>
+  <!-- Stack Section -->
+  <section class="stack-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Stack</span>
+        <h2>Technologies maîtrisées</h2>
+        <p>Les outils que j'utilise au quotidien</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <h2 class="text-2xl font-bold mb-12 text-center">Comment je travaille</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-full bg-accent-primary/20 text-accent-primary flex items-center justify-center mx-auto mb-4 font-bold">1</div>
-          <h3 class="font-semibold mb-2">Échange</h3>
-          <p class="text-sm text-text-muted">Compréhension de vos besoins et contraintes</p>
+      <div class="stack-grid">
+        <div class="stack-category">
+          <h3>Backend</h3>
+          <ul>
+            <li>PHP 8.x</li>
+            <li>Symfony 6/7</li>
+            <li>API Platform</li>
+            <li>Doctrine ORM</li>
+          </ul>
         </div>
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-full bg-accent-primary/20 text-accent-primary flex items-center justify-center mx-auto mb-4 font-bold">2</div>
-          <h3 class="font-semibold mb-2">Proposition</h3>
-          <p class="text-sm text-text-muted">Solution technique et estimation détaillée</p>
+        <div class="stack-category">
+          <h3>Base de données</h3>
+          <ul>
+            <li>MySQL / MariaDB</li>
+            <li>PostgreSQL</li>
+            <li>Redis</li>
+            <li>Elasticsearch</li>
+          </ul>
         </div>
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-full bg-accent-primary/20 text-accent-primary flex items-center justify-center mx-auto mb-4 font-bold">3</div>
-          <h3 class="font-semibold mb-2">Développement</h3>
-          <p class="text-sm text-text-muted">Itérations régulières avec points d'avancement</p>
+        <div class="stack-category">
+          <h3>DevOps</h3>
+          <ul>
+            <li>Docker</li>
+            <li>Linux (Debian/Ubuntu)</li>
+            <li>Nginx</li>
+            <li>GitHub Actions</li>
+          </ul>
         </div>
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-full bg-accent-primary/20 text-accent-primary flex items-center justify-center mx-auto mb-4 font-bold">4</div>
-          <h3 class="font-semibold mb-2">Livraison</h3>
-          <p class="text-sm text-text-muted">Mise en production et documentation</p>
+        <div class="stack-category">
+          <h3>IA & APIs</h3>
+          <ul>
+            <li>OpenAI API</li>
+            <li>Claude API</li>
+            <li>Groq</li>
+            <li>REST / GraphQL</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 border border-accent-primary/20 rounded-3xl p-12 text-center">
-        <h2 class="text-2xl font-bold mb-4">Un projet en tête ?</h2>
-        <p class="text-text-muted mb-8">Discutons de vos besoins et trouvons la meilleure solution ensemble.</p>
+  <section class="cta-home">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Besoin d'un <span class="gradient">devis</span> ?</h2>
+        <p>Décrivez-moi votre projet et recevez une estimation sous 48h.</p>
         <a href="/contact" class="btn btn-primary">Demander un devis</a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .services-detail {
+    padding: 2rem 0 5rem;
+  }
+
+  .service-features {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features li {
+    color: var(--text-secondary);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+</style>

@@ -2,49 +2,246 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Stock API | Aurélie Tesson" description="API de gestion de stock avec optimisation des requêtes et cache Redis.">
-  <section class="pt-32 pb-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <a href="/projets" class="text-text-muted hover:text-accent-primary transition-colors text-sm mb-8 inline-block">← Retour aux projets</a>
-      <div class="flex flex-wrap gap-4 mb-4">
-        <span class="bg-gradient-to-r from-blue-500/20 to-cyan-500/15 text-accent-primary px-4 py-1.5 rounded-full text-sm font-medium border border-accent-primary/20">API</span>
-        <span class="bg-accent-tertiary/15 text-accent-tertiary px-4 py-1.5 rounded-full text-sm font-medium">Projet personnel</span>
+<Layout title="Stock API — REST API Gestion de Stock | Aurélie Tesson" description="API RESTful de gestion de stock avec API Platform 4. CRUD produits, mouvements de stock et rapports." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">API REST</span>
+        <span class="project-status-demo">Démo disponible</span>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-bold mb-4">Stock API</h1>
-      <p class="text-xl text-text-muted max-w-3xl">API REST performante pour gestion de stock avec cache Redis et optimisation Doctrine.</p>
+      <h1>Stock API</h1>
+      <p class="project-subtitle">API RESTful complète pour la gestion de stock. CRUD produits et catégories, mouvements de stock, historique et génération de rapports.</p>
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-6xl mx-auto px-[6%]">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-2">
-          <h2 class="text-2xl font-bold mb-4 pb-4 border-b border-border">Le projet</h2>
-          <p class="text-text-muted leading-relaxed">
-            API de gestion de stock conçue pour la haute performance. Utilise des stratégies de cache avancées avec Redis, des requêtes Doctrine optimisées et une architecture pensée pour la scalabilité.
-          </p>
-        </div>
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le projet</h2>
+            <p>Une API REST moderne pour gérer le stock d'un commerce ou d'un entrepôt. Conçue avec API Platform 4 pour une documentation automatique et des endpoints standardisés.</p>
+            <p>L'API respecte les bonnes pratiques REST (verbes HTTP, codes de statut, pagination, filtres) et génère automatiquement une documentation OpenAPI/Swagger interactive.</p>
+          </div>
 
-        <div class="space-y-6">
-          <div class="card">
-            <h3 class="font-semibold mb-4">Stack</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">Symfony</span>
-              <span class="tech-badge">Doctrine</span>
-              <span class="tech-badge">Redis</span>
-              <span class="tech-badge">REST</span>
-              <span class="tech-badge">Docker</span>
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📚</span>
+                  <p>Documentation API</p>
+                </div>
+                <figcaption>Swagger UI interactive</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📦</span>
+                  <p>Liste produits</p>
+                </div>
+                <figcaption>Endpoint GET /api/products</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <div class="screenshot-placeholder">
+                  <span>📉</span>
+                  <p>Mouvements stock</p>
+                </div>
+                <figcaption>Historique des entrées/sorties</figcaption>
+              </figure>
             </div>
           </div>
 
-          <div class="card text-center">
-            <a href="https://github.com/aurelie-tech/stock-api" class="inline-flex items-center gap-2 bg-accent-emerald/20 text-accent-emerald px-4 py-2 rounded-lg hover:bg-accent-emerald/30 transition-colors">
-              <span>🐙</span>
+          <div class="content-section">
+            <h2>Endpoints principaux</h2>
+            <div class="endpoints-list">
+              <div class="endpoint">
+                <span class="method get">GET</span>
+                <code>/api/products</code>
+                <span class="endpoint-desc">Liste des produits (paginée, filtrable)</span>
+              </div>
+              <div class="endpoint">
+                <span class="method post">POST</span>
+                <code>/api/products</code>
+                <span class="endpoint-desc">Créer un nouveau produit</span>
+              </div>
+              <div class="endpoint">
+                <span class="method get">GET</span>
+                <code>/api/stock-movements</code>
+                <span class="endpoint-desc">Historique des mouvements</span>
+              </div>
+              <div class="endpoint">
+                <span class="method post">POST</span>
+                <code>/api/stock-movements</code>
+                <span class="endpoint-desc">Enregistrer un mouvement</span>
+              </div>
+              <div class="endpoint">
+                <span class="method get">GET</span>
+                <code>/api/reports/low-stock</code>
+                <span class="endpoint-desc">Produits en stock bas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>CRUD complet</strong>
+                  <span>Produits, catégories, fournisseurs</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Mouvements de stock</strong>
+                  <span>Entrées, sorties, ajustements avec traçabilité</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Filtres avancés</strong>
+                  <span>Par catégorie, stock, date, recherche texte</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Documentation OpenAPI</strong>
+                  <span>Swagger UI intégré et export JSON</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.4</span>
+              <span class="stack-badge backend">Symfony 7.2</span>
+              <span class="stack-badge api">API Platform 4</span>
+              <span class="stack-badge db">PostgreSQL</span>
+              <span class="stack-badge tool">OpenAPI 3.0</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge tool">PHPUnit</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/aurelie-tech/stock-api" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
-        </div>
+
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin d'une API ?</h3>
+            <p>Je peux développer une API REST sur mesure pour votre projet.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="other-projects">
+    <div class="container">
+      <h2>Autres projets</h2>
+      <div class="other-projects-grid">
+        <a href="/projets/wms" class="other-project-card">
+          <span class="other-project-icon">🏭</span>
+          <h4>WMS</h4>
+          <p>Système de gestion d'entrepôt</p>
+        </a>
+        <a href="/projets/task-queue-api" class="other-project-card">
+          <span class="other-project-icon">⚡</span>
+          <h4>Task Queue API</h4>
+          <p>File d'attente asynchrone</p>
+        </a>
+        <a href="/projets/saas-boilerplate" class="other-project-card">
+          <span class="other-project-icon">🏢</span>
+          <h4>SaaS Boilerplate</h4>
+          <p>Template multi-tenant</p>
+        </a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .project-status-demo {
+    background: rgba(96, 165, 250, 0.15);
+    color: var(--accent-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .endpoints-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .endpoint {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+
+  .method {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .method.get {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+  }
+
+  .method.post {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+  }
+
+  .endpoint code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .endpoint-desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    .endpoint {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .endpoint-desc {
+      margin-left: 0;
+    }
+  }
+</style>
