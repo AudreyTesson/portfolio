@@ -1,0 +1,296 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    placeholder: { icon: '📨', text: 'Envoi notification' },
+    caption: "API d'envoi multi-canal"
+  },
+  {
+    placeholder: { icon: '📊', text: 'Analytics' },
+    caption: 'Dashboard analytics'
+  },
+  {
+    placeholder: { icon: '📝', text: 'Templates' },
+    caption: 'Gestion des templates'
+  }
+];
+---
+
+<Layout title="Notification Service — API de notifications multi-canal | Audrey Tesson" description="API unifiée pour vos notifications Email, SMS, Slack, Push. Un seul endpoint, tous vos canaux." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">API Backend</span>
+        <span class="project-status-personal">Projet personnel</span>
+      </div>
+      <h1>Notification Service</h1>
+      <p class="project-subtitle">API unifiée pour vos notifications. Un seul endpoint, tous vos canaux.</p>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le problème</h2>
+            <p>Notifier vos utilisateurs sur plusieurs canaux (Email, SMS, Slack, Push) devient vite un casse-tête : <strong>une API par canal</strong>, du code dispersé partout, et changer de provider tourne au chantier.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans service unifié
+                </div>
+                <ul class="compare-list">
+                  <li>Une intégration par canal</li>
+                  <li>Code dispersé et dupliqué</li>
+                  <li>Changement de provider = refonte</li>
+                  <li>Aucun suivi centralisé</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec Notification Service
+                </div>
+                <ul class="compare-list">
+                  <li>Un seul endpoint, tous les canaux</li>
+                  <li>Code simplifié et maintenable</li>
+                  <li>Providers interchangeables</li>
+                  <li>Analytics et retry intégrés</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Une API unifiée qui abstrait tous les canaux. Vous envoyez une notification, le service s'occupe du reste : <strong>routing</strong>, <strong>templates</strong>, <strong>files d'attente</strong> et <strong>retry automatique</strong>.</p>
+            <p class="project-objective">→ Résultat : code simplifié, changement de provider transparent, délivrabilité optimisée.</p>
+          </div>
+
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Multi-canal</strong>
+                  <span>Email, Slack, SMS (Twilio), Push (Firebase)</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Templates Twig</strong>
+                  <span>Templates personnalisables avec variables dynamiques</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Traitement asynchrone</strong>
+                  <span>File d'attente avec Symfony Messenger et RabbitMQ</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Rate limiting</strong>
+                  <span>Protection contre les abus par canal et destinataire</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Analytics</strong>
+                  <span>Statistiques d'envoi : sent, delivered, failed, opened</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Historique complet</strong>
+                  <span>Logs détaillés de chaque notification et retry</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Canaux disponibles</h2>
+            <div class="challenges-grid">
+              <div class="challenge-card">
+                <span class="challenge-icon">📧</span>
+                <h4>Email</h4>
+                <p>Symfony Mailer avec support SMTP, SES, Mailgun, SendGrid</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">💬</span>
+                <h4>Slack</h4>
+                <p>Messages via webhook avec support des Blocks</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📱</span>
+                <h4>SMS</h4>
+                <p>Envoi via Twilio avec gestion des erreurs</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🔔</span>
+                <h4>Push</h4>
+                <p>Firebase Cloud Messaging pour iOS/Android</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Architecture</h2>
+            <div class="architecture-grid">
+              <div class="architecture-card">
+                <h4>API Platform</h4>
+                <p>Endpoints REST documentés automatiquement avec OpenAPI/Swagger</p>
+              </div>
+              <div class="architecture-card">
+                <h4>Messenger + RabbitMQ</h4>
+                <p>Traitement asynchrone pour ne pas bloquer l'envoi et gérer les retries</p>
+              </div>
+              <div class="architecture-card">
+                <h4>Redis</h4>
+                <p>Cache et rate limiting performant par destinataire et canal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.3</span>
+              <span class="stack-badge backend">Symfony 7.4</span>
+              <span class="stack-badge backend">API Platform 4</span>
+              <span class="stack-badge db">PostgreSQL 16</span>
+              <span class="stack-badge db">Redis</span>
+              <span class="stack-badge infra">RabbitMQ</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/audrey-tech/notification-service" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="sidebar-card api-endpoints">
+            <h3>Endpoints API</h3>
+            <div class="endpoint-list">
+              <code>POST /api/notifications/send</code>
+              <code>GET /api/notifications/:id</code>
+              <code>GET /api/notifications/analytics</code>
+              <code>POST /api/notification_templates</code>
+            </div>
+          </div>
+
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin de notifications ?</h3>
+            <p>Je peux unifier vos canaux de notification en une seule API.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <ProjectNavigation currentSlug="notification-service" />
+</Layout>
+
+<style>
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .architecture-card {
+    padding: 1.25rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    border-top: 3px solid var(--accent-primary);
+  }
+
+  .architecture-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .architecture-card p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .architecture-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .api-endpoints {
+    background: var(--surface-light);
+  }
+
+  .endpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .endpoint-list code {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-dark);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>

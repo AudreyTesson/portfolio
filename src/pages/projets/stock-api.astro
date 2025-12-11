@@ -1,18 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Import des images - à décommenter quand les images seront ajoutées
+// import swaggerImg from '../../assets/images/projets/stock-api/swagger.png';
+// import productsImg from '../../assets/images/projets/stock-api/products.png';
+// import movementsImg from '../../assets/images/projets/stock-api/movements.png';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    // image: swaggerImg,  // Décommenter quand l'image existe
+    placeholder: { icon: '📚', text: 'Documentation API' },
+    caption: "Swagger UI interactive"
+  },
+  {
+    // image: productsImg,
+    placeholder: { icon: '📦', text: 'Liste produits' },
+    caption: 'Endpoint GET /api/products'
+  },
+  {
+    // image: movementsImg,
+    placeholder: { icon: '📉', text: 'Mouvements stock' },
+    caption: 'Historique des entrées/sorties'
+  }
+];
 ---
 
-<Layout title="Stock API — REST API Gestion de Stock | Aurélie Tesson" description="API RESTful de gestion de stock avec API Platform 4. CRUD produits, mouvements de stock et rapports." activePage="projets">
+<Layout title="Stock API — REST API Gestion de Stock | Audrey Tesson" description="API de gestion de stock multi-entrepôts. Vision temps réel, traçabilité, ruptures évitées." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
       <a href="/projets" class="back-link">← Retour aux projets</a>
       <div class="project-meta">
         <span class="project-type-badge">API REST</span>
-        <span class="project-status-demo">Démo disponible</span>
+        <span class="project-status-personal">Projet personnel</span>
       </div>
       <h1>Stock API</h1>
-      <p class="project-subtitle">API RESTful complète pour la gestion de stock. CRUD produits et catégories, mouvements de stock, historique et génération de rapports.</p>
+      <p class="project-subtitle">API de gestion de stock. Vision temps réel, traçabilité complète, ruptures évitées.</p>
     </div>
   </section>
 
@@ -22,35 +48,63 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>Une API REST moderne pour gérer le stock d'un commerce ou d'un entrepôt. Conçue avec API Platform 4 pour une documentation automatique et des endpoints standardisés.</p>
-            <p>L'API respecte les bonnes pratiques REST (verbes HTTP, codes de statut, pagination, filtres) et génère automatiquement une documentation OpenAPI/Swagger interactive.</p>
+            <h2>Le problème</h2>
+            <p>Gérer les stocks sans API dédiée implique des tableurs, des données dispersées et des <strong>ruptures découvertes trop tard</strong>. Impossible d'avoir une vision consolidée ni des alertes automatiques.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans API stock
+                </div>
+                <ul class="compare-list">
+                  <li>Données dispersées (Excel, papier)</li>
+                  <li>Ruptures découvertes trop tard</li>
+                  <li>Aucune traçabilité des mouvements</li>
+                  <li>Intégration ERP impossible</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec Stock API
+                </div>
+                <ul class="compare-list">
+                  <li>Vision centralisée en temps réel</li>
+                  <li>Alertes stock bas automatiques</li>
+                  <li>Historique complet des mouvements</li>
+                  <li>Intégration facile (REST)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Une API REST complète pour gérer <strong>produits</strong>, <strong>mouvements</strong> et <strong>alertes</strong>. Documentation OpenAPI auto-générée, filtres avancés et historique complet.</p>
+            <p class="project-objective">→ Résultat : vision temps réel, ruptures évitées, traçabilité des mouvements.</p>
           </div>
 
           <div class="content-section">
             <h2>Aperçu</h2>
             <div class="screenshots-grid">
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📚</span>
-                  <p>Documentation API</p>
-                </div>
-                <figcaption>Swagger UI interactive</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📦</span>
-                  <p>Liste produits</p>
-                </div>
-                <figcaption>Endpoint GET /api/products</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📉</span>
-                  <p>Mouvements stock</p>
-                </div>
-                <figcaption>Historique des entrées/sorties</figcaption>
-              </figure>
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
 
@@ -126,55 +180,36 @@ import Layout from '../../layouts/Layout.astro';
             <div class="stack-badges">
               <span class="stack-badge backend">PHP 8.4</span>
               <span class="stack-badge backend">Symfony 7.2</span>
-              <span class="stack-badge api">API Platform 4</span>
+              <span class="stack-badge backend">API Platform 4</span>
               <span class="stack-badge db">PostgreSQL</span>
-              <span class="stack-badge tool">OpenAPI 3.0</span>
+              <span class="stack-badge ai">OpenAPI 3.0</span>
               <span class="stack-badge infra">Docker</span>
-              <span class="stack-badge tool">PHPUnit</span>
+              <span class="stack-badge infra">GitHub</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
             </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
             <h3>Code source</h3>
-            <a href="https://github.com/aurelie-tech/stock-api" target="_blank" class="code-badge public">
+            <a href="https://github.com/audrey-tech/stock-api" target="_blank" class="code-badge public">
               <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
 
           <div class="sidebar-card cta-card-sidebar">
-            <h3>Besoin d'une API ?</h3>
-            <p>Je peux développer une API REST sur mesure pour votre projet.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
+            <h3>Besoin d'une API stock ?</h3>
+            <p>Je peux développer une API sur mesure pour gérer vos stocks.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/wms" class="other-project-card">
-          <span class="other-project-icon">🏭</span>
-          <h4>WMS</h4>
-          <p>Système de gestion d'entrepôt</p>
-        </a>
-        <a href="/projets/task-queue-api" class="other-project-card">
-          <span class="other-project-icon">⚡</span>
-          <h4>Task Queue API</h4>
-          <p>File d'attente asynchrone</p>
-        </a>
-        <a href="/projets/saas-boilerplate" class="other-project-card">
-          <span class="other-project-icon">🏢</span>
-          <h4>SaaS Boilerplate</h4>
-          <p>Template multi-tenant</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="stock-api" />
 </Layout>
 
 <style>

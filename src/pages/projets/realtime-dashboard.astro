@@ -1,18 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Import des images - à décommenter quand les images seront ajoutées
+// import dashboardImg from '../../assets/images/projets/realtime-dashboard/dashboard.png';
+// import chartsImg from '../../assets/images/projets/realtime-dashboard/charts.png';
+// import alertsImg from '../../assets/images/projets/realtime-dashboard/alerts.png';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    // image: dashboardImg,  // Décommenter quand l'image existe
+    placeholder: { icon: '📈', text: 'Dashboard principal' },
+    caption: "Vue d'ensemble des KPIs"
+  },
+  {
+    // image: chartsImg,
+    placeholder: { icon: '📊', text: 'Graphiques ventes' },
+    caption: 'Évolution du CA'
+  },
+  {
+    // image: alertsImg,
+    placeholder: { icon: '🔔', text: 'Alertes stock' },
+    caption: 'Notifications stock bas'
+  }
+];
 ---
 
-<Layout title="Realtime Dashboard — E-commerce Analytics | Aurélie Tesson" description="Dashboard e-commerce avec métriques temps réel via SSE. Visualisation des ventes et KPIs en direct." activePage="projets">
+<Layout title="Realtime Dashboard — E-commerce Analytics | Audrey Tesson" description="Dashboard e-commerce temps réel pour des décisions rapides. Ventes, stocks et alertes en direct." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
       <a href="/projets" class="back-link">← Retour aux projets</a>
       <div class="project-meta">
         <span class="project-type-badge">Dashboard</span>
-        <span class="project-status-demo">Démo disponible</span>
+        <span class="project-status-personal">Projet personnel</span>
       </div>
       <h1>Realtime Dashboard</h1>
-      <p class="project-subtitle">Dashboard e-commerce avec métriques temps réel via Server-Sent Events. Visualisation des ventes, stocks et KPIs en direct.</p>
+      <p class="project-subtitle">Dashboard e-commerce temps réel pour prendre des décisions rapides et ne rien manquer.</p>
     </div>
   </section>
 
@@ -22,9 +48,40 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>Un dashboard de suivi e-commerce permettant de visualiser en temps réel les performances de vente. Les données se mettent à jour automatiquement sans rechargement de page grâce aux Server-Sent Events.</p>
-            <p>Interface moderne et responsive avec graphiques interactifs Chart.js, idéale pour une utilisation sur écran de monitoring ou tablette.</p>
+            <h2>Le problème</h2>
+            <p>En e-commerce, piloter son activité avec des données d'hier, c'est naviguer à l'aveugle. Rafraîchir des tableaux Excel ou attendre les rapports du lendemain fait <strong>perdre des opportunités</strong> et <strong>manquer des alertes critiques</strong>.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans dashboard temps réel
+                </div>
+                <ul class="compare-list">
+                  <li>Données du lendemain (J+1)</li>
+                  <li>Rafraîchissement manuel permanent</li>
+                  <li>Alertes stock manquées</li>
+                  <li>Décisions prises trop tard</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec dashboard temps réel
+                </div>
+                <ul class="compare-list">
+                  <li>Données en direct</li>
+                  <li>Mise à jour automatique</li>
+                  <li>Alertes instantanées</li>
+                  <li>Réactivité maximale</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Un dashboard qui se met à jour <strong>automatiquement</strong> grâce aux Server-Sent Events. Les métriques s'affichent en direct, sans rechargement de page.</p>
+            <p class="project-objective">→ Résultat : décisions rapides, alertes immédiates, vision consolidée de vos KPIs.</p>
           </div>
 
           <div class="content-section">
@@ -34,7 +91,7 @@ import Layout from '../../layouts/Layout.astro';
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>Métriques temps réel</strong>
-                  <span>Ventes, CA, panier moyen mis à jour en live via SSE</span>
+                  <span>Ventes, CA, panier moyen — mis à jour en live</span>
                 </div>
               </div>
               <div class="feature-item">
@@ -48,14 +105,14 @@ import Layout from '../../layouts/Layout.astro';
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>Alertes automatiques</strong>
-                  <span>Notifications en cas de stock bas ou objectif atteint</span>
+                  <span>Stock bas, objectif atteint — notifications instantanées</span>
                 </div>
               </div>
               <div class="feature-item">
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>Export des données</strong>
-                  <span>Export CSV/Excel des rapports</span>
+                  <span>Rapports CSV/Excel en un clic</span>
                 </div>
               </div>
             </div>
@@ -64,49 +121,43 @@ import Layout from '../../layouts/Layout.astro';
           <div class="content-section">
             <h2>Aperçu</h2>
             <div class="screenshots-grid">
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📈</span>
-                  <p>Dashboard principal</p>
-                </div>
-                <figcaption>Vue d'ensemble des KPIs</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📊</span>
-                  <p>Graphiques ventes</p>
-                </div>
-                <figcaption>Évolution du CA</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>🔔</span>
-                  <p>Alertes stock</p>
-                </div>
-                <figcaption>Notifications stock bas</figcaption>
-              </figure>
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
 
           <div class="content-section">
-            <h2>Architecture SSE</h2>
-            <div class="architecture-simple">
-              <div class="arch-box">
-                <strong>Client (Browser)</strong>
-                <span>EventSource API</span>
+            <h2>Architecture</h2>
+            <div class="architecture-grid">
+              <div class="architecture-card">
+                <h4>EventSource API</h4>
+                <p>Connexion SSE native du navigateur pour recevoir les événements serveur</p>
               </div>
-              <div class="arch-arrow-h">→</div>
-              <div class="arch-box">
-                <strong>Symfony Controller</strong>
-                <span>StreamedResponse</span>
+              <div class="architecture-card">
+                <h4>StreamedResponse</h4>
+                <p>Controller Symfony qui push les données en temps réel vers le client</p>
               </div>
-              <div class="arch-arrow-h">→</div>
-              <div class="arch-box">
-                <strong>Database</strong>
-                <span>MariaDB polling</span>
+              <div class="architecture-card">
+                <h4>MariaDB Polling</h4>
+                <p>Interrogation périodique côté serveur pour détecter les changements</p>
               </div>
             </div>
-            <p class="arch-note">Les données sont poussées du serveur vers le client via SSE, sans WebSocket ni polling côté client.</p>
           </div>
         </div>
 
@@ -116,16 +167,20 @@ import Layout from '../../layouts/Layout.astro';
             <div class="stack-badges">
               <span class="stack-badge backend">PHP 8.3</span>
               <span class="stack-badge backend">Symfony 7.2</span>
-              <span class="stack-badge api">SSE</span>
+              <span class="stack-badge ai">SSE</span>
               <span class="stack-badge db">MariaDB</span>
-              <span class="stack-badge tool">Chart.js</span>
+              <span class="stack-badge backend">Chart.js</span>
               <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">GitHub</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
             </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
             <h3>Code source</h3>
-            <a href="https://github.com/aurelie-tech/realtime-dashboard" target="_blank" class="code-badge public">
+            <a href="https://github.com/audrey-tech/realtime-dashboard" target="_blank" class="code-badge public">
               <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
@@ -133,37 +188,15 @@ import Layout from '../../layouts/Layout.astro';
 
           <div class="sidebar-card cta-card-sidebar">
             <h3>Besoin d'un dashboard ?</h3>
-            <p>Je peux créer un dashboard sur mesure pour vos KPIs.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
+            <p>Je peux créer un dashboard sur mesure pour piloter votre activité.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/wms" class="other-project-card">
-          <span class="other-project-icon">🏭</span>
-          <h4>WMS</h4>
-          <p>Système de gestion d'entrepôt</p>
-        </a>
-        <a href="/projets/logidoc-ai" class="other-project-card">
-          <span class="other-project-icon">🤖</span>
-          <h4>LogiDoc AI</h4>
-          <p>Analyse documentaire IA</p>
-        </a>
-        <a href="/projets/saas-boilerplate" class="other-project-card">
-          <span class="other-project-icon">🏢</span>
-          <h4>SaaS Boilerplate</h4>
-          <p>Template multi-tenant</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="realtime-dashboard" />
 </Layout>
 
 <style>
@@ -176,53 +209,43 @@ import Layout from '../../layouts/Layout.astro';
     font-weight: 500;
   }
 
-  .architecture-simple {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .screenshot-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    padding: 2rem;
+  }
+
+  .architecture-card {
+    padding: 1.25rem;
     background: var(--surface-light);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    flex-wrap: wrap;
+    border-radius: 12px;
+    border-top: 3px solid var(--accent-primary);
   }
 
-  .arch-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    text-align: center;
-  }
-
-  .arch-box strong {
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-
-  .arch-box span {
-    color: var(--accent-primary);
+  .architecture-card h4 {
     font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
   }
 
-  .arch-arrow-h {
-    color: var(--accent-primary);
-    font-size: 1.5rem;
-  }
-
-  .arch-note {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  .architecture-card p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 
   @media (max-width: 768px) {
-    .architecture-simple {
-      flex-direction: column;
-    }
-    .arch-arrow-h {
-      transform: rotate(90deg);
+    .architecture-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

@@ -1,0 +1,300 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    placeholder: { icon: '🔐', text: 'Login JWT' },
+    caption: 'Authentification JWT sécurisée'
+  },
+  {
+    placeholder: { icon: '📱', text: '2FA TOTP' },
+    caption: 'Double authentification'
+  },
+  {
+    placeholder: { icon: '📊', text: 'Audit Logs' },
+    caption: 'Historique des connexions'
+  }
+];
+---
+
+<Layout title="Auth Starter — Authentification JWT + 2FA | Audrey Tesson" description="Kit d'authentification prêt à l'emploi. JWT, 2FA, OAuth2 — sécurité enterprise-grade sans réinventer la roue." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">API Backend</span>
+        <span class="project-status-personal">Projet personnel</span>
+      </div>
+      <h1>Auth Starter</h1>
+      <p class="project-subtitle">Kit d'authentification prêt à l'emploi. Sécurité enterprise-grade sans réinventer la roue.</p>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le problème</h2>
+            <p>Implémenter une authentification sécurisée (JWT, 2FA, OAuth2) représente un <strong>travail conséquent</strong>. Les failles de sécurité sont faciles à introduire, et les bonnes pratiques évoluent constamment.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans kit d'authentification
+                </div>
+                <ul class="compare-list">
+                  <li>Développement from scratch</li>
+                  <li>Risques de failles de sécurité</li>
+                  <li>Maintenance des standards à jour</li>
+                  <li>Temps perdu sur du non-métier</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec Auth Starter
+                </div>
+                <ul class="compare-list">
+                  <li>Prêt à l'emploi en minutes</li>
+                  <li>Sécurité enterprise-grade</li>
+                  <li>Standards actuels intégrés</li>
+                  <li>Focus sur la valeur métier</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Un kit complet avec toutes les briques essentielles : <strong>JWT avec rotation</strong>, <strong>2FA TOTP</strong>, <strong>OAuth2</strong> (Google/GitHub), password reset, rate limiting et audit logs.</p>
+            <p class="project-objective">→ Résultat : sécurité enterprise-grade, gain de temps projet, conformité aux standards.</p>
+          </div>
+
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>JWT + Refresh Tokens</strong>
+                  <span>Tokens d'accès courts avec rotation automatique des refresh tokens</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>OAuth2 Social Login</strong>
+                  <span>Connexion via Google et GitHub, extensible à d'autres providers</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>2FA / TOTP</strong>
+                  <span>Double authentification avec QR code (Google Authenticator, Authy)</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Password Reset</strong>
+                  <span>Flow complet avec token sécurisé et email</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Rate Limiting</strong>
+                  <span>Protection brute force : 5 tentatives / 15 min par IP</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Audit Logs</strong>
+                  <span>Historique complet des connexions (IP, user agent, statut)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Sécurité implémentée</h2>
+            <div class="challenges-grid">
+              <div class="challenge-card">
+                <span class="challenge-icon">🔑</span>
+                <h4>JWT RS256</h4>
+                <p>Signature asymétrique avec paire de clés RSA pour une sécurité maximale</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🔄</span>
+                <h4>Token Rotation</h4>
+                <p>Refresh tokens à usage unique avec rotation automatique</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🛡️</span>
+                <h4>Blacklist</h4>
+                <p>Révocation immédiate des tokens en cas de logout ou compromission</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📝</span>
+                <h4>Audit Trail</h4>
+                <p>Traçabilité complète pour la conformité et le debugging</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Architecture</h2>
+            <div class="architecture-grid">
+              <div class="architecture-card">
+                <h4>LexikJWTAuthenticationBundle</h4>
+                <p>Gestion des tokens JWT avec support RS256 et configuration flexible</p>
+              </div>
+              <div class="architecture-card">
+                <h4>Scheb 2FA Bundle</h4>
+                <p>Authentification TOTP compatible avec toutes les apps d'authentification</p>
+              </div>
+              <div class="architecture-card">
+                <h4>Rate Limiter Symfony</h4>
+                <p>Protection native contre les attaques par force brute avec sliding window</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.3</span>
+              <span class="stack-badge backend">Symfony 7.4</span>
+              <span class="stack-badge backend">API Platform 4</span>
+              <span class="stack-badge ai">JWT RS256</span>
+              <span class="stack-badge ai">OAuth2</span>
+              <span class="stack-badge ai">TOTP</span>
+              <span class="stack-badge db">PostgreSQL 16</span>
+              <span class="stack-badge db">Redis</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/audrey-tech/auth-starter" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="sidebar-card api-endpoints">
+            <h3>Endpoints API</h3>
+            <div class="endpoint-list">
+              <code>POST /api/auth/register</code>
+              <code>POST /api/auth/login</code>
+              <code>POST /api/auth/refresh</code>
+              <code>POST /api/auth/2fa/enable</code>
+              <code>POST /api/auth/2fa/verify</code>
+              <code>GET /api/auth/me</code>
+            </div>
+          </div>
+
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin d'auth sécurisée ?</h3>
+            <p>Je peux intégrer ce système ou l'adapter à vos contraintes.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <ProjectNavigation currentSlug="auth-starter" />
+</Layout>
+
+<style>
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .architecture-card {
+    padding: 1.25rem;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    border-top: 3px solid var(--accent-primary);
+  }
+
+  .architecture-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .architecture-card p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .architecture-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .api-endpoints {
+    background: var(--surface-light);
+  }
+
+  .endpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .endpoint-list code {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-dark);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>

@@ -1,18 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Import des images - à décommenter quand les images seront ajoutées
+// import uploadImg from '../../assets/images/projets/logidoc-ai/upload.png';
+// import analysisImg from '../../assets/images/projets/logidoc-ai/analysis.png';
+// import resultsImg from '../../assets/images/projets/logidoc-ai/results.png';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    // image: uploadImg,  // Décommenter quand l'image existe
+    placeholder: { icon: '📄', text: 'Upload document' },
+    caption: "Interface de téléversement"
+  },
+  {
+    // image: analysisImg,
+    placeholder: { icon: '🔍', text: 'Analyse en cours' },
+    caption: 'Traitement IA du document'
+  },
+  {
+    // image: resultsImg,
+    placeholder: { icon: '📊', text: 'Résultats JSON' },
+    caption: 'Données structurées extraites'
+  }
+];
 ---
 
-<Layout title="LogiDoc AI — Analyse documentaire IA | Aurélie Tesson" description="API d'analyse documentaire avec LLM. Extraction intelligente de données depuis PDF et images via Groq." activePage="projets">
+<Layout title="LogiDoc AI — Analyse documentaire IA | Audrey Tesson" description="API d'analyse documentaire automatisée pour accélérer vos opérations métier. Extraction intelligente de données depuis PDF et images." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
       <a href="/projets" class="back-link">← Retour aux projets</a>
       <div class="project-meta">
         <span class="project-type-badge">API IA</span>
-        <span class="project-status">En développement</span>
+        <span class="project-status-personal">Projet personnel</span>
       </div>
       <h1>LogiDoc AI</h1>
-      <p class="project-subtitle">API d'analyse documentaire intelligente utilisant les LLM pour extraire et structurer automatiquement les données depuis PDF, images et documents scannés.</p>
+      <p class="project-subtitle">API d'analyse documentaire automatisée pour accélérer vos opérations métier.</p>
     </div>
   </section>
 
@@ -22,9 +48,40 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>LogiDoc AI est une API REST permettant l'analyse automatisée de documents (factures, bons de livraison, formulaires) via l'intelligence artificielle. L'objectif : transformer des documents non structurés en données exploitables instantanément.</p>
-            <p>L'API utilise Groq pour bénéficier d'une inférence ultra-rapide des LLM, permettant un traitement en temps quasi-réel même sur des documents complexes.</p>
+            <h2>Le problème</h2>
+            <p>Les entreprises digèrent chaque jour une masse de documents : factures, bons de livraison, contrats. Leur traitement manuel ralentit tout : <strong>trop lent</strong>, <strong>trop d'erreurs</strong>, <strong>impossible à scaler</strong>.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans LogiDoc AI
+                </div>
+                <ul class="compare-list">
+                  <li>Saisie manuelle interminable</li>
+                  <li>Erreurs de recopie</li>
+                  <li>Charges qui explosent avec le volume</li>
+                  <li>Formats ingérables</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec LogiDoc AI
+                </div>
+                <ul class="compare-list">
+                  <li>Extraction automatique en quelques secondes</li>
+                  <li>Données structurées (JSON) prêtes à intégrer</li>
+                  <li>Scalabilité illimitée</li>
+                  <li>Tous formats pris en charge</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>LogiDoc AI convertit vos PDF et images en <strong>données fiables</strong> grâce aux LLM accélérés par Groq.</p>
+            <p class="project-objective">→ Résultat : un traitement documentaire réduit de plusieurs minutes à quelques secondes, sans intervention humaine.</p>
           </div>
 
           <div class="content-section">
@@ -33,29 +90,36 @@ import Layout from '../../layouts/Layout.astro';
               <div class="feature-item">
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
-                  <strong>Extraction de données structurées</strong>
-                  <span>Conversion automatique PDF/images en JSON structuré</span>
+                  <strong>Extraction structurée</strong>
+                  <span>JSON prêt à intégrer dans vos systèmes</span>
                 </div>
               </div>
               <div class="feature-item">
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>Multi-formats</strong>
-                  <span>Support PDF, PNG, JPG, documents scannés</span>
+                  <span>PDF, PNG, JPG, documents scannés</span>
                 </div>
               </div>
               <div class="feature-item">
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>API REST documentée</strong>
-                  <span>Endpoints simples avec documentation OpenAPI</span>
+                  <span>Intégration simple avec documentation OpenAPI</span>
                 </div>
               </div>
               <div class="feature-item">
                 <span class="feature-check">✓</span>
                 <div class="feature-text">
                   <strong>Prompts configurables</strong>
-                  <span>Personnalisation des extractions selon vos besoins</span>
+                  <span>Adaptable à chaque cas métier</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Traitement ultra-rapide</strong>
+                  <span>Inférence Groq pour des résultats en secondes</span>
                 </div>
               </div>
             </div>
@@ -64,27 +128,24 @@ import Layout from '../../layouts/Layout.astro';
           <div class="content-section">
             <h2>Aperçu</h2>
             <div class="screenshots-grid">
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📄</span>
-                  <p>Upload document</p>
-                </div>
-                <figcaption>Interface de téléversement</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>🔍</span>
-                  <p>Analyse en cours</p>
-                </div>
-                <figcaption>Traitement IA du document</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📊</span>
-                  <p>Résultats JSON</p>
-                </div>
-                <figcaption>Données structurées extraites</figcaption>
-              </figure>
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
 
@@ -93,23 +154,23 @@ import Layout from '../../layouts/Layout.astro';
             <div class="challenges-grid">
               <div class="challenge-card">
                 <span class="challenge-icon">📄</span>
-                <h4>Traitement de factures</h4>
-                <p>Extraction automatique : montants, dates, références, lignes de produits</p>
+                <h4>Factures</h4>
+                <p>Montants, lignes, TVA, références — extraction automatique</p>
               </div>
               <div class="challenge-card">
                 <span class="challenge-icon">📦</span>
                 <h4>Bons de livraison</h4>
-                <p>Récupération des articles, quantités, numéros de lot</p>
+                <p>Articles, lots, quantités — prêts pour votre ERP</p>
               </div>
               <div class="challenge-card">
                 <span class="challenge-icon">📋</span>
-                <h4>Formulaires</h4>
-                <p>Digitalisation de formulaires papier en données structurées</p>
+                <h4>Formulaires papier</h4>
+                <p>Digitalisation automatique en données exploitables</p>
               </div>
               <div class="challenge-card">
                 <span class="challenge-icon">🧾</span>
                 <h4>Contrats</h4>
-                <p>Extraction des clauses clés et informations contractuelles</p>
+                <p>Clauses clés, dates, acteurs — structurés en JSON</p>
               </div>
             </div>
           </div>
@@ -125,58 +186,40 @@ import Layout from '../../layouts/Layout.astro';
               <span class="stack-badge ai">LLaMA</span>
               <span class="stack-badge ai">Mixtral</span>
               <span class="stack-badge db">MySQL</span>
-              <span class="stack-badge api">API REST</span>
+              <span class="stack-badge ai">API REST</span>
               <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">GitHub</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
             </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
             <h3>Code source</h3>
-            <a href="https://github.com/aurelie-tech/logidoc-ai" target="_blank" class="code-badge public">
+            <a href="https://github.com/audrey-tech/logidoc-ai" target="_blank" class="code-badge public">
               <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
           </div>
 
           <div class="sidebar-card cta-card-sidebar">
-            <h3>Intéressé par l'IA ?</h3>
-            <p>Je peux intégrer des LLM dans vos applications métier.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Discuter du projet</a>
+            <h3>Envie d'intégrer l'IA ?</h3>
+            <p>Je peux automatiser vos traitements documentaires.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/wms" class="other-project-card">
-          <span class="other-project-icon">🏭</span>
-          <h4>WMS</h4>
-          <p>Système de gestion d'entrepôt</p>
-        </a>
-        <a href="/projets/realtime-dashboard" class="other-project-card">
-          <span class="other-project-icon">📊</span>
-          <h4>Realtime Dashboard</h4>
-          <p>Dashboard e-commerce temps réel</p>
-        </a>
-        <a href="/projets/saas-boilerplate" class="other-project-card">
-          <span class="other-project-icon">🏢</span>
-          <h4>SaaS Boilerplate</h4>
-          <p>Template multi-tenant</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="logidoc-ai" />
 </Layout>
 
 <style>
-  .project-status {
-    background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
+  .project-status-open {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
     padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;

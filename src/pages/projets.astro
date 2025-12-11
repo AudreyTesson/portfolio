@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Projets — Aurélie Tesson" description="Découvrez mes réalisations : WMS, LogiDoc AI, Realtime Dashboard et plus. Applications Symfony en production." activePage="projets">
+<Layout title="Projets — Audrey Tesson" description="Découvrez mes réalisations : WMS, LogiDoc AI, Realtime Dashboard et plus. Applications Symfony en production." activePage="projets">
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
@@ -16,7 +16,10 @@ import Layout from '../layouts/Layout.astro';
   <section class="featured-project-section">
     <div class="container">
       <div class="featured-project-card">
-        <div class="featured-badge">Projet phare</div>
+        <div class="featured-badges">
+          <div class="featured-badge">Projet phare</div>
+          <div class="featured-badge badge-production">En production</div>
+        </div>
         <div class="featured-project-grid">
           <div class="featured-project-visual">
             <div class="browser-frame large">
@@ -55,16 +58,16 @@ import Layout from '../layouts/Layout.astro';
             <p class="featured-description">Système de gestion d'entrepôt complet en production. Architecture Symfony pilotée de A à Z : API REST sécurisée, temps réel SSE, workflows métier complexes, multi-supports (PWA, Android, terminaux RF).</p>
             <div class="featured-highlights">
               <div class="highlight-item">
-                <span class="highlight-value">24/7</span>
+                <span class="highlight-value">Prod</span>
                 <span class="highlight-label">En production</span>
               </div>
               <div class="highlight-item">
-                <span class="highlight-value">50+</span>
-                <span class="highlight-label">Utilisateurs</span>
+                <span class="highlight-value">10+</span>
+                <span class="highlight-label">Rôles métier</span>
               </div>
               <div class="highlight-item">
-                <span class="highlight-value">100k+</span>
-                <span class="highlight-label">Ops/mois</span>
+                <span class="highlight-value">SSE</span>
+                <span class="highlight-label">Temps réel</span>
               </div>
             </div>
             <div class="stack-badges-card featured">
@@ -72,9 +75,15 @@ import Layout from '../layouts/Layout.astro';
               <span class="stack-badge-sm backend">Symfony 6.3</span>
               <span class="stack-badge-sm db">MySQL 8.1</span>
               <span class="stack-badge-sm db">Redis</span>
-              <span class="stack-badge-sm api">JWT</span>
-              <span class="stack-badge-sm api">SSE</span>
+              <span class="stack-badge-sm ai">API REST</span>
+              <span class="stack-badge-sm ai">JWT</span>
+              <span class="stack-badge-sm ai">SSE</span>
               <span class="stack-badge-sm infra">Docker</span>
+              <span class="stack-badge-sm infra">Linux</span>
+              <span class="stack-badge-sm infra">Nginx</span>
+              <span class="stack-badge-sm infra">Jira</span>
+              <span class="stack-badge-sm quality">PHPUnit</span>
+              <span class="stack-badge-sm quality">Playwright</span>
             </div>
             <a href="/projets/wms" class="btn btn-primary">Voir le projet en détail</a>
           </div>
@@ -96,6 +105,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="project-card-header">
             <span class="project-icon">🤖</span>
             <span class="project-type">API IA</span>
+            <span class="project-status-personal">Projet personnel</span>
           </div>
           <h3>LogiDoc AI</h3>
           <p>API d'analyse documentaire avec LLM. Extraction intelligente de données depuis PDF, images et documents scannés.</p>
@@ -103,7 +113,15 @@ import Layout from '../layouts/Layout.astro';
             <span class="stack-badge-sm backend">PHP 8.4</span>
             <span class="stack-badge-sm backend">Symfony 7.4</span>
             <span class="stack-badge-sm ai">Groq API</span>
+            <span class="stack-badge-sm ai">LLaMA</span>
+            <span class="stack-badge-sm ai">Mixtral</span>
+            <span class="stack-badge-sm db">MySQL</span>
+            <span class="stack-badge-sm ai">API REST</span>
             <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">GitHub</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <a href="/projets/logidoc-ai" class="project-link">Découvrir →</a>
         </article>
@@ -113,14 +131,21 @@ import Layout from '../layouts/Layout.astro';
           <div class="project-card-header">
             <span class="project-icon">📊</span>
             <span class="project-type">Dashboard</span>
+            <span class="project-status-personal">Projet personnel</span>
           </div>
           <h3>Realtime Dashboard</h3>
           <p>Dashboard e-commerce avec métriques temps réel via SSE. Visualisation des ventes, stocks et KPIs en direct.</p>
           <div class="stack-badges-card">
             <span class="stack-badge-sm backend">PHP 8.3</span>
             <span class="stack-badge-sm backend">Symfony 7.2</span>
-            <span class="stack-badge-sm api">SSE</span>
-            <span class="stack-badge-sm tool">Chart.js</span>
+            <span class="stack-badge-sm ai">SSE</span>
+            <span class="stack-badge-sm db">MariaDB</span>
+            <span class="stack-badge-sm backend">Chart.js</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">GitHub</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <a href="/projets/realtime-dashboard" class="project-link">Découvrir →</a>
         </article>
@@ -130,14 +155,22 @@ import Layout from '../layouts/Layout.astro';
           <div class="project-card-header">
             <span class="project-icon">🏢</span>
             <span class="project-type">Boilerplate</span>
+            <span class="project-status-personal">Projet personnel</span>
           </div>
           <h3>SaaS Boilerplate</h3>
           <p>Template multi-tenant prêt à l'emploi. Gestion des tenants, abonnements, API Platform et authentification JWT RS256.</p>
           <div class="stack-badges-card">
             <span class="stack-badge-sm backend">PHP 8.4</span>
             <span class="stack-badge-sm backend">Symfony 7</span>
-            <span class="stack-badge-sm api">API Platform</span>
-            <span class="stack-badge-sm api">JWT RS256</span>
+            <span class="stack-badge-sm backend">API Platform</span>
+            <span class="stack-badge-sm db">PostgreSQL</span>
+            <span class="stack-badge-sm ai">JWT RS256</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">GitHub</span>
+            <span class="stack-badge-sm infra">GitHub Actions</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <a href="/projets/saas-boilerplate" class="project-link">Découvrir →</a>
         </article>
@@ -147,14 +180,21 @@ import Layout from '../layouts/Layout.astro';
           <div class="project-card-header">
             <span class="project-icon">📦</span>
             <span class="project-type">API REST</span>
+            <span class="project-status-personal">Projet personnel</span>
           </div>
           <h3>Stock API</h3>
           <p>API RESTful de gestion de stock. CRUD complet produits/catégories, mouvements de stock, historique et rapports.</p>
           <div class="stack-badges-card">
             <span class="stack-badge-sm backend">PHP 8.4</span>
-            <span class="stack-badge-sm api">API Platform 4</span>
+            <span class="stack-badge-sm backend">Symfony 7.2</span>
+            <span class="stack-badge-sm backend">API Platform 4</span>
             <span class="stack-badge-sm db">PostgreSQL</span>
-            <span class="stack-badge-sm tool">OpenAPI</span>
+            <span class="stack-badge-sm ai">OpenAPI 3.0</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">GitHub</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <a href="/projets/stock-api" class="project-link">Découvrir →</a>
         </article>
@@ -164,16 +204,138 @@ import Layout from '../layouts/Layout.astro';
           <div class="project-card-header">
             <span class="project-icon">⚡</span>
             <span class="project-type">Queue System</span>
+            <span class="project-status-personal">Projet personnel</span>
           </div>
           <h3>Task Queue API</h3>
           <p>Système de file d'attente asynchrone avec RabbitMQ. Traitement de jobs en arrière-plan, retry et monitoring.</p>
           <div class="stack-badges-card">
             <span class="stack-badge-sm backend">PHP 8.3</span>
-            <span class="stack-badge-sm api">Messenger</span>
-            <span class="stack-badge-sm tool">RabbitMQ</span>
+            <span class="stack-badge-sm backend">Symfony 7.2</span>
+            <span class="stack-badge-sm backend">Messenger</span>
+            <span class="stack-badge-sm infra">RabbitMQ</span>
+            <span class="stack-badge-sm db">Redis</span>
             <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">GitHub</span>
+            <span class="stack-badge-sm infra">Supervisor</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <a href="/projets/task-queue-api" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Notification Service -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">📨</span>
+            <span class="project-type">API Backend</span>
+            <span class="project-status-personal">Projet personnel</span>
+          </div>
+          <h3>Notification Service</h3>
+          <p>Service de notifications multi-canal (Email, Slack, SMS, Push) avec templates Twig, traitement async et analytics.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm backend">API Platform 4</span>
+            <span class="stack-badge-sm db">PostgreSQL</span>
+            <span class="stack-badge-sm db">Redis</span>
+            <span class="stack-badge-sm infra">RabbitMQ</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+          </div>
+          <a href="/projets/notification-service" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Webhook Hub -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">🔗</span>
+            <span class="project-type">API Backend</span>
+            <span class="project-status-personal">Projet personnel</span>
+          </div>
+          <h3>Webhook Hub</h3>
+          <p>API centralisant les webhooks de services tiers (Stripe, GitHub, Slack) avec validation cryptographique et système de retry.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm backend">API Platform 4</span>
+            <span class="stack-badge-sm db">MySQL 8.0</span>
+            <span class="stack-badge-sm db">Redis</span>
+            <span class="stack-badge-sm infra">RabbitMQ</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+          </div>
+          <a href="/projets/webhook-hub" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Auth Starter -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">🔐</span>
+            <span class="project-type">API Backend</span>
+            <span class="project-status-personal">Projet personnel</span>
+          </div>
+          <h3>Auth Starter</h3>
+          <p>Système d'authentification complet avec JWT, refresh tokens, OAuth2 (Google/GitHub), 2FA/TOTP et rate limiting.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm backend">API Platform 4</span>
+            <span class="stack-badge-sm ai">JWT RS256</span>
+            <span class="stack-badge-sm ai">OAuth2</span>
+            <span class="stack-badge-sm db">PostgreSQL 16</span>
+            <span class="stack-badge-sm db">Redis</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+          </div>
+          <a href="/projets/auth-starter" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- Invoice Generator -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">🧾</span>
+            <span class="project-type">API Backend</span>
+            <span class="project-status-personal">Projet personnel</span>
+          </div>
+          <h3>Invoice Generator</h3>
+          <p>API de génération de devis et factures PDF avec calculs TVA, conversion devis→facture et envoi automatisé par email.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm backend">API Platform 4</span>
+            <span class="stack-badge-sm backend">DomPDF</span>
+            <span class="stack-badge-sm db">PostgreSQL 16</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+          </div>
+          <a href="/projets/invoice-generator" class="project-link">Découvrir →</a>
+        </article>
+
+        <!-- File Processing -->
+        <article class="project-card">
+          <div class="project-card-header">
+            <span class="project-icon">📁</span>
+            <span class="project-type">API Backend</span>
+            <span class="project-status-personal">Projet personnel</span>
+          </div>
+          <h3>File Processing API</h3>
+          <p>API de traitement de fichiers : upload, redimensionnement d'images, conversion PDF, jobs asynchrones via RabbitMQ.</p>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.3</span>
+            <span class="stack-badge-sm backend">Symfony 7.4</span>
+            <span class="stack-badge-sm backend">Flysystem</span>
+            <span class="stack-badge-sm db">PostgreSQL 16</span>
+            <span class="stack-badge-sm infra">RabbitMQ</span>
+            <span class="stack-badge-sm infra">MinIO</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm quality">PHPStan (lvl 8)</span>
+          </div>
+          <a href="/projets/file-processing" class="project-link">Découvrir →</a>
         </article>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Aurélie Tesson — Développeuse Full-Stack Symfony & Tech Lead">
+<Layout title="Audrey Tesson — Développeuse Full-Stack Symfony & Tech Lead">
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
             Disponible en remote
           </div>
           <h1>Dev Full-Stack <span class="gradient">Symfony</span> & Tech Lead</h1>
-          <p class="hero-description">Je conçois des applications robustes de A à Z. Architecture, développement, intégration IA, déploiement. Des solutions pérennes pour vos vrais besoins métier.</p>
+          <p class="hero-description">Je pilote vos projets de A à Z : architecture, développement, mise en production. Seule développeuse d'un WMS industriel en production 24/7 — APIs métier, intégration IA, solutions robustes alignées sur vos besoins terrain.</p>
           <div class="hero-buttons">
             <a href="/contact" class="btn btn-primary">Discutons de votre projet</a>
             <a href="/projets" class="btn btn-secondary">Voir mes réalisations</a>
@@ -73,22 +73,22 @@ import Layout from '../layouts/Layout.astro';
         <div class="preview-card">
           <div class="preview-icon">🏗️</div>
           <h3>Architecture Symfony</h3>
-          <p>APIs REST, API Platform, SOLID, DDD</p>
+          <p>APIs REST, API Platform, conception BDD</p>
         </div>
         <div class="preview-card">
           <div class="preview-icon">🤖</div>
           <h3>Intégration IA</h3>
-          <p>OpenAI, Claude, automatisation</p>
+          <p>OpenAI, Claude, n8n, automatisation</p>
         </div>
         <div class="preview-card">
           <div class="preview-icon">🚀</div>
           <h3>DevOps</h3>
-          <p>Docker, Linux, CI/CD</p>
+          <p>Docker, Linux, CI/CD, mise en prod</p>
         </div>
         <div class="preview-card">
           <div class="preview-icon">💡</div>
-          <h3>Conseil</h3>
-          <p>Audit, architecture, formation</p>
+          <h3>Pilotage technique</h3>
+          <p>Architecture, audit, accompagnement</p>
         </div>
       </div>
       <div class="preview-cta">
@@ -101,9 +101,12 @@ import Layout from '../layouts/Layout.astro';
   <section class="featured-preview">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Projet phare</span>
+        <div class="section-tags">
+          <span class="section-tag">Projet phare</span>
+          <span class="section-tag tag-production">En production</span>
+        </div>
         <h2>WMS — Warehouse Management System</h2>
-        <p>Système de gestion d'entrepôt complet en production</p>
+        <p>Système de gestion d'entrepôt complet en production 24/7</p>
       </div>
       <div class="featured-grid">
         <div class="featured-visual">
@@ -140,13 +143,20 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <div class="featured-info">
-          <div class="tech-badges">
-            <span class="tech-badge">Symfony 6</span>
-            <span class="tech-badge">API REST</span>
-            <span class="tech-badge">JWT</span>
-            <span class="tech-badge">Redis</span>
-            <span class="tech-badge">SSE</span>
-            <span class="tech-badge">Docker</span>
+          <div class="stack-badges-card">
+            <span class="stack-badge-sm backend">PHP 8.2</span>
+            <span class="stack-badge-sm backend">Symfony 6.3</span>
+            <span class="stack-badge-sm db">MySQL 8.1</span>
+            <span class="stack-badge-sm db">Redis</span>
+            <span class="stack-badge-sm ai">API REST</span>
+            <span class="stack-badge-sm ai">JWT</span>
+            <span class="stack-badge-sm ai">SSE</span>
+            <span class="stack-badge-sm infra">Docker</span>
+            <span class="stack-badge-sm infra">Linux</span>
+            <span class="stack-badge-sm infra">Nginx</span>
+            <span class="stack-badge-sm infra">Jira</span>
+            <span class="stack-badge-sm quality">PHPUnit</span>
+            <span class="stack-badge-sm quality">Playwright</span>
           </div>
           <p>Architecture Symfony pilotée de A à Z : API REST sécurisée, temps réel SSE, multi-supports (PWA, Android, terminaux).</p>
           <a href="/projets/wms" class="btn btn-primary">Découvrir ce projet</a>

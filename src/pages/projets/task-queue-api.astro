@@ -1,18 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Import des images - à décommenter quand les images seront ajoutées
+// import submitImg from '../../assets/images/projets/task-queue-api/submit.png';
+// import rabbitmqImg from '../../assets/images/projets/task-queue-api/rabbitmq.png';
+// import statusImg from '../../assets/images/projets/task-queue-api/status.png';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    // image: submitImg,  // Décommenter quand l'image existe
+    placeholder: { icon: '📥', text: 'Soumission job' },
+    caption: "Interface de création de tâche"
+  },
+  {
+    // image: rabbitmqImg,
+    placeholder: { icon: '🐰', text: 'RabbitMQ Dashboard' },
+    caption: 'Monitoring des queues'
+  },
+  {
+    // image: statusImg,
+    placeholder: { icon: '📊', text: 'Statut jobs' },
+    caption: 'Suivi des tâches en cours'
+  }
+];
 ---
 
-<Layout title="Task Queue API — Système de file d'attente asynchrone | Aurélie Tesson" description="Système de file d'attente asynchrone avec RabbitMQ et Symfony Messenger. Traitement de jobs en arrière-plan." activePage="projets">
+<Layout title="Task Queue API — Système de file d'attente asynchrone | Audrey Tesson" description="File d'attente async pour vos traitements lourds. UX fluide, scalabilité, fiabilité." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
       <a href="/projets" class="back-link">← Retour aux projets</a>
       <div class="project-meta">
         <span class="project-type-badge">Queue System</span>
-        <span class="project-status-demo">Démo disponible</span>
+        <span class="project-status-personal">Projet personnel</span>
       </div>
       <h1>Task Queue API</h1>
-      <p class="project-subtitle">Système de file d'attente asynchrone avec RabbitMQ et Symfony Messenger. Traitement de jobs en arrière-plan avec retry automatique et monitoring.</p>
+      <p class="project-subtitle">File d'attente asynchrone pour vos traitements lourds. UX fluide, scalabilité garantie.</p>
     </div>
   </section>
 
@@ -22,65 +48,80 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>Une API pour soumettre et gérer des tâches asynchrones. Idéale pour les opérations longues ou gourmandes en ressources : envoi d'emails en masse, génération de rapports, traitement d'images, synchronisation de données.</p>
-            <p>Utilise Symfony Messenger avec RabbitMQ comme broker de messages, offrant fiabilité, retry automatique et scalabilité horizontale via les workers.</p>
+            <h2>Le problème</h2>
+            <p>Certaines opérations (envois massifs, génération de rapports, imports) sont trop longues pour être exécutées en temps réel. <strong>L'utilisateur attend</strong>, le timeout menace, <strong>l'expérience se dégrade</strong>.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans file d'attente
+                </div>
+                <ul class="compare-list">
+                  <li>Utilisateur bloqué pendant le traitement</li>
+                  <li>Timeouts sur les opérations longues</li>
+                  <li>Impossible de scaler</li>
+                  <li>Jobs perdus en cas d'erreur</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec Task Queue API
+                </div>
+                <ul class="compare-list">
+                  <li>Réponse instantanée à l'utilisateur</li>
+                  <li>Traitement en arrière-plan</li>
+                  <li>Scalabilité horizontale</li>
+                  <li>Retry automatique en cas d'échec</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Une file d'attente qui exécute les tâches lourdes <strong>en arrière-plan</strong>. L'utilisateur soumet son job et peut suivre sa progression en temps réel.</p>
+            <p class="project-objective">→ Résultat : UX fluide, scalabilité horizontale, fiabilité des traitements longs.</p>
           </div>
 
           <div class="content-section">
             <h2>Aperçu</h2>
             <div class="screenshots-grid">
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📥</span>
-                  <p>Soumission job</p>
-                </div>
-                <figcaption>Interface de création de tâche</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>🐰</span>
-                  <p>RabbitMQ Dashboard</p>
-                </div>
-                <figcaption>Monitoring des queues</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📊</span>
-                  <p>Statut jobs</p>
-                </div>
-                <figcaption>Suivi des tâches en cours</figcaption>
-              </figure>
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
 
           <div class="content-section">
             <h2>Architecture</h2>
-            <div class="queue-architecture">
-              <div class="queue-flow">
-                <div class="queue-step">
-                  <span class="queue-icon">📥</span>
-                  <strong>API Endpoint</strong>
-                  <span>Soumission des jobs</span>
-                </div>
-                <div class="queue-arrow">→</div>
-                <div class="queue-step">
-                  <span class="queue-icon">🐰</span>
-                  <strong>RabbitMQ</strong>
-                  <span>File d'attente</span>
-                </div>
-                <div class="queue-arrow">→</div>
-                <div class="queue-step">
-                  <span class="queue-icon">⚙️</span>
-                  <strong>Workers</strong>
-                  <span>Traitement async</span>
-                </div>
-                <div class="queue-arrow">→</div>
-                <div class="queue-step">
-                  <span class="queue-icon">✅</span>
-                  <strong>Callback</strong>
-                  <span>Notification</span>
-                </div>
+            <div class="architecture-grid">
+              <div class="architecture-card">
+                <h4>Symfony Messenger</h4>
+                <p>Abstraction native pour le dispatch et la consommation des messages</p>
+              </div>
+              <div class="architecture-card">
+                <h4>RabbitMQ</h4>
+                <p>Broker AMQP pour la persistance et le routage des jobs</p>
+              </div>
+              <div class="architecture-card">
+                <h4>Supervisor</h4>
+                <p>Gestion des workers avec redémarrage automatique</p>
               </div>
             </div>
           </div>
@@ -128,14 +169,28 @@ import Layout from '../../layouts/Layout.astro';
 
           <div class="content-section">
             <h2>Cas d'usage</h2>
-            <ul class="use-cases-simple">
-              <li>Envoi d'emails en masse (newsletters, notifications)</li>
-              <li>Génération de rapports PDF volumineux</li>
-              <li>Traitement et redimensionnement d'images</li>
-              <li>Import/export de données CSV</li>
-              <li>Synchronisation avec APIs externes</li>
-              <li>Calculs intensifs différés</li>
-            </ul>
+            <div class="challenges-grid">
+              <div class="challenge-card">
+                <span class="challenge-icon">📧</span>
+                <h4>Emails en masse</h4>
+                <p>Newsletters, notifications — envoi différé sans bloquer l'API</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📄</span>
+                <h4>Rapports PDF</h4>
+                <p>Génération de documents volumineux en arrière-plan</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🖼️</span>
+                <h4>Traitement d'images</h4>
+                <p>Redimensionnement, conversion, watermark asynchrones</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📊</span>
+                <h4>Import/Export CSV</h4>
+                <p>Traitement de gros fichiers sans timeout</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -145,17 +200,21 @@ import Layout from '../../layouts/Layout.astro';
             <div class="stack-badges">
               <span class="stack-badge backend">PHP 8.3</span>
               <span class="stack-badge backend">Symfony 7.2</span>
-              <span class="stack-badge api">Messenger</span>
-              <span class="stack-badge tool">RabbitMQ</span>
+              <span class="stack-badge backend">Messenger</span>
+              <span class="stack-badge infra">RabbitMQ</span>
               <span class="stack-badge db">Redis</span>
               <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">GitHub</span>
               <span class="stack-badge infra">Supervisor</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
             </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
             <h3>Code source</h3>
-            <a href="https://github.com/aurelie-tech/task-queue-api" target="_blank" class="code-badge public">
+            <a href="https://github.com/audrey-tech/task-queue-api" target="_blank" class="code-badge public">
               <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
@@ -163,135 +222,48 @@ import Layout from '../../layouts/Layout.astro';
 
           <div class="sidebar-card cta-card-sidebar">
             <h3>Besoin d'async ?</h3>
-            <p>Je peux implémenter un système de queue pour vos traitements lourds.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
+            <p>Je peux implémenter une file d'attente pour vos traitements lourds.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/wms" class="other-project-card">
-          <span class="other-project-icon">🏭</span>
-          <h4>WMS</h4>
-          <p>Système de gestion d'entrepôt</p>
-        </a>
-        <a href="/projets/stock-api" class="other-project-card">
-          <span class="other-project-icon">📦</span>
-          <h4>Stock API</h4>
-          <p>API REST gestion de stock</p>
-        </a>
-        <a href="/projets/logidoc-ai" class="other-project-card">
-          <span class="other-project-icon">🤖</span>
-          <h4>LogiDoc AI</h4>
-          <p>Analyse documentaire IA</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="task-queue-api" />
 </Layout>
 
 <style>
-  .project-status-demo {
-    background: rgba(96, 165, 250, 0.15);
-    color: var(--accent-primary);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 
-  .queue-architecture {
+  .architecture-card {
+    padding: 1.25rem;
     background: var(--surface-light);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    overflow-x: auto;
-  }
-
-  .queue-flow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    min-width: 600px;
-  }
-
-  .queue-step {
-    background: var(--surface);
-    border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 1rem;
-    text-align: center;
-    flex: 1;
+    border-top: 3px solid var(--accent-primary);
   }
 
-  .queue-icon {
-    font-size: 1.75rem;
-    display: block;
+  .architecture-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
   }
 
-  .queue-step strong {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .queue-step span {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-  }
-
-  .queue-arrow {
-    color: var(--accent-primary);
-    font-size: 1.5rem;
-    flex-shrink: 0;
-  }
-
-  .use-cases-simple {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .use-cases-simple li {
-    padding: 0.75rem 1rem;
-    padding-left: 2rem;
-    position: relative;
-    background: var(--surface-light);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+  .architecture-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
-  }
-
-  .use-cases-simple li::before {
-    content: "→";
-    position: absolute;
-    left: 0.75rem;
-    color: var(--accent-primary);
-  }
-
-  @media (max-width: 1024px) {
-    .use-cases-simple {
-      grid-template-columns: 1fr;
-    }
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 
   @media (max-width: 768px) {
-    .queue-flow {
-      flex-direction: column;
-      min-width: auto;
-    }
-    .queue-arrow {
-      transform: rotate(90deg);
+    .architecture-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

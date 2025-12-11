@@ -1,0 +1,344 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    placeholder: { icon: '🖼️', text: 'Image Resize' },
+    caption: 'Redimensionnement d\'images'
+  },
+  {
+    placeholder: { icon: '📄', text: 'PDF Process' },
+    caption: 'Traitement de PDFs'
+  },
+  {
+    placeholder: { icon: '⚡', text: 'Async Jobs' },
+    caption: 'Jobs asynchrones'
+  }
+];
+---
+
+<Layout title="File Processing API — Traitement de fichiers | Audrey Tesson" description="API de traitement de fichiers asynchrone. Images, PDFs, conversions — performance et scalabilité." activePage="projets">
+  <!-- Project Header -->
+  <section class="project-detail-header">
+    <div class="container">
+      <a href="/projets" class="back-link">← Retour aux projets</a>
+      <div class="project-meta">
+        <span class="project-type-badge">API Backend</span>
+        <span class="project-status-personal">Projet personnel</span>
+      </div>
+      <h1>File Processing API</h1>
+      <p class="project-subtitle">API de traitement de fichiers asynchrone. Images, PDFs, conversions — performance garantie.</p>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="project-content-section">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-main">
+          <div class="content-section">
+            <h2>Le problème</h2>
+            <p>Traiter des fichiers (images, PDFs) en temps réel <strong>bloque les requêtes</strong> et dégrade l'expérience utilisateur. Gérer les conversions, le stockage et les doublons manuellement est complexe et coûteux.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans traitement asynchrone
+                </div>
+                <ul class="compare-list">
+                  <li>Requêtes bloquées pendant le traitement</li>
+                  <li>Doublons de fichiers non détectés</li>
+                  <li>Conversions manuelles fastidieuses</li>
+                  <li>Stockage rigide et coûteux</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec File Processing API
+                </div>
+                <ul class="compare-list">
+                  <li>Traitement en arrière-plan</li>
+                  <li>Déduplication automatique</li>
+                  <li>Conversions multiples en un appel</li>
+                  <li>Stockage flexible (local ou S3)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Une API de traitement asynchrone avec <strong>déduplication automatique</strong>, <strong>conversions multiples</strong> et <strong>stockage flexible</strong> (local ou S3). L'utilisateur soumet, le service traite en arrière-plan.</p>
+            <p class="project-objective">→ Résultat : performance, scalabilité, formats multiples sans complexité.</p>
+          </div>
+
+          <div class="content-section">
+            <h2>Fonctionnalités</h2>
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Upload intelligent</strong>
+                  <span>Déduplication par checksum SHA-256, métadonnées automatiques</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Traitement d'images</strong>
+                  <span>Resize, thumbnail, conversion (WebP, PNG, JPEG), watermark</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Traitement PDF</strong>
+                  <span>Conversion en images, merge, split, compression</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Jobs asynchrones</strong>
+                  <span>File de traitement RabbitMQ avec suivi de progression</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Stockage flexible</strong>
+                  <span>Flysystem avec support local et S3 (MinIO inclus)</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-check">✓</span>
+                <div class="feature-text">
+                  <strong>Retry automatique</strong>
+                  <span>Relance des jobs échoués avec historique d'erreurs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Aperçu</h2>
+            <div class="screenshots-grid">
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Types de traitement</h2>
+            <div class="processing-types">
+              <div class="processing-category">
+                <h4>Images</h4>
+                <div class="processing-list">
+                  <div class="processing-item">
+                    <code>image_resize</code>
+                    <span>Redimensionnement avec ratio préservé</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>image_thumbnail</code>
+                    <span>Génération de vignettes</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>image_convert</code>
+                    <span>Conversion PNG/JPEG/WebP/GIF</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>image_watermark</code>
+                    <span>Ajout de filigrane texte</span>
+                  </div>
+                </div>
+              </div>
+              <div class="processing-category">
+                <h4>PDF</h4>
+                <div class="processing-list">
+                  <div class="processing-item">
+                    <code>pdf_to_image</code>
+                    <span>Conversion pages en images</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>pdf_merge</code>
+                    <span>Fusion de plusieurs PDFs</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>pdf_split</code>
+                    <span>Découpage par pages</span>
+                  </div>
+                  <div class="processing-item">
+                    <code>pdf_compress</code>
+                    <span>Compression et optimisation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>Points techniques</h2>
+            <div class="challenges-grid">
+              <div class="challenge-card">
+                <span class="challenge-icon">🔄</span>
+                <h4>Asynchrone</h4>
+                <p>Traitement via Symfony Messenger et RabbitMQ, non-bloquant</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📦</span>
+                <h4>Stockage abstrait</h4>
+                <p>Flysystem pour flexibilité locale/cloud sans changer de code</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🔍</span>
+                <h4>Déduplication</h4>
+                <p>Checksum SHA-256 pour éviter les doublons et économiser l'espace</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">📊</span>
+                <h4>Suivi temps réel</h4>
+                <p>Progression des jobs et statistiques d'utilisation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="content-sidebar">
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.3</span>
+              <span class="stack-badge backend">Symfony 7.4</span>
+              <span class="stack-badge backend">API Platform 4</span>
+              <span class="stack-badge backend">Flysystem</span>
+              <span class="stack-badge backend">Imagick</span>
+              <span class="stack-badge db">PostgreSQL 16</span>
+              <span class="stack-badge db">Redis</span>
+              <span class="stack-badge infra">RabbitMQ</span>
+              <span class="stack-badge infra">MinIO (S3)</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card sidebar-code">
+            <h3>Code source</h3>
+            <a href="https://github.com/audrey-tech/file-processing" target="_blank" class="code-badge public">
+              <span class="code-icon">📂</span>
+              <span>Voir sur GitHub</span>
+            </a>
+          </div>
+
+          <div class="sidebar-card api-endpoints">
+            <h3>Endpoints API</h3>
+            <div class="endpoint-list">
+              <code>POST /api/files/upload</code>
+              <code>POST /api/files/:id/process</code>
+              <code>GET /api/files/jobs/:id</code>
+              <code>GET /api/files/:id/download</code>
+              <code>POST /api/files/jobs/:id/retry</code>
+              <code>GET /api/files/stats</code>
+            </div>
+          </div>
+
+          <div class="sidebar-card cta-card-sidebar">
+            <h3>Besoin de traitement fichiers ?</h3>
+            <p>Je peux intégrer ce système ou l'adapter à vos formats.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <ProjectNavigation currentSlug="file-processing" />
+</Layout>
+
+<style>
+  .api-endpoints {
+    background: var(--surface-elevated);
+  }
+
+  .endpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .endpoint-list code {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-dark);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .processing-types {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .processing-category h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .processing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .processing-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--surface-elevated);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .processing-item code {
+    background: var(--surface-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .processing-item span {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+</style>

@@ -1,0 +1,156 @@
+---
+interface Project {
+  slug: string;
+  title: string;
+  icon: string;
+  description: string;
+}
+
+// Liste ordonnée de tous les projets
+const allProjects: Project[] = [
+  { slug: 'wms', title: 'WMS', icon: '🏭', description: 'Système de gestion d\'entrepôt' },
+  { slug: 'logidoc-ai', title: 'LogiDoc AI', icon: '🤖', description: 'Analyse documentaire IA' },
+  { slug: 'realtime-dashboard', title: 'Realtime Dashboard', icon: '📊', description: 'Dashboard e-commerce temps réel' },
+  { slug: 'webhook-hub', title: 'Webhook Hub', icon: '🔗', description: 'Hub d\'intégration webhooks' },
+  { slug: 'notification-service', title: 'Notification Service', icon: '📨', description: 'Notifications multi-canal' },
+  { slug: 'auth-starter', title: 'Auth Starter', icon: '🔐', description: 'Authentification JWT + 2FA' },
+  { slug: 'invoice-generator', title: 'Invoice Generator', icon: '🧾', description: 'Génération devis & factures' },
+  { slug: 'task-queue-api', title: 'Task Queue API', icon: '⚡', description: 'File d\'attente asynchrone' },
+  { slug: 'stock-api', title: 'Stock API', icon: '📦', description: 'API REST gestion de stock' },
+  { slug: 'file-processing', title: 'File Processing', icon: '🖼️', description: 'Traitement de fichiers' },
+  { slug: 'saas-boilerplate', title: 'SaaS Boilerplate', icon: '🏢', description: 'Template multi-tenant' },
+];
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+
+// Trouver l'index du projet actuel
+const currentIndex = allProjects.findIndex(p => p.slug === currentSlug);
+
+// Projets précédent et suivant (navigation circulaire)
+const prevProject = currentIndex > 0
+  ? allProjects[currentIndex - 1]
+  : allProjects[allProjects.length - 1];
+
+const nextProject = currentIndex < allProjects.length - 1
+  ? allProjects[currentIndex + 1]
+  : allProjects[0];
+
+// Autres projets (tous sauf le projet actuel)
+const otherProjects = allProjects.filter(p => p.slug !== currentSlug);
+---
+
+<!-- Flèches de navigation -->
+<a href={`/projets/${prevProject.slug}`} class="nav-arrow-btn prev" title={prevProject.title}>
+  <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"></polyline>
+  </svg>
+</a>
+<a href={`/projets/${nextProject.slug}`} class="nav-arrow-btn next" title={nextProject.title}>
+  <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</a>
+
+<!-- Autres projets -->
+<section class="other-projects">
+  <div class="container">
+    <h2>Tous les projets</h2>
+    <div class="other-projects-grid">
+      {otherProjects.map(project => (
+        <a href={`/projets/${project.slug}`} class="other-project-card">
+          <span class="other-project-icon">{project.icon}</span>
+          <h4>{project.title}</h4>
+          <p>{project.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .nav-arrow-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border: none;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+  }
+
+  .nav-arrow-btn:hover {
+    transform: translateY(-50%) scale(1.12);
+    box-shadow: 0 6px 25px rgba(168, 85, 247, 0.6);
+  }
+
+  .nav-arrow-btn.prev {
+    left: 2rem;
+  }
+
+  .nav-arrow-btn.next {
+    right: 2rem;
+  }
+
+  @media (min-width: 1600px) {
+    .nav-arrow-btn.prev {
+      left: calc(50% - 700px);
+    }
+
+    .nav-arrow-btn.next {
+      right: calc(50% - 700px);
+    }
+  }
+
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1400px) {
+    .nav-arrow-btn {
+      width: 50px;
+      height: 50px;
+    }
+
+    .arrow-icon {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-arrow-btn {
+      top: auto;
+      bottom: 2rem;
+      transform: none;
+      width: 50px;
+      height: 50px;
+    }
+
+    .nav-arrow-btn:hover {
+      transform: scale(1.12);
+    }
+
+    .nav-arrow-btn.prev {
+      left: 1rem;
+    }
+
+    .nav-arrow-btn.next {
+      right: 1rem;
+    }
+  }
+</style>

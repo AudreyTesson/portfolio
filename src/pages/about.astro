@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="À propos — Aurélie Tesson" description="Développeuse Full-Stack PHP/Symfony et Tech Lead avec 6+ ans d'expérience. Mon approche et ma philosophie de travail." activePage="about">
+<Layout title="À propos — Audrey Tesson" description="Développeuse Full-Stack PHP/Symfony et Tech Lead. Architecture, pilotage produit et intégration IA." activePage="about">
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
@@ -15,17 +15,18 @@ import Layout from '../layouts/Layout.astro';
   <!-- About Intro -->
   <section class="about-intro">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2>Une vision globale du développement</h2>
-          <p>Mon expérience Tech Lead m'a appris à voir au-delà du code : architecture, performance, maintenabilité. Chaque projet est une opportunité de créer quelque chose de solide, pensé pour durer et évoluer avec vos besoins.</p>
-          <p>Je travaille principalement avec l'écosystème Symfony, en y intégrant les meilleures pratiques (SOLID, Clean Code, DDD) et les outils modernes (API Platform, Docker, Redis).</p>
-          <p>Plus récemment, j'ai développé une expertise en intégration d'IA et LLM dans les applications métier, permettant d'automatiser des processus complexes tout en gardant une architecture propre et maintenable.</p>
-
-          <div class="highlights-grid">
+      <div class="about-two-cols">
+        <div class="about-text-col">
+          <h2>Du code à la vision produit</h2>
+          <p>Tech Lead et seule développeuse d'un WMS industriel en production 24/7, je pilote l'intégralité du cycle de vie applicatif : recueil des besoins métier, architecture, développement full-stack, déploiement et support. Cette autonomie complète m'a forgé une vision globale qui va bien au-delà du code.</p>
+          <p>Spécialisée en Symfony (5 à 7.4), je conçois des APIs REST sécurisées, structure la logique métier complexe et optimise les performances (MariaDB, Redis, indexation). J'applique les meilleures pratiques (SOLID, Clean Code, DDD) pour du code maintenable sur le long terme.</p>
+          <p>J'intègre également l'IA (OpenAI, Claude, Groq) et l'automatisation (n8n, Make) dans les applications métier, permettant d'automatiser des processus complexes tout en gardant une architecture propre.</p>
+        </div>
+        <div class="about-highlights-col">
+          <div class="highlights-grid-vertical">
             <div class="highlight-card">
-              <div class="highlight-value">6+</div>
-              <div class="highlight-label">Années d'expérience</div>
+              <div class="highlight-value">Senior</div>
+              <div class="highlight-label">Profil</div>
             </div>
             <div class="highlight-card">
               <div class="highlight-value">100%</div>
@@ -33,47 +34,45 @@ import Layout from '../layouts/Layout.astro';
             </div>
             <div class="highlight-card">
               <div class="highlight-value">A→Z</div>
-              <div class="highlight-label">Full-Stack</div>
+              <div class="highlight-label">Pilotage complet</div>
             </div>
             <div class="highlight-card">
               <div class="highlight-value">24/7</div>
-              <div class="highlight-label">Apps en production</div>
+              <div class="highlight-label">WMS en production</div>
             </div>
           </div>
         </div>
-        <div class="about-sidebar">
-          <div class="approach-card">
-            <ul class="approach-list">
-              <li>
-                <div class="approach-icon">🎯</div>
-                <div class="approach-text">
-                  <h4>Vision produit</h4>
-                  <p>Je traduis vos besoins métier en solutions techniques concrètes</p>
-                </div>
-              </li>
-              <li>
-                <div class="approach-icon">🏗️</div>
-                <div class="approach-text">
-                  <h4>Architecture solide</h4>
-                  <p>SOLID, Clean Code, DDD — du code maintenable sur le long terme</p>
-                </div>
-              </li>
-              <li>
-                <div class="approach-icon">🚀</div>
-                <div class="approach-text">
-                  <h4>Livraison complète</h4>
-                  <p>Du développement au déploiement, je gère tout le cycle</p>
-                </div>
-              </li>
-              <li>
-                <div class="approach-icon">🤝</div>
-                <div class="approach-text">
-                  <h4>Communication claire</h4>
-                  <p>Transparence et suivi régulier tout au long du projet</p>
-                </div>
-              </li>
-            </ul>
+      </div>
+
+      <!-- Approach Grid 2x2 -->
+      <div class="approach-grid">
+        <div class="approach-card-new">
+          <div class="approach-card-header">
+            <div class="approach-icon-box">🎯</div>
+            <h4>Vision produit</h4>
           </div>
+          <p>Je traduis vos besoins métier en solutions techniques concrètes</p>
+        </div>
+        <div class="approach-card-new">
+          <div class="approach-card-header">
+            <div class="approach-icon-box">🏗️</div>
+            <h4>Architecture solide</h4>
+          </div>
+          <p>SOLID, Clean Code, DDD — du code maintenable sur le long terme</p>
+        </div>
+        <div class="approach-card-new">
+          <div class="approach-card-header">
+            <div class="approach-icon-box">🚀</div>
+            <h4>Autonomie totale</h4>
+          </div>
+          <p>De la conception au déploiement, je pilote l'intégralité du projet</p>
+        </div>
+        <div class="approach-card-new">
+          <div class="approach-card-header">
+            <div class="approach-icon-box">🤝</div>
+            <h4>Communication claire</h4>
+          </div>
+          <p>Transparence, coordination terrain et suivi régulier</p>
         </div>
       </div>
     </div>
@@ -112,6 +111,70 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Stack Section -->
+  <section class="stack-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Stack</span>
+        <h2>Technologies maîtrisées</h2>
+        <p>Les outils que j'utilise au quotidien</p>
+      </div>
+      <div class="stack-grid-top">
+        <div class="stack-category-new backend">
+          <h3>Backend</h3>
+          <div class="stack-badges">
+            <span class="stack-badge">PHP 5.x → 8.4</span>
+            <span class="stack-badge">Symfony 5 → 7.4</span>
+            <span class="stack-badge">API Platform</span>
+            <span class="stack-badge">Doctrine ORM</span>
+          </div>
+        </div>
+        <div class="stack-category-new database">
+          <h3>Base de données</h3>
+          <div class="stack-badges">
+            <span class="stack-badge">MySQL / MariaDB</span>
+            <span class="stack-badge">PostgreSQL</span>
+            <span class="stack-badge">Supabase</span>
+            <span class="stack-badge">Redis</span>
+            <span class="stack-badge">Elasticsearch</span>
+          </div>
+        </div>
+        <div class="stack-category-new devops">
+          <h3>DevOps & CI</h3>
+          <div class="stack-badges">
+            <span class="stack-badge">Docker</span>
+            <span class="stack-badge">Linux / Nginx</span>
+            <span class="stack-badge">Git / GitHub</span>
+            <span class="stack-badge">GitHub Actions</span>
+            <span class="stack-badge">Jira</span>
+          </div>
+        </div>
+      </div>
+      <div class="stack-grid-bottom">
+        <div class="stack-category-new quality">
+          <h3>Qualité & Tests</h3>
+          <div class="stack-badges">
+            <span class="stack-badge">PHPStan (lvl 8)</span>
+            <span class="stack-badge">PHPUnit</span>
+            <span class="stack-badge">Playwright</span>
+          </div>
+        </div>
+        <div class="stack-category-new ai">
+          <h3>APIs & IA</h3>
+          <div class="stack-badges">
+            <span class="stack-badge">REST / GraphQL</span>
+            <span class="stack-badge">OpenAPI</span>
+            <span class="stack-badge">JWT / SSE</span>
+            <span class="stack-badge">OpenAI</span>
+            <span class="stack-badge">Claude</span>
+            <span class="stack-badge">Groq</span>
+            <span class="stack-badge">n8n / Make</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-home">
     <div class="container">
@@ -125,7 +188,203 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .about-sidebar {
-    display: contents;
+  .about-two-cols {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .about-text-col h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text-col p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .highlights-grid-vertical {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .highlights-grid-vertical .highlight-card {
+    min-width: 120px;
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .approach-card-new {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+
+  .approach-card-new:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.05);
+  }
+
+  .approach-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .approach-icon-box {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.15));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .approach-card-new h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .approach-card-new p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .about-two-cols {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlights-grid-vertical {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .approach-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .highlights-grid-vertical {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Stack Section - New Design 3+2 */
+  .stack-grid-top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-grid-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 66%;
+    margin: 0 auto;
+  }
+
+  .stack-category-new {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+  }
+
+  .stack-category-new h3 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stack-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .stack-category-new .stack-badge {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* Backend - Blue */
+  .stack-category-new.backend .stack-badge {
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+  }
+  .stack-category-new.backend h3 { color: #60a5fa; }
+
+  /* Database - Green */
+  .stack-category-new.database .stack-badge {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+  }
+  .stack-category-new.database h3 { color: #4ade80; }
+
+  /* DevOps - Orange */
+  .stack-category-new.devops .stack-badge {
+    background: rgba(249, 115, 22, 0.15);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.25);
+  }
+  .stack-category-new.devops h3 { color: #fb923c; }
+
+  /* Quality - Pink */
+  .stack-category-new.quality .stack-badge {
+    background: rgba(236, 72, 153, 0.15);
+    color: #f472b6;
+    border: 1px solid rgba(236, 72, 153, 0.25);
+  }
+  .stack-category-new.quality h3 { color: #f472b6; }
+
+  /* AI - Purple */
+  .stack-category-new.ai .stack-badge {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+  }
+  .stack-category-new.ai h3 { color: #c084fc; }
+
+  @media (max-width: 900px) {
+    .stack-grid-top {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stack-grid-bottom {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stack-grid-top,
+    .stack-grid-bottom {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

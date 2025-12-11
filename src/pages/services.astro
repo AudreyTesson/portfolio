@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Services — Aurélie Tesson" description="Développement Symfony, intégration IA, DevOps et conseil technique. Découvrez mes services de développement full-stack." activePage="services">
+<Layout title="Services — Audrey Tesson" description="Développement Symfony, intégration IA, DevOps et conseil technique. Solutions sur mesure pour startups et entreprises." activePage="services">
   <!-- Page Header -->
   <section class="page-header">
     <div class="container">
       <span class="section-tag">Services</span>
       <h1>Ce que je <span class="gradient">propose</span></h1>
-      <p>Des solutions techniques sur mesure, du développement à la mise en production.</p>
+      <p>Des solutions techniques pensées pour votre métier, du développement à la mise en production.</p>
     </div>
   </section>
 
@@ -22,24 +22,25 @@ import Layout from '../layouts/Layout.astro';
             <div class="service-icon-large">🏗️</div>
             <div class="service-title-group">
               <h2>Architecture Symfony</h2>
-              <p class="service-tagline">Applications robustes et évolutives</p>
+              <p class="service-tagline">Applications robustes, scalables et pensées pour votre métier</p>
             </div>
           </div>
           <div class="service-content">
-            <p>Conception et développement d'applications web professionnelles avec le framework Symfony. Une architecture pensée pour durer, maintenable et performante.</p>
-            <ul class="service-features">
-              <li>APIs REST avec API Platform</li>
-              <li>Architecture hexagonale / DDD</li>
-              <li>Authentification JWT sécurisée</li>
-              <li>Tests unitaires et fonctionnels</li>
-              <li>Documentation technique</li>
-            </ul>
+            <p>Je conçois et développe des applications métier sur mesure en Symfony : architecture solide, logique métier claire, base de données optimisée et APIs fiables.</p>
+            <p class="service-objective">→ Objectif : vous fournir un outil pérenne, simple à faire évoluer, et performant même avec de fortes charges.</p>
+            <div class="service-features-pills">
+              <span class="feature-pill"><span class="check">✓</span> APIs REST documentées (API Platform)</span>
+              <span class="feature-pill"><span class="check">✓</span> Architecture orientée services (SOA / DDD)</span>
+              <span class="feature-pill"><span class="check">✓</span> Conception & optimisation de schémas BDD</span>
+              <span class="feature-pill"><span class="check">✓</span> Sécurisation : JWT, droits, validation</span>
+              <span class="feature-pill"><span class="check">✓</span> Tests et qualité continue</span>
+            </div>
             <div class="service-tech">
-              <span class="tech-badge">PHP 8.4</span>
-              <span class="tech-badge">Symfony 7</span>
-              <span class="tech-badge">API Platform</span>
-              <span class="tech-badge">Doctrine</span>
-              <span class="tech-badge">PHPUnit</span>
+              <span class="stack-badge-sm backend">PHP 8.4</span>
+              <span class="stack-badge-sm backend">Symfony 7</span>
+              <span class="stack-badge-sm backend">API Platform</span>
+              <span class="stack-badge-sm backend">Doctrine</span>
+              <span class="stack-badge-sm quality">PHPUnit</span>
             </div>
           </div>
         </div>
@@ -50,24 +51,24 @@ import Layout from '../layouts/Layout.astro';
             <div class="service-icon-large">🤖</div>
             <div class="service-title-group">
               <h2>Intégration IA</h2>
-              <p class="service-tagline">LLM et automatisation intelligente</p>
+              <p class="service-tagline">LLM appliqués à vos processus métier</p>
             </div>
           </div>
           <div class="service-content">
-            <p>Intégration d'intelligences artificielles (OpenAI, Claude, Groq) dans vos applications métier. Automatisation de processus complexes tout en gardant une architecture propre.</p>
-            <ul class="service-features">
-              <li>Analyse de documents automatisée</li>
-              <li>Chatbots et assistants contextuels</li>
-              <li>Extraction et structuration de données</li>
-              <li>RAG (Retrieval-Augmented Generation)</li>
-              <li>Fine-tuning et prompting avancé</li>
-            </ul>
+            <p>J'intègre des solutions IA (OpenAI, Groq, Claude) directement dans vos outils : extraction automatique de données, analyse de documents, assistants métier, automatisations.</p>
+            <p class="service-objective">→ Objectif : réduire la charge humaine, accélérer les opérations et fiabiliser les données.</p>
+            <div class="service-features-pills">
+              <span class="feature-pill"><span class="check">✓</span> Extraction de données automatisée (PDF, images)</span>
+              <span class="feature-pill"><span class="check">✓</span> Assistants métier contextuels</span>
+              <span class="feature-pill"><span class="check">✓</span> Chatbots internes connectés à vos données</span>
+              <span class="feature-pill"><span class="check">✓</span> RAG et pipelines documentaires</span>
+              <span class="feature-pill"><span class="check">✓</span> Automatisations avancées (n8n, Make)</span>
+            </div>
             <div class="service-tech">
-              <span class="tech-badge">OpenAI</span>
-              <span class="tech-badge">Claude API</span>
-              <span class="tech-badge">Groq</span>
-              <span class="tech-badge">LangChain</span>
-              <span class="tech-badge">Vector DB</span>
+              <span class="stack-badge-sm ai">OpenAI</span>
+              <span class="stack-badge-sm ai">Claude API</span>
+              <span class="stack-badge-sm ai">Groq</span>
+              <span class="stack-badge-sm ai">n8n / Make</span>
             </div>
           </div>
         </div>
@@ -78,103 +79,56 @@ import Layout from '../layouts/Layout.astro';
             <div class="service-icon-large">🚀</div>
             <div class="service-title-group">
               <h2>DevOps & Déploiement</h2>
-              <p class="service-tagline">Infrastructure et automatisation</p>
+              <p class="service-tagline">Infrastructure fiable, déploiements sans risque</p>
             </div>
           </div>
           <div class="service-content">
-            <p>Mise en place d'environnements de développement et de production. Containerisation, CI/CD et monitoring pour des déploiements fiables et reproductibles.</p>
-            <ul class="service-features">
-              <li>Containerisation Docker</li>
-              <li>Pipelines CI/CD (GitHub Actions)</li>
-              <li>Configuration serveurs Linux</li>
-              <li>Reverse proxy et SSL</li>
-              <li>Monitoring et alerting</li>
-            </ul>
+            <p>Je mets en place un environnement complet, du développement au déploiement : conteneurs, pipelines CI/CD, monitoring, alerting.</p>
+            <p class="service-objective">→ Objectif : vous garantir une mise en production rapide, répétable et sans interruption.</p>
+            <div class="service-features-pills">
+              <span class="feature-pill"><span class="check">✓</span> Dockerisation complète</span>
+              <span class="feature-pill"><span class="check">✓</span> CI/CD automatisé (GitHub Actions)</span>
+              <span class="feature-pill"><span class="check">✓</span> Alerting temps réel (Slack, email)</span>
+              <span class="feature-pill"><span class="check">✓</span> Monitoring & logs centralisés</span>
+              <span class="feature-pill"><span class="check">✓</span> Déploiement et optimisation serveurs</span>
+            </div>
             <div class="service-tech">
-              <span class="tech-badge">Docker</span>
-              <span class="tech-badge">Linux</span>
-              <span class="tech-badge">Nginx</span>
-              <span class="tech-badge">GitHub Actions</span>
-              <span class="tech-badge">Redis</span>
+              <span class="stack-badge-sm infra">Docker</span>
+              <span class="stack-badge-sm infra">GitHub Actions</span>
+              <span class="stack-badge-sm infra">Linux</span>
+              <span class="stack-badge-sm ai">Slack API</span>
+              <span class="stack-badge-sm db">Redis</span>
             </div>
           </div>
         </div>
 
-        <!-- Service 4: Conseil -->
+        <!-- Service 4: Pilotage technique & Conseil -->
         <div class="service-card-full">
           <div class="service-header">
             <div class="service-icon-large">💡</div>
             <div class="service-title-group">
-              <h2>Conseil & Audit</h2>
-              <p class="service-tagline">Expertise technique à la demande</p>
+              <h2>Pilotage technique & Conseil</h2>
+              <p class="service-tagline">Accompagnement senior pour sécuriser vos décisions techniques</p>
             </div>
           </div>
           <div class="service-content">
-            <p>Accompagnement technique pour vos projets existants ou à venir. Audit de code, optimisation de performance, formation d'équipes et définition d'architecture.</p>
-            <ul class="service-features">
-              <li>Audit de code et architecture</li>
-              <li>Optimisation de performance</li>
-              <li>Revue de sécurité</li>
-              <li>Formation équipes (Symfony, bonnes pratiques)</li>
-              <li>Accompagnement technique ponctuel</li>
-            </ul>
+            <p>J'accompagne vos choix techniques, vos migrations ou vos audits. Intervention ponctuelle ou mission longue durée selon vos besoins.</p>
+            <p class="service-objective">→ Objectif : éclairer vos décisions, sécuriser votre architecture et garantir la qualité long terme.</p>
+            <div class="service-features-pills">
+              <span class="feature-pill"><span class="check">✓</span> Définition d'architecture technique</span>
+              <span class="feature-pill"><span class="check">✓</span> Audit de code, performance et sécurité</span>
+              <span class="feature-pill"><span class="check">✓</span> Revue de code continue</span>
+              <span class="feature-pill"><span class="check">✓</span> Formation équipe (Symfony, bonnes pratiques)</span>
+              <span class="feature-pill"><span class="check">✓</span> Coaching technique ponctuel ou long terme</span>
+            </div>
             <div class="service-tech">
-              <span class="tech-badge">Code Review</span>
-              <span class="tech-badge">Architecture</span>
-              <span class="tech-badge">Performance</span>
-              <span class="tech-badge">Sécurité</span>
-              <span class="tech-badge">Formation</span>
+              <span class="stack-badge-sm quality">Code Review</span>
+              <span class="stack-badge-sm backend">Architecture</span>
+              <span class="stack-badge-sm backend">Performance</span>
+              <span class="stack-badge-sm infra">Sécurité</span>
+              <span class="stack-badge-sm ai">Formation</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stack Section -->
-  <section class="stack-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Stack</span>
-        <h2>Technologies maîtrisées</h2>
-        <p>Les outils que j'utilise au quotidien</p>
-      </div>
-      <div class="stack-grid">
-        <div class="stack-category">
-          <h3>Backend</h3>
-          <ul>
-            <li>PHP 8.x</li>
-            <li>Symfony 6/7</li>
-            <li>API Platform</li>
-            <li>Doctrine ORM</li>
-          </ul>
-        </div>
-        <div class="stack-category">
-          <h3>Base de données</h3>
-          <ul>
-            <li>MySQL / MariaDB</li>
-            <li>PostgreSQL</li>
-            <li>Redis</li>
-            <li>Elasticsearch</li>
-          </ul>
-        </div>
-        <div class="stack-category">
-          <h3>DevOps</h3>
-          <ul>
-            <li>Docker</li>
-            <li>Linux (Debian/Ubuntu)</li>
-            <li>Nginx</li>
-            <li>GitHub Actions</li>
-          </ul>
-        </div>
-        <div class="stack-category">
-          <h3>IA & APIs</h3>
-          <ul>
-            <li>OpenAI API</li>
-            <li>Claude API</li>
-            <li>Groq</li>
-            <li>REST / GraphQL</li>
-          </ul>
         </div>
       </div>
     </div>
@@ -194,28 +148,45 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .services-detail {
-    padding: 2rem 0 5rem;
+    padding: 1.5rem 0 3rem;
   }
 
-  .service-features {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.75rem;
+  .service-features-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
 
-  .service-features li {
+  .feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    padding-left: 1.5rem;
-    position: relative;
+    transition: all 0.3s;
   }
 
-  .service-features li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
+  .feature-pill:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .feature-pill .check {
     color: var(--accent-primary);
-    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .service-objective {
+    color: var(--accent-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--accent-secondary);
   }
 </style>

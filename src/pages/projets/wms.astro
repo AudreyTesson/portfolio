@@ -1,8 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
 ---
 
-<Layout title="WMS — Warehouse Management System | Aurélie Tesson" description="Système de gestion d'entrepôt complet en production. Architecture Symfony, API REST, temps réel SSE, multi-supports." activePage="projets">
+<Layout title="WMS — Warehouse Management System | Audrey Tesson" description="Système de gestion d'entrepôt en production 24/7. Traçabilité totale, productivité optimisée, erreurs réduites." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
@@ -12,7 +13,7 @@ import Layout from '../../layouts/Layout.astro';
         <span class="project-status">En production 24/7</span>
       </div>
       <h1>WMS — Warehouse Management System</h1>
-      <p class="project-subtitle">Système de gestion d'entrepôt complet pour la logistique industrielle. Architecture Symfony pilotée de A à Z : API REST sécurisée, temps réel SSE, multi-supports.</p>
+      <p class="project-subtitle">Système de gestion d'entrepôt complet pour optimiser vos opérations logistiques et garantir une traçabilité totale.</p>
     </div>
   </section>
 
@@ -21,20 +22,20 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container">
       <div class="stats-grid">
         <div class="stat-card">
-          <span class="stat-value">24/7</span>
+          <span class="stat-value">Prod</span>
           <span class="stat-label">En production</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">50+</span>
-          <span class="stat-label">Utilisateurs actifs</span>
+          <span class="stat-value">10+</span>
+          <span class="stat-label">Rôles métier</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">100k+</span>
-          <span class="stat-label">Opérations/mois</span>
+          <span class="stat-value">Temps réel</span>
+          <span class="stat-label">SSE</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">6</span>
-          <span class="stat-label">Mois de développement</span>
+          <span class="stat-value">Solo</span>
+          <span class="stat-label">Full-stack</span>
         </div>
       </div>
     </div>
@@ -46,9 +47,41 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>Un système de gestion d'entrepôt (WMS) complet conçu pour optimiser l'ensemble des opérations logistiques : réception des marchandises, stockage, préparation de commandes (picking), réapprovisionnement, transferts internes et expédition.</p>
-            <p>L'application gère des flux complexes avec plusieurs types d'utilisateurs (opérateurs, managers, administrateurs) et supporte différents devices : PWA web, application Android, et terminaux RF industriels.</p>
+            <h2>Le besoin</h2>
+            <p>Un <strong>WMS (Warehouse Management System)</strong> est un logiciel de gestion d'entrepôt qui pilote l'ensemble des opérations logistiques : réception des marchandises, stockage, préparation de commandes et expédition.</p>
+            <p>Sans WMS, les opérations manuelles génèrent des <strong>erreurs de préparation</strong>, une <strong>traçabilité incomplète</strong> et des <strong>pertes de productivité</strong> difficiles à identifier.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans WMS
+                </div>
+                <ul class="compare-list">
+                  <li>Erreurs de préparation fréquentes</li>
+                  <li>Traçabilité partielle ou inexistante</li>
+                  <li>Pertes de productivité invisibles</li>
+                  <li>Problèmes détectés trop tard</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec WMS
+                </div>
+                <ul class="compare-list">
+                  <li>Contrôles à chaque étape</li>
+                  <li>Traçabilité totale en temps réel</li>
+                  <li>KPIs et dashboards de suivi</li>
+                  <li>Alertes et corrections immédiates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Un WMS complet que je pilote de A à Z : architecture, développement, déploiement et support. L'application optimise l'ensemble des flux logistiques : réception, stockage, picking, réapprovisionnement, transferts et expédition.</p>
+            <p class="project-objective">→ Objectif : traçabilité totale, réduction des erreurs et gain de productivité mesurable.</p>
           </div>
 
           <div class="content-section">
@@ -57,12 +90,12 @@ import Layout from '../../layouts/Layout.astro';
               <div class="challenge-card">
                 <span class="challenge-icon">⚡</span>
                 <h4>Temps réel multi-opérateurs</h4>
-                <p>Synchronisation instantanée des missions entre opérateurs via SSE</p>
+                <p>Synchronisation instantanée des missions entre opérateurs</p>
               </div>
               <div class="challenge-card">
                 <span class="challenge-icon">🔐</span>
                 <h4>Sécurité multi-rôles</h4>
-                <p>Gestion fine des permissions avec JWT et 10+ rôles différents</p>
+                <p>Gestion fine des permissions avec authentification sécurisée et 10+ rôles différents</p>
               </div>
               <div class="challenge-card">
                 <span class="challenge-icon">📱</span>
@@ -73,6 +106,16 @@ import Layout from '../../layouts/Layout.astro';
                 <span class="challenge-icon">📦</span>
                 <h4>Colisage intelligent</h4>
                 <p>Optimisation du conditionnement selon le format conteneur</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🛡️</span>
+                <h4>Fiabilité & Performance</h4>
+                <p>Contrôles multi-niveaux en base, performances optimisées</p>
+              </div>
+              <div class="challenge-card">
+                <span class="challenge-icon">🔄</span>
+                <h4>Workflows métier complexes</h4>
+                <p>Cycle de vie des missions (création, assignation, validation, annulation)</p>
               </div>
             </div>
           </div>
@@ -90,47 +133,60 @@ import Layout from '../../layouts/Layout.astro';
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Réception</td>
+                    <td>Réception marchandises avec contrôle et validation scan</td>
+                    <td class="impact positive">Entrées sécurisées</td>
+                  </tr>
+                  <tr>
+                    <td>Rangement</td>
+                    <td>Le WMS indique au cariste où stocker la marchandise (réserve, masse ou cross-docking)</td>
+                    <td class="impact positive">Flux entrants optimisés</td>
+                  </tr>
+                  <tr>
                     <td>Préparation commandes</td>
-                    <td>Interface mobile pour scanner conteneurs et gérer colis</td>
-                    <td class="impact positive">-30% temps de préparation</td>
+                    <td>Interface mobile : scan emplacement, container, saisie quantité, demande réappro intégrée</td>
+                    <td class="impact positive">Picking guidé</td>
                   </tr>
                   <tr>
                     <td>Réapprovisionnement</td>
-                    <td>Génération automatique des missions et suivi temps réel</td>
+                    <td>Génération des missions sur demande préparateur, suivi temps réel</td>
                     <td class="impact positive">Meilleure rotation stocks</td>
                   </tr>
                   <tr>
-                    <td>Logs métier</td>
-                    <td>Historique complet des actions par opérateur</td>
-                    <td class="impact positive">Audit facilité, suivi primes</td>
+                    <td>Manager</td>
+                    <td>Supervision des missions : annulation, modification, forçage</td>
+                    <td class="impact positive">Contrôle opérationnel</td>
                   </tr>
                   <tr>
-                    <td>Conteneurs</td>
-                    <td>Gestion palette/carton/colis avec scan QR</td>
-                    <td class="impact positive">-60% erreurs colisage</td>
+                    <td>Filmage & Expédition</td>
+                    <td>Clôture palettes, impression étiquettes transporteur et Bon de Livraison</td>
+                    <td class="impact positive">Expédition fluide</td>
+                  </tr>
+                  <tr>
+                    <td>Transferts</td>
+                    <td>Transferts inter-zones et inter-containers (partiels ou totaux) avec validation scan</td>
+                    <td class="impact positive">Traçabilité totale</td>
+                  </tr>
+                  <tr>
+                    <td>Dashboards</td>
+                    <td>Audit, traçabilité containers, KPIs temps réel</td>
+                    <td class="impact positive">Visibilité complète</td>
+                  </tr>
+                  <tr>
+                    <td>Monitoring</td>
+                    <td>Scripts serveur avec alertes Slack (état serveur, rapports, erreurs)</td>
+                    <td class="impact positive">Réactivité</td>
+                  </tr>
+                  <tr>
+                    <td>Sécurité</td>
+                    <td>Gestion des rôles, JWT, permissions fines</td>
+                    <td class="impact positive">10+ rôles différents</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <div class="content-section">
-            <h2>Résultats</h2>
-            <div class="results-grid">
-              <div class="result-card">
-                <span class="result-value">+40%</span>
-                <span class="result-label">Productivité picking</span>
-              </div>
-              <div class="result-card">
-                <span class="result-value">-60%</span>
-                <span class="result-label">Erreurs préparation</span>
-              </div>
-              <div class="result-card">
-                <span class="result-value">99.9%</span>
-                <span class="result-label">Uptime</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <aside class="content-sidebar">
@@ -139,11 +195,34 @@ import Layout from '../../layouts/Layout.astro';
             <p style="color: var(--accent-primary); font-weight: 500; margin-bottom: 1rem;">Tech Lead & Seule développeuse</p>
             <ul>
               <li>Architecture complète du système</li>
-              <li>Développement backend & frontend</li>
-              <li>APIs REST et temps réel SSE</li>
-              <li>DevOps et déploiement</li>
-              <li>Documentation technique</li>
+              <li>Développement full-stack (back & front)</li>
+              <li>Conception et administration BDD</li>
+              <li>APIs REST sécurisées et temps réel SSE</li>
+              <li>Recueil et traduction des besoins métier</li>
+              <li>Arbitrage technique et fonctionnel</li>
+              <li>Coordination direction / terrain</li>
+              <li>DevOps, déploiement et support</li>
+              <li>Documentation technique et fonctionnelle</li>
             </ul>
+          </div>
+
+          <div class="sidebar-card sidebar-stack">
+            <h3>Stack</h3>
+            <div class="stack-badges">
+              <span class="stack-badge backend">PHP 8.2</span>
+              <span class="stack-badge backend">Symfony 6.3</span>
+              <span class="stack-badge db">MySQL 8.1</span>
+              <span class="stack-badge db">Redis</span>
+              <span class="stack-badge ai">API REST</span>
+              <span class="stack-badge ai">JWT</span>
+              <span class="stack-badge ai">SSE</span>
+              <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">Linux</span>
+              <span class="stack-badge infra">Nginx</span>
+              <span class="stack-badge infra">Jira</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
+            </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
@@ -155,53 +234,15 @@ import Layout from '../../layouts/Layout.astro';
             <p class="code-note">Projet propriétaire — disponible sur demande lors d'un entretien.</p>
           </div>
 
-          <div class="sidebar-card sidebar-stack">
-            <h3>Stack</h3>
-            <div class="stack-badges">
-              <span class="stack-badge backend">PHP 8.2</span>
-              <span class="stack-badge backend">Symfony 6.3</span>
-              <span class="stack-badge db">MySQL 8.1</span>
-              <span class="stack-badge db">Redis</span>
-              <span class="stack-badge api">API REST</span>
-              <span class="stack-badge api">JWT</span>
-              <span class="stack-badge api">SSE</span>
-              <span class="stack-badge infra">Docker</span>
-              <span class="stack-badge infra">Nginx</span>
-              <span class="stack-badge tool">PHPUnit</span>
-            </div>
-          </div>
-
           <div class="sidebar-card cta-card-sidebar">
-            <h3>Un projet similaire ?</h3>
-            <p>Discutons de vos besoins en logistique ou gestion métier.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Me contacter</a>
+            <h3>Un projet logistique ?</h3>
+            <p>Je peux concevoir un système sur mesure pour vos opérations.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Discutons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/logidoc-ai" class="other-project-card">
-          <span class="other-project-icon">🤖</span>
-          <h4>LogiDoc AI</h4>
-          <p>API d'analyse documentaire avec LLM</p>
-        </a>
-        <a href="/projets/realtime-dashboard" class="other-project-card">
-          <span class="other-project-icon">📊</span>
-          <h4>Realtime Dashboard</h4>
-          <p>Dashboard e-commerce temps réel</p>
-        </a>
-        <a href="/projets/saas-boilerplate" class="other-project-card">
-          <span class="other-project-icon">🏢</span>
-          <h4>SaaS Boilerplate</h4>
-          <p>Template multi-tenant API Platform</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="wms" />
 </Layout>

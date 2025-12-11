@@ -1,18 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectNavigation from '../../components/ProjectNavigation.astro';
+
+// Import des images - à décommenter quand les images seront ajoutées
+// import loginImg from '../../assets/images/projets/saas-boilerplate/login.png';
+// import tenantsImg from '../../assets/images/projets/saas-boilerplate/tenants.png';
+// import swaggerImg from '../../assets/images/projets/saas-boilerplate/swagger.png';
+
+// Configuration des screenshots
+const screenshots = [
+  {
+    // image: loginImg,  // Décommenter quand l'image existe
+    placeholder: { icon: '🔐', text: 'Page de connexion' },
+    caption: "Authentification JWT"
+  },
+  {
+    // image: tenantsImg,
+    placeholder: { icon: '🏢', text: 'Gestion tenants' },
+    caption: 'Administration multi-tenant'
+  },
+  {
+    // image: swaggerImg,
+    placeholder: { icon: '📚', text: 'Documentation API' },
+    caption: 'Swagger UI auto-générée'
+  }
+];
 ---
 
-<Layout title="SaaS Boilerplate — Multi-tenant API Platform | Aurélie Tesson" description="Template SaaS multi-tenant avec API Platform. Gestion des tenants, abonnements et authentification JWT RS256." activePage="projets">
+<Layout title="SaaS Boilerplate — Multi-tenant API Platform | Audrey Tesson" description="Template SaaS multi-tenant prêt à l'emploi. Time-to-market réduit, architecture éprouvée." activePage="projets">
   <!-- Project Header -->
   <section class="project-detail-header">
     <div class="container">
       <a href="/projets" class="back-link">← Retour aux projets</a>
       <div class="project-meta">
         <span class="project-type-badge">Boilerplate</span>
-        <span class="project-status-open">Open Source</span>
+        <span class="project-status-personal">Projet personnel</span>
       </div>
       <h1>SaaS Boilerplate</h1>
-      <p class="project-subtitle">Template multi-tenant prêt à l'emploi pour démarrer rapidement un projet SaaS. Gestion des tenants, abonnements et isolation des données.</p>
+      <p class="project-subtitle">Template multi-tenant prêt à l'emploi. Lancez votre SaaS rapidement avec des fondations solides.</p>
     </div>
   </section>
 
@@ -22,9 +48,40 @@ import Layout from '../../layouts/Layout.astro';
       <div class="content-grid">
         <div class="content-main">
           <div class="content-section">
-            <h2>Le projet</h2>
-            <p>Un boilerplate complet pour démarrer un projet SaaS multi-tenant en quelques minutes. Architecture moderne avec API Platform pour une API REST/GraphQL auto-documentée et isolation des données par tenant.</p>
-            <p>Ce template inclut tout le nécessaire : authentification sécurisée, gestion des organisations, système de rôles, et structure prête pour l'intégration de paiements.</p>
+            <h2>Le problème</h2>
+            <p>Lancer un SaaS demande de construire des fondations solides : <strong>multi-tenancy</strong>, <strong>authentification</strong>, <strong>gestion des rôles</strong>, <strong>isolation des données</strong>. Des semaines de travail avant même de coder la valeur métier.</p>
+
+            <div class="comparison-block">
+              <div class="compare-box before">
+                <div class="compare-header">
+                  <span>❌</span> Sans boilerplate
+                </div>
+                <ul class="compare-list">
+                  <li>Semaines à coder les fondations</li>
+                  <li>Architecture à concevoir from scratch</li>
+                  <li>Risques de failles de sécurité</li>
+                  <li>Multi-tenancy complexe à implémenter</li>
+                </ul>
+              </div>
+              <div class="arrow-divider">→</div>
+              <div class="compare-box after">
+                <div class="compare-header">
+                  <span>✅</span> Avec SaaS Boilerplate
+                </div>
+                <ul class="compare-list">
+                  <li>Démarrage en quelques heures</li>
+                  <li>Architecture éprouvée et documentée</li>
+                  <li>Sécurité enterprise-grade</li>
+                  <li>Multi-tenancy prêt à l'emploi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2>La solution</h2>
+            <p>Un template complet avec toutes les briques essentielles : <strong>multi-tenancy</strong>, <strong>auth JWT</strong>, <strong>RBAC</strong>, <strong>API documentée</strong>. Architecture moderne, isolation des données par tenant.</p>
+            <p class="project-objective">→ Résultat : time-to-market réduit, architecture éprouvée, évolutif dès le départ.</p>
           </div>
 
           <div class="content-section">
@@ -78,27 +135,24 @@ import Layout from '../../layouts/Layout.astro';
           <div class="content-section">
             <h2>Aperçu</h2>
             <div class="screenshots-grid">
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>🔐</span>
-                  <p>Page de connexion</p>
-                </div>
-                <figcaption>Authentification JWT</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>🏢</span>
-                  <p>Gestion tenants</p>
-                </div>
-                <figcaption>Administration multi-tenant</figcaption>
-              </figure>
-              <figure class="screenshot">
-                <div class="screenshot-placeholder">
-                  <span>📚</span>
-                  <p>Documentation API</p>
-                </div>
-                <figcaption>Swagger UI auto-générée</figcaption>
-              </figure>
+              {screenshots.map((screenshot) => (
+                <figure class="screenshot">
+                  {screenshot.image ? (
+                    <Image
+                      src={screenshot.image}
+                      alt={screenshot.caption}
+                      class="screenshot-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="screenshot-placeholder">
+                      <span>{screenshot.placeholder.icon}</span>
+                      <p>{screenshot.placeholder.text}</p>
+                    </div>
+                  )}
+                  <figcaption>{screenshot.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
 
@@ -127,17 +181,21 @@ import Layout from '../../layouts/Layout.astro';
             <div class="stack-badges">
               <span class="stack-badge backend">PHP 8.4</span>
               <span class="stack-badge backend">Symfony 7</span>
-              <span class="stack-badge api">API Platform</span>
+              <span class="stack-badge backend">API Platform</span>
               <span class="stack-badge db">PostgreSQL</span>
-              <span class="stack-badge api">JWT RS256</span>
+              <span class="stack-badge ai">JWT RS256</span>
               <span class="stack-badge infra">Docker</span>
+              <span class="stack-badge infra">GitHub</span>
               <span class="stack-badge infra">GitHub Actions</span>
+              <span class="stack-badge quality">PHPStan (lvl 8)</span>
+              <span class="stack-badge quality">PHPUnit</span>
+              <span class="stack-badge quality">Playwright</span>
             </div>
           </div>
 
           <div class="sidebar-card sidebar-code">
             <h3>Code source</h3>
-            <a href="https://github.com/aurelie-tech/saas-boilerplate" target="_blank" class="code-badge public">
+            <a href="https://github.com/audrey-tech/saas-boilerplate" target="_blank" class="code-badge public">
               <span class="code-icon">📂</span>
               <span>Voir sur GitHub</span>
             </a>
@@ -145,37 +203,15 @@ import Layout from '../../layouts/Layout.astro';
 
           <div class="sidebar-card cta-card-sidebar">
             <h3>Besoin d'un SaaS ?</h3>
-            <p>Je peux vous aider à développer votre produit SaaS de A à Z.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Discuter du projet</a>
+            <p>Je peux développer votre produit SaaS de A à Z.</p>
+            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Other Projects -->
-  <section class="other-projects">
-    <div class="container">
-      <h2>Autres projets</h2>
-      <div class="other-projects-grid">
-        <a href="/projets/wms" class="other-project-card">
-          <span class="other-project-icon">🏭</span>
-          <h4>WMS</h4>
-          <p>Système de gestion d'entrepôt</p>
-        </a>
-        <a href="/projets/logidoc-ai" class="other-project-card">
-          <span class="other-project-icon">🤖</span>
-          <h4>LogiDoc AI</h4>
-          <p>Analyse documentaire IA</p>
-        </a>
-        <a href="/projets/stock-api" class="other-project-card">
-          <span class="other-project-icon">📦</span>
-          <h4>Stock API</h4>
-          <p>API REST gestion de stock</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ProjectNavigation currentSlug="saas-boilerplate" />
 </Layout>
 
 <style>
