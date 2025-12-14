@@ -1,0 +1,18 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="60" y="530" width="200" height="6" rx="3" fill="url(#accent)"/>
+  <text x="60" y="280" font-family="system-ui, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Audrey Tesson</text>
+  <text x="60" y="360" font-family="system-ui, sans-serif" font-size="36" fill="#94a3b8">Développeuse Full-Stack Symfony</text>
+  <text x="60" y="420" font-family="system-ui, sans-serif" font-size="36" fill="#94a3b8">& Tech Lead Freelance</text>
+  <text x="60" y="500" font-family="system-ui, sans-serif" font-size="24" fill="#6366f1">audreytesson.dev</text>
+</svg>

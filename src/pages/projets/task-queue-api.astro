@@ -1,268 +1,2079 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import ProjectNavigation from '../../components/ProjectNavigation.astro';
 
-// Import des images - à décommenter quand les images seront ajoutées
-// import submitImg from '../../assets/images/projets/task-queue-api/submit.png';
-// import rabbitmqImg from '../../assets/images/projets/task-queue-api/rabbitmq.png';
-// import statusImg from '../../assets/images/projets/task-queue-api/status.png';
+// Code content
+const codeExample = `// Créer un message
+class SendEmailMessage {
+    public function __construct(
+        public string $to,
+        public string $subject,
+        public string $body
+    ) {}
+}
 
-// Configuration des screenshots
-const screenshots = [
-  {
-    // image: submitImg,  // Décommenter quand l'image existe
-    placeholder: { icon: '📥', text: 'Soumission job' },
-    caption: "Interface de création de tâche"
-  },
-  {
-    // image: rabbitmqImg,
-    placeholder: { icon: '🐰', text: 'RabbitMQ Dashboard' },
-    caption: 'Monitoring des queues'
-  },
-  {
-    // image: statusImg,
-    placeholder: { icon: '📊', text: 'Statut jobs' },
-    caption: 'Suivi des tâches en cours'
-  }
-];
+// Dispatcher le job
+$bus->dispatch(new SendEmailMessage(
+    'client@example.com',
+    'Votre commande est prête',
+    $htmlContent
+));`;
+
+const terminalPreview = `$ symfony console messenger:consume async
+
+[OK] Consuming messages from transport "async"
+
+ // The worker will automatically exit once it has received a stop signal
+
+ 15:42:01 INFO  [messenger] Received message SendEmailMessage
+ 15:42:01 INFO  [messenger] Message SendEmailMessage handled ✓
+ 15:42:02 INFO  [messenger] Received message GeneratePdfMessage
+ 15:42:03 INFO  [messenger] Message GeneratePdfMessage handled ✓
+ 15:42:03 INFO  [messenger] Received message ProcessImageMessage
+ 15:42:04 INFO  [messenger] Message ProcessImageMessage handled ✓`;
 ---
 
-<Layout title="Task Queue API — Système de file d'attente asynchrone | Audrey Tesson" description="File d'attente async pour vos traitements lourds. UX fluide, scalabilité, fiabilité." activePage="projets">
-  <!-- Project Header -->
-  <section class="project-detail-header">
-    <div class="container">
-      <a href="/projets" class="back-link">← Retour aux projets</a>
-      <div class="project-meta">
-        <span class="project-type-badge">Queue System</span>
-        <span class="project-status-personal">Projet personnel</span>
-      </div>
-      <h1>Task Queue API</h1>
-      <p class="project-subtitle">File d'attente asynchrone pour vos traitements lourds. UX fluide, scalabilité garantie.</p>
-    </div>
-  </section>
+<Layout title="Task Queue API — Traitement asynchrone Symfony | Audrey Tesson" activePage="projets">
+  <div class="project-page">
 
-  <!-- Project Content -->
-  <section class="project-content-section">
-    <div class="container">
-      <div class="content-grid">
-        <div class="content-main">
-          <div class="content-section">
-            <h2>Le problème</h2>
-            <p>Certaines opérations (envois massifs, génération de rapports, imports) sont trop longues pour être exécutées en temps réel. <strong>L'utilisateur attend</strong>, le timeout menace, <strong>l'expérience se dégrade</strong>.</p>
+    <!-- 1. HERO SECTION (2 colonnes) -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left: Content -->
+          <div class="hero-content">
+            <!-- Badge contextuel -->
+            <div class="context-badge">
+              <span class="badge-type">Template</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-role">Solo</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-status">Disponible</span>
+            </div>
 
-            <div class="comparison-block">
-              <div class="compare-box before">
-                <div class="compare-header">
-                  <span>❌</span> Sans file d'attente
-                </div>
-                <ul class="compare-list">
-                  <li>Utilisateur bloqué pendant le traitement</li>
-                  <li>Timeouts sur les opérations longues</li>
-                  <li>Impossible de scaler</li>
-                  <li>Jobs perdus en cas d'erreur</li>
-                </ul>
+            <h1>Task Queue API</h1>
+            <p class="tagline">Le traitement asynchrone Symfony, simplifié</p>
+            <p class="subtitle">Kit complet Messenger + RabbitMQ — Du code au monitoring en 5 minutes</p>
+
+            <!-- Metrics -->
+            <div class="hero-metrics">
+              <div class="metric">
+                <span class="metric-value">5min</span>
+                <span class="metric-label">setup complet</span>
               </div>
-              <div class="arrow-divider">→</div>
-              <div class="compare-box after">
-                <div class="compare-header">
-                  <span>✅</span> Avec Task Queue API
-                </div>
-                <ul class="compare-list">
-                  <li>Réponse instantanée à l'utilisateur</li>
-                  <li>Traitement en arrière-plan</li>
-                  <li>Scalabilité horizontale</li>
-                  <li>Retry automatique en cas d'échec</li>
-                </ul>
+              <div class="metric">
+                <span class="metric-value">100%</span>
+                <span class="metric-label">async natif</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">0</span>
+                <span class="metric-label">config manuelle</span>
               </div>
             </div>
-          </div>
 
-          <div class="content-section">
-            <h2>La solution</h2>
-            <p>Une file d'attente qui exécute les tâches lourdes <strong>en arrière-plan</strong>. L'utilisateur soumet son job et peut suivre sa progression en temps réel.</p>
-            <p class="project-objective">→ Résultat : UX fluide, scalabilité horizontale, fiabilité des traitements longs.</p>
-          </div>
-
-          <div class="content-section">
-            <h2>Aperçu</h2>
-            <div class="screenshots-grid">
-              {screenshots.map((screenshot) => (
-                <figure class="screenshot">
-                  {screenshot.image ? (
-                    <Image
-                      src={screenshot.image}
-                      alt={screenshot.caption}
-                      class="screenshot-image"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="screenshot-placeholder">
-                      <span>{screenshot.placeholder.icon}</span>
-                      <p>{screenshot.placeholder.text}</p>
-                    </div>
-                  )}
-                  <figcaption>{screenshot.caption}</figcaption>
-                </figure>
-              ))}
+            <!-- CTAs -->
+            <div class="hero-ctas">
+              <a href="#pricing" class="btn btn-primary">Acheter le template</a>
+              <a href="#demo" class="btn btn-secondary">Voir la demo</a>
             </div>
+
+            <!-- Author mention -->
+            <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
           </div>
 
-          <div class="content-section">
-            <h2>Architecture</h2>
-            <div class="architecture-grid">
-              <div class="architecture-card">
-                <h4>Symfony Messenger</h4>
-                <p>Abstraction native pour le dispatch et la consommation des messages</p>
+          <!-- Right: Hero Mockup -->
+          <div class="hero-visual">
+            <div class="hero-mockup terminal-mockup">
+              <!-- Terminal header -->
+              <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">messenger:consume</span>
               </div>
-              <div class="architecture-card">
-                <h4>RabbitMQ</h4>
-                <p>Broker AMQP pour la persistance et le routage des jobs</p>
-              </div>
-              <div class="architecture-card">
-                <h4>Supervisor</h4>
-                <p>Gestion des workers avec redémarrage automatique</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="content-section">
-            <h2>Fonctionnalités</h2>
-            <div class="features-list">
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Soumission de jobs</strong>
-                  <span>API REST pour créer des tâches avec payload personnalisé</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Retry automatique</strong>
-                  <span>3 tentatives avec backoff exponentiel en cas d'échec</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Dead letter queue</strong>
-                  <span>Jobs en échec conservés pour analyse</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Priorités</strong>
-                  <span>Files de priorité haute, normale, basse</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Monitoring</strong>
-                  <span>Endpoint de statut et métriques des queues</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="content-section">
-            <h2>Cas d'usage</h2>
-            <div class="challenges-grid">
-              <div class="challenge-card">
-                <span class="challenge-icon">📧</span>
-                <h4>Emails en masse</h4>
-                <p>Newsletters, notifications — envoi différé sans bloquer l'API</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">📄</span>
-                <h4>Rapports PDF</h4>
-                <p>Génération de documents volumineux en arrière-plan</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">🖼️</span>
-                <h4>Traitement d'images</h4>
-                <p>Redimensionnement, conversion, watermark asynchrones</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">📊</span>
-                <h4>Import/Export CSV</h4>
-                <p>Traitement de gros fichiers sans timeout</p>
+              <div class="terminal-content">
+                <pre class="terminal-code" set:text={terminalPreview}></pre>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <aside class="content-sidebar">
-          <div class="sidebar-card sidebar-stack">
-            <h3>Stack</h3>
-            <div class="stack-badges">
-              <span class="stack-badge backend">PHP 8.3</span>
-              <span class="stack-badge backend">Symfony 7.2</span>
-              <span class="stack-badge backend">Messenger</span>
-              <span class="stack-badge infra">RabbitMQ</span>
-              <span class="stack-badge db">Redis</span>
-              <span class="stack-badge infra">Docker</span>
-              <span class="stack-badge infra">GitHub</span>
-              <span class="stack-badge infra">Supervisor</span>
-              <span class="stack-badge quality">PHPStan (lvl 8)</span>
-              <span class="stack-badge quality">PHPUnit</span>
-              <span class="stack-badge quality">Playwright</span>
+    <!-- 2. TL;DR - Resume Express -->
+    <section class="tldr-section">
+      <div class="container">
+        <div class="tldr-grid">
+          <div class="tldr-item">
+            <span class="tldr-icon">🎯</span>
+            <span class="tldr-label">Objectif</span>
+            <span class="tldr-value">Traitement async sans friction</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👥</span>
+            <span class="tldr-label">Cible</span>
+            <span class="tldr-value">Developpeurs Symfony</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👤</span>
+            <span class="tldr-label">Mon role</span>
+            <span class="tldr-value">Solo — Architecture a Documentation</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">⚙️</span>
+            <span class="tldr-label">Stack</span>
+            <span class="tldr-value">Symfony 7 · Messenger · RabbitMQ</span>
+            <span class="tldr-subvalue">Production-ready, Docker inclus</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">📊</span>
+            <span class="tldr-label">Resultat</span>
+            <span class="tldr-value">10 000+ jobs/heure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROBLEME / SOLUTION -->
+    <section id="solution" class="problem-section">
+      <div class="container">
+        <!-- 3.1 Le Constat -->
+        <div class="problem-header">
+          <span class="section-tag">Le constat</span>
+          <h2>Configurer Messenger + RabbitMQ, c'est long</h2>
+        </div>
+
+        <div class="pain-points">
+          <div class="pain-point">
+            <span class="pain-icon">⏱️</span>
+            <div class="pain-content">
+              <strong>Des heures de config</strong>
+              <span>YAML, Docker, workers...</span>
+            </div>
+          </div>
+          <div class="pain-point">
+            <span class="pain-icon">🔧</span>
+            <div class="pain-content">
+              <strong>Debugging difficile</strong>
+              <span>Jobs en echec invisibles</span>
+            </div>
+          </div>
+          <div class="pain-point">
+            <span class="pain-icon">📚</span>
+            <div class="pain-content">
+              <strong>Doc fragmentee</strong>
+              <span>Infos eparpillees partout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 La Transformation -->
+        <div class="transformation-section">
+          <div class="transformation-header">
+            <span class="section-tag">La solution</span>
+            <h3>De zero a production-ready en 5 minutes</h3>
+          </div>
+
+          <div class="split-visual">
+            <!-- Before -->
+            <div class="split-before">
+              <div class="split-label">Avant</div>
+              <div class="config-mess">
+                <div class="config-file">
+                  <span class="file-icon">📄</span>
+                  <span>messenger.yaml</span>
+                </div>
+                <div class="config-file">
+                  <span class="file-icon">📄</span>
+                  <span>docker-compose.yml</span>
+                </div>
+                <div class="config-file">
+                  <span class="file-icon">📄</span>
+                  <span>supervisord.conf</span>
+                </div>
+                <div class="config-file">
+                  <span class="file-icon">📄</span>
+                  <span>.env</span>
+                </div>
+                <div class="config-more">+ heures de debug...</div>
+              </div>
+              <p class="split-caption">Configuration manuelle</p>
+            </div>
+
+            <!-- Transform center -->
+            <div class="split-center">
+              <div class="transform-animation">
+                <div class="transform-icon">⚡</div>
+                <div class="transform-text">
+                  <span>Task Queue API</span>
+                  <span class="transform-time">~5min</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- After -->
+            <div class="split-after">
+              <div class="split-label success">Apres</div>
+              <div class="ready-state">
+                <div class="ready-item">
+                  <span class="ready-check">✓</span>
+                  <span>Queue fonctionnelle</span>
+                </div>
+                <div class="ready-item">
+                  <span class="ready-check">✓</span>
+                  <span>Workers Docker</span>
+                </div>
+                <div class="ready-item">
+                  <span class="ready-check">✓</span>
+                  <span>Retry automatique</span>
+                </div>
+                <div class="ready-item">
+                  <span class="ready-check">✓</span>
+                  <span>Dashboard monitoring</span>
+                </div>
+              </div>
+              <p class="split-caption success">Pret pour la production</p>
             </div>
           </div>
 
-          <div class="sidebar-card sidebar-code">
-            <h3>Code source</h3>
-            <a href="https://github.com/audrey-tech/task-queue-api" target="_blank" class="code-badge public">
-              <span class="code-icon">📂</span>
-              <span>Voir sur GitHub</span>
-            </a>
+          <!-- Results -->
+          <div class="split-features">
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Setup en 5 minutes</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Monitoring integre</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Production-ready</span>
+            </div>
           </div>
-
-          <div class="sidebar-card cta-card-sidebar">
-            <h3>Besoin d'async ?</h3>
-            <p>Je peux implémenter une file d'attente pour vos traitements lourds.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
-          </div>
-        </aside>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <ProjectNavigation currentSlug="task-queue-api" />
+    <!-- 4. DEMO / FONCTIONNALITES -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Comment ca marche</span>
+          <h2>3 etapes, zero friction</h2>
+        </div>
+
+        <div class="steps-timeline">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-icon">📥</div>
+            <h4>Installation</h4>
+            <p>Clonez le repo et lancez Docker</p>
+            <div class="step-formats">docker-compose up -d</div>
+          </div>
+
+          <div class="step-arrow">→</div>
+
+          <div class="step highlight">
+            <div class="step-number">2</div>
+            <div class="step-icon pulse">⚙️</div>
+            <h4>Configuration</h4>
+            <p>Adaptez .env a votre projet</p>
+            <div class="step-tech">
+              <span class="tech-badge">Pre-configure</span>
+            </div>
+          </div>
+
+          <div class="step-arrow">→</div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-icon">🚀</div>
+            <h4>Dispatch</h4>
+            <p>Creez et dispatchez vos messages</p>
+            <div class="step-ready">Code Symfony natif</div>
+          </div>
+        </div>
+
+        <!-- Code example -->
+        <div class="code-example">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Exemple de dispatch</span>
+          </div>
+          <pre class="code-content" set:text={codeExample}></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CAS D'USAGE -->
+    <section id="usecases" class="usecases-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Cas d'usage</span>
+          <h2>Tout ce qui prend du temps, en arriere-plan</h2>
+        </div>
+
+        <div class="usecases-grid">
+          <div class="usecase-card">
+            <div class="usecase-icon">📧</div>
+            <div class="usecase-content">
+              <h4>Emails en masse</h4>
+              <p>Newsletters, notifications transactionnelles, sequences marketing en arriere-plan.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">10 000</span>
+                  <span class="metric-label">emails/heure</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">0</span>
+                  <span class="metric-label">timeout</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : SaaS, E-commerce</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📄</div>
+            <div class="usecase-content">
+              <h4>Generation PDF</h4>
+              <p>Rapports, factures, exports volumineux sans bloquer l'interface.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">100</span>
+                  <span class="metric-label">PDF/min</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">UX</span>
+                  <span class="metric-label">fluide</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : ERP, Dashboards</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">🖼️</div>
+            <div class="usecase-content">
+              <h4>Traitement images</h4>
+              <p>Resize, watermark, optimisation de fichiers en asynchrone.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">500</span>
+                  <span class="metric-label">images/h</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Non</span>
+                  <span class="metric-label">bloquant</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : CMS, Marketplaces</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📊</div>
+            <div class="usecase-content">
+              <h4>Import/Export CSV</h4>
+              <p>Traitement de fichiers volumineux sans timeout ni freeze.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">1M+</span>
+                  <span class="metric-label">lignes</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Async</span>
+                  <span class="metric-label">background</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Back-office, Data</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PREUVE & TRACTION -->
+    <section class="proof-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Performances</span>
+          <h2>Benchmarks en conditions reelles</h2>
+        </div>
+
+        <div class="proof-grid">
+          <div class="proof-item">
+            <span class="proof-value">10k+</span>
+            <span class="proof-label">jobs/heure</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">99.9%</span>
+            <span class="proof-label">delivrabilite</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">&lt;50ms</span>
+            <span class="proof-label">latence dispatch</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">4.8/5</span>
+            <span class="proof-label">satisfaction</span>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+          <blockquote>
+            "J'ai gagne une journee entiere de configuration. Le setup Docker et le monitoring integre sont un vrai plus pour la prod."
+          </blockquote>
+          <cite>— Developpeur Backend Symfony</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6.5 MINI CTA FREELANCE -->
+    <section class="mini-cta-section">
+      <div class="container">
+        <div class="mini-cta-banner">
+          <span class="mini-cta-icon">💼</span>
+          <span class="mini-cta-text">Besoin d'aide sur une architecture async complexe ?</span>
+          <a href="/contact" class="mini-cta-btn">Me contacter →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TECH & ARCHITECTURE -->
+    <section id="tech" class="tech-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sous le capot</span>
+          <h2>Architecture & Stack technique</h2>
+        </div>
+
+        <!-- Stack badges en ligne -->
+        <div class="stack-badges">
+          <span class="stack-badge">PHP 8.4</span>
+          <span class="stack-badge">Symfony 7</span>
+          <span class="stack-badge">Messenger</span>
+          <span class="stack-badge">RabbitMQ</span>
+          <span class="stack-badge">Docker</span>
+          <span class="stack-badge">Redis</span>
+          <span class="stack-badge">Supervisor</span>
+        </div>
+
+        <!-- Architecture diagram (text boxes style) -->
+        <div class="architecture">
+          <h3>Architecture simplifiee</h3>
+          <div class="arch-diagram">
+            <div class="arch-node">
+              <span class="arch-icon">🌐</span>
+              <span>Application</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span class="arch-icon">📬</span>
+              <span>Message Bus</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node highlight">
+              <span class="arch-icon">🐰</span>
+              <span>RabbitMQ</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span class="arch-icon">⚙️</span>
+              <span>Workers</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span class="arch-icon">💾</span>
+              <span>Database</span>
+            </div>
+          </div>
+          <div class="arch-monitor">
+            <div class="arch-node monitor">
+              <span class="arch-icon">📊</span>
+              <span>Dashboard</span>
+            </div>
+            <span class="arch-monitor-label">Monitoring temps reel</span>
+          </div>
+        </div>
+
+        <!-- Technical decisions -->
+        <div class="tech-decisions">
+          <h3>Decisions techniques</h3>
+          <div class="decisions-grid">
+            <div class="decision">
+              <h4>Pourquoi RabbitMQ ?</h4>
+              <p>Standard industriel, fiable, scalable. Alternative Redis trop simple pour la production serieuse.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi Messenger ?</h4>
+              <p>Natif Symfony, bien integre, middleware extensible. Pas de dependance externe inutile.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi pas Laravel Horizon ?</h4>
+              <p>Ecosysteme different. Messenger est le standard Symfony, avec une communaute active.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="challenges">
+          <h3>Challenges & Solutions</h3>
+          <div class="challenges-table">
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Configuration initiale complexe</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Templates YAML pre-configures + doc exhaustive</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Gestion des echecs de jobs</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Retry automatique + dead letter queue + alerting</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Scalabilite des workers</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Supervisor + Docker Compose scale + monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ROLE & PROCESS -->
+    <section class="role-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Mon role</span>
+          <h2>Ce que j'ai fait sur ce projet</h2>
+        </div>
+
+        <div class="role-intro">
+          <div class="role-badge-box">
+            <span class="rb-icon">👤</span>
+            <div class="rb-info">
+              <strong>Projet solo</strong>
+              <span>De l'architecture a la documentation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-columns">
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🎨</span>
+              <h4>Product</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Identification pain points devs</li>
+              <li>Definition du scope MVP</li>
+              <li>Documentation user-friendly</li>
+              <li>Pricing strategy</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">⚙️</span>
+              <h4>Backend</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Architecture Messenger</li>
+              <li>Integration RabbitMQ</li>
+              <li>Handlers d'exemple</li>
+              <li>API monitoring</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🔧</span>
+              <h4>DevOps</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Docker Compose complet</li>
+              <li>Config multi-environnement</li>
+              <li>Workers supervisord</li>
+              <li>Health checks</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">📊</span>
+              <h4>Qualite</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Tests fonctionnels</li>
+              <li>Documentation complete</li>
+              <li>Exemples commentes</li>
+              <li>Guide de migration</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="methodology-bar">
+          <span class="mb-label">Methodologie :</span>
+          <span class="mb-item">Build in public</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Feedback early adopters</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Iterations rapides</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PRICING -->
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Tarifs</span>
+          <h2>Choisissez votre licence</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Personnel</h3>
+              <div class="pricing-price">
+                <span class="price-value">59€</span>
+                <span class="price-period">one-time</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> 1 projet</li>
+              <li><span class="check">✓</span> Mises a jour 1 an</li>
+              <li><span class="check">✓</span> Documentation complete</li>
+              <li><span class="check">✓</span> Support email</li>
+            </ul>
+            <a href="#" class="btn btn-secondary pricing-btn">Acheter</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Populaire</div>
+            <div class="pricing-header">
+              <h3>Equipe</h3>
+              <div class="pricing-price">
+                <span class="price-value">149€</span>
+                <span class="price-period">one-time</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> Projets illimites (equipe)</li>
+              <li><span class="check">✓</span> Mises a jour a vie</li>
+              <li><span class="check">✓</span> Discord prive</li>
+              <li><span class="check">✓</span> Exemples avances</li>
+              <li><span class="check">✓</span> Support prioritaire</li>
+            </ul>
+            <a href="#" class="btn btn-primary pricing-btn">Acheter</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Entreprise</h3>
+              <div class="pricing-price">
+                <span class="price-value">349€</span>
+                <span class="price-period">one-time</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> Organisation complete</li>
+              <li><span class="check">✓</span> Support prioritaire</li>
+              <li><span class="check">✓</span> Appel onboarding 30min</li>
+              <li><span class="check">✓</span> Customisation sur demande</li>
+              <li><span class="check">✓</span> Facture entreprise</li>
+            </ul>
+            <a href="#" class="btn btn-secondary pricing-btn">Acheter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. DUAL CTA -->
+    <section id="contact" class="cta-section">
+      <div class="container">
+        <div class="dual-cta">
+          <div class="cta-product">
+            <h3>Accelerez votre developpement</h3>
+            <p>Setup complet en 5 minutes, pas en 5 heures</p>
+            <a href="#pricing" class="btn btn-primary">Voir les tarifs</a>
+            <a href="https://github.com" class="btn-link">Documentation →</a>
+          </div>
+
+          <div class="cta-divider">
+            <span>ou</span>
+          </div>
+
+          <div class="cta-freelance">
+            <h3>Un projet async complexe ?</h3>
+            <p>Besoin d'aide sur l'architecture, workers distribues ou monitoring avance ?</p>
+            <div class="cta-specialization">
+              Specialisee Backend Symfony, architecture async, DevOps
+            </div>
+            <a href="/contact" class="btn btn-secondary">Discutons de votre projet</a>
+            <p class="cta-subtext">Disponible pour missions freelance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ProjectNavigation currentSlug="task-queue-api" />
+
+  </div>
 </Layout>
 
 <style>
-  .architecture-grid {
+  /* ===== GENERAL ===== */
+  .project-page {
+    padding-top: 80px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* ===== HERO SECTION (2 colonnes) ===== */
+  .hero-section {
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .context-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .badge-type {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .badge-separator {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .badge-role,
+  .badge-status {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 2rem;
+  }
+
+  .hero-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .metric {
+    text-align: left;
+  }
+
+  .metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .author-mention {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .author-mention a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  /* Hero Visual / Terminal Mockup */
+  .hero-visual {
+    position: relative;
+  }
+
+  .terminal-mockup {
+    background: #1e1e3f;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.red { background: #ef4444; }
+  .terminal-dot.yellow { background: #eab308; }
+  .terminal-dot.green { background: #22c55e; }
+
+  .terminal-title {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .terminal-content {
+    padding: 1rem;
+    max-height: 300px;
+    overflow: hidden;
+  }
+
+  .terminal-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #a5f3fc;
+    margin: 0;
+    line-height: 1.6;
+    white-space: pre;
+  }
+
+  /* ===== TL;DR SECTION ===== */
+  .tldr-section {
+    padding: 2rem 0;
+    background: rgba(139, 92, 246, 0.05);
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
   }
 
-  .architecture-card {
-    padding: 1.25rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    border-top: 3px solid var(--accent-primary);
+  .tldr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
   }
 
-  .architecture-card h4 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-primary);
+  .tldr-icon {
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
 
-  .architecture-card p {
-    color: var(--text-secondary);
+  .tldr-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  .tldr-value {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .tldr-subvalue {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  /* ===== PROBLEM SECTION ===== */
+  .problem-section {
+    padding: 5rem 0;
+  }
+
+  .problem-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .problem-header h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .pain-points {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .pain-point {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .pain-icon {
+    font-size: 1.5rem;
+  }
+
+  .pain-content strong {
+    display: block;
+    color: #ef4444;
+    font-size: 1rem;
+  }
+
+  .pain-content span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== TRANSFORMATION ===== */
+  .transformation-section {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .transformation-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .transformation-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .split-visual {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .split-before,
+  .split-after {
+    text-align: center;
+  }
+
+  .split-label {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .split-label.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  .config-mess {
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .config-file {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
     font-size: 0.8rem;
-    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .file-icon {
+    font-size: 1rem;
+  }
+
+  .config-more {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  .ready-state {
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .ready-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .ready-check {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  .split-caption {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .split-caption.success {
+    color: #22c55e;
+  }
+
+  .split-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .transform-icon {
+    font-size: 3rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .transform-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-text span:first-child {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .transform-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .split-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .split-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .feature-check {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== DEMO SECTION ===== */
+  .demo-section {
+    padding: 5rem 0;
+  }
+
+  .steps-timeline {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .step {
+    flex: 1;
+    max-width: 250px;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    position: relative;
+  }
+
+  .step.highlight {
+    border-color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon.pulse {
+    animation: pulse 2s infinite;
+  }
+
+  .step h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+  }
+
+  .step-formats,
+  .step-ready {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .step-tech {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tech-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .step-arrow {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    padding-top: 3rem;
+  }
+
+  .code-example {
+    background: #1e1e3f;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .code-dot.red { background: #ef4444; }
+  .code-dot.yellow { background: #eab308; }
+  .code-dot.green { background: #22c55e; }
+
+  .code-title {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .code-content {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  /* ===== USE CASES SECTION ===== */
+  .usecases-section {
+    padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .usecase-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .usecase-content p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+  }
+
+  .usecase-metrics {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-metric .metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .usecase-metric .metric-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .usecase-target {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    padding-top: 1rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* ===== PROOF SECTION ===== */
+  .proof-section {
+    padding: 5rem 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .proof-item {
+    text-align: center;
+  }
+
+  .proof-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .proof-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .testimonial {
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .testimonial blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .testimonial cite {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== MINI CTA FREELANCE ===== */
+  .mini-cta-section {
+    padding: 2rem 0;
+  }
+
+  .mini-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+  }
+
+  .mini-cta-icon {
+    font-size: 1.25rem;
+  }
+
+  .mini-cta-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+  }
+
+  .mini-cta-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+
+  .mini-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  /* ===== TECH SECTION ===== */
+  .tech-section {
+    padding: 5rem 0;
+    background: rgba(15, 15, 35, 0.5);
+  }
+
+  .stack-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .stack-badge {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .architecture {
+    margin-bottom: 3rem;
+  }
+
+  .architecture h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .arch-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .arch-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 15, 35, 0.8);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    font-size: 0.85rem;
+  }
+
+  .arch-node.highlight {
+    border-color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .arch-node.monitor {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  .arch-icon {
+    font-size: 1.5rem;
+  }
+
+  .arch-arrow {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .arch-monitor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .arch-monitor-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .tech-decisions {
+    margin-bottom: 3rem;
+  }
+
+  .tech-decisions h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .decision {
+    background: rgba(15, 15, 35, 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .decision h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--color-primary);
+  }
+
+  .decision p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .challenges h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .challenges-table {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .challenge-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .challenge,
+  .solution {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .challenge {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .challenge-icon {
+    color: #ef4444;
+  }
+
+  .solution {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .solution-icon {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== ROLE SECTION ===== */
+  .role-section {
+    padding: 5rem 0;
+  }
+
+  .role-intro {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .role-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .rb-icon {
+    font-size: 1.5rem;
+  }
+
+  .rb-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-info strong {
+    font-size: 1rem;
+  }
+
+  .rb-info span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .skill-column {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .sc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sc-icon {
+    font-size: 1.25rem;
+  }
+
+  .sc-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .sc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sc-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .sc-list li:last-child {
+    border-bottom: none;
+  }
+
+  .methodology-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .mb-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mb-item {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .mb-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ===== PRICING SECTION ===== */
+  .pricing-section {
+    padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.1);
+    transform: scale(1.05);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .pricing-header h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .price-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .price-period {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .pricing-features .check {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  .pricing-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+  }
+
+  .dual-cta {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .cta-product,
+  .cta-freelance {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .cta-product h3,
+  .cta-freelance h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  .cta-product p,
+  .cta-freelance p {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-specialization {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .btn-link {
+    display: block;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .cta-subtext {
+    margin-top: 1rem !important;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .cta-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-divider span {
+    background: rgba(139, 92, 246, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-metrics {
+      justify-content: center;
+    }
+
+    .hero-ctas {
+      justify-content: center;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .usecases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .decisions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .dual-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-divider {
+      padding: 1rem 0;
+    }
   }
 
   @media (max-width: 768px) {
-    .architecture-grid {
+    .hero-section h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-metrics {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pain-points {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .split-visual {
+      grid-template-columns: 1fr;
+    }
+
+    .split-center {
+      flex-direction: row;
+      padding: 1rem 0;
+    }
+
+    .steps-timeline {
+      flex-direction: column;
+    }
+
+    .step-arrow {
+      transform: rotate(90deg);
+      padding: 0;
+    }
+
+    .arch-diagram {
+      flex-direction: column;
+    }
+
+    .arch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .skills-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .mini-cta-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .challenge-row {
       grid-template-columns: 1fr;
     }
   }

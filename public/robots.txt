@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://audreytesson.dev/sitemap-index.xml

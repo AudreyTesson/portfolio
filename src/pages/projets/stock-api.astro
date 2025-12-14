@@ -1,282 +1,1979 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import ProjectNavigation from '../../components/ProjectNavigation.astro';
 
-// Import des images - à décommenter quand les images seront ajoutées
-// import swaggerImg from '../../assets/images/projets/stock-api/swagger.png';
-// import productsImg from '../../assets/images/projets/stock-api/products.png';
-// import movementsImg from '../../assets/images/projets/stock-api/movements.png';
+// Code content - Using variables to avoid template literal parsing issues
+const heroJsonPreview = `{
+  "sku": "PROD-001",
+  "quantity": 150,
+  "location": "A-12-3",
+  "status": "available"
+}`;
 
-// Configuration des screenshots
-const screenshots = [
-  {
-    // image: swaggerImg,  // Décommenter quand l'image existe
-    placeholder: { icon: '📚', text: 'Documentation API' },
-    caption: "Swagger UI interactive"
+const splitJsonPreview = `{
+  "product": {
+    "sku": "PROD-001",
+    "name": "Widget Pro",
+    "quantity": 150,
+    "reserved": 12,
+    "available": 138
   },
-  {
-    // image: productsImg,
-    placeholder: { icon: '📦', text: 'Liste produits' },
-    caption: 'Endpoint GET /api/products'
+  "location": {
+    "warehouse": "Paris-01",
+    "zone": "A",
+    "shelf": "12",
+    "slot": "3"
   },
-  {
-    // image: movementsImg,
-    placeholder: { icon: '📉', text: 'Mouvements stock' },
-    caption: 'Historique des entrées/sorties'
-  }
-];
+  "movements": [
+    { "type": "in", "qty": 200, "date": "..." }
+  ]
+}`;
+
+const curlExample = `curl -X GET https://api.example.com/v1/stock/PROD-001 \\
+  -H "Authorization: Bearer \$API_KEY"
+
+# Response
+{
+  "sku": "PROD-001",
+  "available": 138,
+  "reserved": 12,
+  "locations": [...]
+}`;
 ---
 
-<Layout title="Stock API — REST API Gestion de Stock | Audrey Tesson" description="API de gestion de stock multi-entrepôts. Vision temps réel, traçabilité, ruptures évitées." activePage="projets">
-  <!-- Project Header -->
-  <section class="project-detail-header">
-    <div class="container">
-      <a href="/projets" class="back-link">← Retour aux projets</a>
-      <div class="project-meta">
-        <span class="project-type-badge">API REST</span>
-        <span class="project-status-personal">Projet personnel</span>
+<Layout title="Stock API — API de gestion de stock Symfony" activePage="projets">
+  <div class="project-page">
+
+    <!-- 1. HERO SECTION (2 colonnes) -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left: Content -->
+          <div class="hero-content">
+            <!-- Badge contextuel -->
+            <div class="context-badge">
+              <span class="badge-type">Template API</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-role">Solo</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-status">Disponible</span>
+            </div>
+
+            <h1>Stock API</h1>
+            <p class="tagline">Gestion de stock simple et API-first</p>
+            <p class="subtitle">Un template Symfony leger pour gerer votre inventaire sans la complexite d'un ERP</p>
+
+            <!-- Metrics -->
+            <div class="hero-metrics">
+              <div class="metric">
+                <span class="metric-value">49EUR</span>
+                <span class="metric-label">licence unique</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">&lt;1h</span>
+                <span class="metric-label">integration</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">100%</span>
+                <span class="metric-label">code source</span>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-ctas">
+              <a href="#demo" class="btn btn-primary">Voir la demo</a>
+              <a href="#" class="btn btn-secondary">Documentation</a>
+            </div>
+
+            <!-- Author mention -->
+            <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
+          </div>
+
+          <!-- Right: Hero Mockup -->
+          <div class="hero-visual">
+            <div class="hero-mockup">
+              <div class="mockup-badge">PLACEHOLDER</div>
+              <!-- Mockup: Stock Dashboard -->
+              <div class="mockup-content">
+                <div class="mockup-header">
+                  <span class="mockup-title">Stock Dashboard</span>
+                  <span class="mockup-status online">API Online</span>
+                </div>
+                <div class="mockup-stats">
+                  <div class="mockup-stat">
+                    <span class="stat-value">1,247</span>
+                    <span class="stat-label">Produits</span>
+                  </div>
+                  <div class="mockup-stat">
+                    <span class="stat-value">38</span>
+                    <span class="stat-label">Alertes</span>
+                  </div>
+                  <div class="mockup-stat">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Entrepots</span>
+                  </div>
+                </div>
+                <div class="mockup-output">
+                  <pre class="mockup-json" set:text={heroJsonPreview}></pre>
+                </div>
+              </div>
+              <div class="mockup-footer">
+                <span class="mockup-endpoint">GET /api/v1/stock/:sku</span>
+                <span class="mockup-response">~45ms</span>
+              </div>
+            </div>
+            <p class="visual-note">* Remplacer par screenshot reel ou mockup UI</p>
+          </div>
+        </div>
       </div>
-      <h1>Stock API</h1>
-      <p class="project-subtitle">API de gestion de stock. Vision temps réel, traçabilité complète, ruptures évitées.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Project Content -->
-  <section class="project-content-section">
-    <div class="container">
-      <div class="content-grid">
-        <div class="content-main">
-          <div class="content-section">
-            <h2>Le problème</h2>
-            <p>Gérer les stocks sans API dédiée implique des tableurs, des données dispersées et des <strong>ruptures découvertes trop tard</strong>. Impossible d'avoir une vision consolidée ni des alertes automatiques.</p>
+    <!-- 2. TL;DR - Resume Express -->
+    <section class="tldr-section">
+      <div class="container">
+        <div class="tldr-grid">
+          <div class="tldr-item">
+            <span class="tldr-icon">🎯</span>
+            <span class="tldr-label">Objectif</span>
+            <span class="tldr-value">Gestion de stock sans complexite ERP</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👥</span>
+            <span class="tldr-label">Cible</span>
+            <span class="tldr-value">Devs, Startups, PME e-commerce</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👤</span>
+            <span class="tldr-label">Mon role</span>
+            <span class="tldr-value">Solo — Conception a Livraison</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">⚙️</span>
+            <span class="tldr-label">Stack</span>
+            <span class="tldr-value">Symfony 7 · API Platform</span>
+            <span class="tldr-subvalue">PostgreSQL, Docker-ready</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">📊</span>
+            <span class="tldr-label">Resultat</span>
+            <span class="tldr-value">API REST complete en 1h</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="comparison-block">
-              <div class="compare-box before">
-                <div class="compare-header">
-                  <span>❌</span> Sans API stock
-                </div>
-                <ul class="compare-list">
-                  <li>Données dispersées (Excel, papier)</li>
-                  <li>Ruptures découvertes trop tard</li>
-                  <li>Aucune traçabilité des mouvements</li>
-                  <li>Intégration ERP impossible</li>
-                </ul>
-              </div>
-              <div class="arrow-divider">→</div>
-              <div class="compare-box after">
-                <div class="compare-header">
-                  <span>✅</span> Avec Stock API
-                </div>
-                <ul class="compare-list">
-                  <li>Vision centralisée en temps réel</li>
-                  <li>Alertes stock bas automatiques</li>
-                  <li>Historique complet des mouvements</li>
-                  <li>Intégration facile (REST)</li>
-                </ul>
-              </div>
+    <!-- 3. PROBLEME / SOLUTION -->
+    <section id="solution" class="problem-section">
+      <div class="container">
+        <!-- 3.1 Le Constat -->
+        <div class="problem-header">
+          <span class="section-tag">Le constat</span>
+          <h2>Les ERPs sont trop lourds pour vos besoins</h2>
+        </div>
+
+        <div class="pain-points">
+          <div class="pain-point">
+            <span class="pain-icon">🏗️</span>
+            <div class="pain-content">
+              <strong>Overkill</strong>
+              <span>ERPs complexes pour besoins simples</span>
             </div>
           </div>
-
-          <div class="content-section">
-            <h2>La solution</h2>
-            <p>Une API REST complète pour gérer <strong>produits</strong>, <strong>mouvements</strong> et <strong>alertes</strong>. Documentation OpenAPI auto-générée, filtres avancés et historique complet.</p>
-            <p class="project-objective">→ Résultat : vision temps réel, ruptures évitées, traçabilité des mouvements.</p>
-          </div>
-
-          <div class="content-section">
-            <h2>Aperçu</h2>
-            <div class="screenshots-grid">
-              {screenshots.map((screenshot) => (
-                <figure class="screenshot">
-                  {screenshot.image ? (
-                    <Image
-                      src={screenshot.image}
-                      alt={screenshot.caption}
-                      class="screenshot-image"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="screenshot-placeholder">
-                      <span>{screenshot.placeholder.icon}</span>
-                      <p>{screenshot.placeholder.text}</p>
-                    </div>
-                  )}
-                  <figcaption>{screenshot.caption}</figcaption>
-                </figure>
-              ))}
+          <div class="pain-point">
+            <span class="pain-icon">⏱️</span>
+            <div class="pain-content">
+              <strong>Semaines</strong>
+              <span>de configuration avant d'etre operationnel</span>
             </div>
           </div>
-
-          <div class="content-section">
-            <h2>Endpoints principaux</h2>
-            <div class="endpoints-list">
-              <div class="endpoint">
-                <span class="method get">GET</span>
-                <code>/api/products</code>
-                <span class="endpoint-desc">Liste des produits (paginée, filtrable)</span>
-              </div>
-              <div class="endpoint">
-                <span class="method post">POST</span>
-                <code>/api/products</code>
-                <span class="endpoint-desc">Créer un nouveau produit</span>
-              </div>
-              <div class="endpoint">
-                <span class="method get">GET</span>
-                <code>/api/stock-movements</code>
-                <span class="endpoint-desc">Historique des mouvements</span>
-              </div>
-              <div class="endpoint">
-                <span class="method post">POST</span>
-                <code>/api/stock-movements</code>
-                <span class="endpoint-desc">Enregistrer un mouvement</span>
-              </div>
-              <div class="endpoint">
-                <span class="method get">GET</span>
-                <code>/api/reports/low-stock</code>
-                <span class="endpoint-desc">Produits en stock bas</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="content-section">
-            <h2>Fonctionnalités</h2>
-            <div class="features-list">
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>CRUD complet</strong>
-                  <span>Produits, catégories, fournisseurs</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Mouvements de stock</strong>
-                  <span>Entrées, sorties, ajustements avec traçabilité</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Filtres avancés</strong>
-                  <span>Par catégorie, stock, date, recherche texte</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Documentation OpenAPI</strong>
-                  <span>Swagger UI intégré et export JSON</span>
-                </div>
-              </div>
+          <div class="pain-point">
+            <span class="pain-icon">💸</span>
+            <div class="pain-content">
+              <strong>500EUR+/mois</strong>
+              <span>pour des features non utilisees</span>
             </div>
           </div>
         </div>
 
-        <aside class="content-sidebar">
-          <div class="sidebar-card sidebar-stack">
-            <h3>Stack</h3>
-            <div class="stack-badges">
-              <span class="stack-badge backend">PHP 8.4</span>
-              <span class="stack-badge backend">Symfony 7.2</span>
-              <span class="stack-badge backend">API Platform 4</span>
-              <span class="stack-badge db">PostgreSQL</span>
-              <span class="stack-badge ai">OpenAPI 3.0</span>
-              <span class="stack-badge infra">Docker</span>
-              <span class="stack-badge infra">GitHub</span>
-              <span class="stack-badge quality">PHPStan (lvl 8)</span>
-              <span class="stack-badge quality">PHPUnit</span>
-              <span class="stack-badge quality">Playwright</span>
+        <!-- 3.2 La Transformation -->
+        <div class="transformation-section">
+          <div class="transformation-header">
+            <span class="section-tag">La solution</span>
+            <h3>Une API de stock que vous controlez</h3>
+          </div>
+
+          <div class="split-visual">
+            <!-- Before -->
+            <div class="split-before">
+              <div class="split-label">ERP Classique</div>
+              <div class="erp-preview">
+                <div class="erp-modules">
+                  <div class="erp-module used">Stock</div>
+                  <div class="erp-module unused">CRM</div>
+                  <div class="erp-module unused">RH</div>
+                  <div class="erp-module unused">Compta</div>
+                  <div class="erp-module unused">Achats</div>
+                  <div class="erp-module unused">Ventes</div>
+                </div>
+                <div class="erp-waste">
+                  <span class="waste-icon">⚠️</span>
+                  <span>85% non utilise</span>
+                </div>
+              </div>
+              <p class="split-caption">Complexite inutile</p>
+            </div>
+
+            <!-- Transform center -->
+            <div class="split-center">
+              <div class="transform-animation">
+                <div class="transform-icon">📦</div>
+                <div class="transform-text">
+                  <span>Stock API</span>
+                  <span class="transform-time">Simple & Focus</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- After -->
+            <div class="split-after">
+              <div class="split-label success">Stock API</div>
+              <div class="json-preview">
+                <pre set:text={splitJsonPreview}></pre>
+              </div>
+              <p class="split-caption success">Exactement ce qu'il vous faut</p>
             </div>
           </div>
 
-          <div class="sidebar-card sidebar-code">
-            <h3>Code source</h3>
-            <a href="https://github.com/audrey-tech/stock-api" target="_blank" class="code-badge public">
-              <span class="code-icon">📂</span>
-              <span>Voir sur GitHub</span>
-            </a>
+          <!-- Results -->
+          <div class="split-features">
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>API REST standard</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Code source complet</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Self-hosted, vos donnees</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FONCTIONNALITES -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Fonctionnalites</span>
+          <h2>Tout ce qu'il faut, rien de plus</h2>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h4>Gestion produits</h4>
+            <ul>
+              <li>CRUD complet produits</li>
+              <li>SKU, variantes, categories</li>
+              <li>Attributs personnalises</li>
+              <li>Import/Export CSV</li>
+            </ul>
           </div>
 
-          <div class="sidebar-card cta-card-sidebar">
-            <h3>Besoin d'une API stock ?</h3>
-            <p>Je peux développer une API sur mesure pour gérer vos stocks.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
+          <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <h4>Multi-entrepots</h4>
+            <ul>
+              <li>Plusieurs entrepots</li>
+              <li>Zones et emplacements</li>
+              <li>Stock par location</li>
+              <li>Transferts inter-sites</li>
+            </ul>
           </div>
-        </aside>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h4>Mouvements</h4>
+            <ul>
+              <li>Entrees / Sorties</li>
+              <li>Reservations</li>
+              <li>Historique complet</li>
+              <li>Tracabilite lots</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h4>Alertes</h4>
+            <ul>
+              <li>Seuils min/max</li>
+              <li>Alertes rupture</li>
+              <li>Webhooks personnalises</li>
+              <li>Notifications temps reel</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Code example -->
+        <div class="code-example">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Exemple d'appel API</span>
+          </div>
+          <pre class="code-content" set:text={curlExample}></pre>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- 5. CAS D'USAGE -->
+    <section id="usecases" class="usecases-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Cas d'usage</span>
+          <h2>Ideal pour ces scenarios</h2>
+        </div>
+
+        <div class="usecases-grid">
+          <div class="usecase-card">
+            <div class="usecase-icon">🛒</div>
+            <div class="usecase-content">
+              <h4>E-commerce</h4>
+              <p>Synchronisez votre stock avec votre boutique en ligne. API REST facile a integrer.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">&lt;50ms</span>
+                  <span class="metric-label">temps reponse</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">REST</span>
+                  <span class="metric-label">standard</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Shopify, WooCommerce, PrestaShop</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">🏭</div>
+            <div class="usecase-content">
+              <h4>Petite production</h4>
+              <p>Gerez matieres premieres et produits finis sans la lourdeur d'un MRP.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">Multi</span>
+                  <span class="metric-label">entrepots</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Lots</span>
+                  <span class="metric-label">tracables</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Artisans, PMI, Ateliers</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📚</div>
+            <div class="usecase-content">
+              <h4>Apprentissage</h4>
+              <p>Code source propre et documente. Parfait pour apprendre Symfony et API Platform.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">100%</span>
+                  <span class="metric-label">documente</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Best</span>
+                  <span class="metric-label">practices</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Etudiants, Devs juniors</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">🚀</div>
+            <div class="usecase-content">
+              <h4>MVP Startup</h4>
+              <p>Lancez rapidement avec une base solide. Evoluez selon vos besoins.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">&lt;1h</span>
+                  <span class="metric-label">setup</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Extensible</span>
+                  <span class="metric-label">a volonte</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Startups, Side projects</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CE QUI EST INCLUS -->
+    <section class="included-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Contenu</span>
+          <h2>Ce qui est inclus</h2>
+        </div>
+
+        <div class="included-grid">
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>Code source complet</strong>
+              <span>Symfony 7, API Platform, Doctrine</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>Docker ready</strong>
+              <span>docker-compose.yml inclus, pret en 5 min</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>Tests unitaires</strong>
+              <span>PHPUnit, 80% de couverture</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>Documentation API</strong>
+              <span>OpenAPI/Swagger genere automatiquement</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>Guide d'installation</strong>
+              <span>README detaille, pas a pas</span>
+            </div>
+          </div>
+          <div class="included-item">
+            <span class="included-icon">✓</span>
+            <div class="included-content">
+              <strong>1 an de mises a jour</strong>
+              <span>Corrections et ameliorations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6.5 MINI CTA FREELANCE -->
+    <section class="mini-cta-section">
+      <div class="container">
+        <div class="mini-cta-banner">
+          <span class="mini-cta-icon">💼</span>
+          <span class="mini-cta-text">Besoin d'un projet similaire ?</span>
+          <a href="/contact" class="mini-cta-btn">Me contacter →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TECH & ARCHITECTURE -->
+    <section id="tech" class="tech-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sous le capot</span>
+          <h2>Architecture & Stack technique</h2>
+        </div>
+
+        <!-- Stack badges en ligne -->
+        <div class="stack-badges">
+          <span class="stack-badge">PHP 8.3</span>
+          <span class="stack-badge">Symfony 7</span>
+          <span class="stack-badge">API Platform</span>
+          <span class="stack-badge">PostgreSQL</span>
+          <span class="stack-badge">Redis</span>
+          <span class="stack-badge">Docker</span>
+        </div>
+
+        <!-- Architecture diagram (text-based like mockup-v2) -->
+        <div class="architecture">
+          <h3>Architecture simplifiee</h3>
+          <div class="arch-diagram">
+            <div class="arch-node">
+              <span class="arch-icon">🌐</span>
+              <span>Client</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span class="arch-icon">🚪</span>
+              <span>API Platform</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node highlight">
+              <span class="arch-icon">📦</span>
+              <span>Stock Service</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <span class="arch-icon">💾</span>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+          <div class="arch-secondary">
+            <div class="arch-node small">
+              <span class="arch-icon">⚡</span>
+              <span>Redis (Cache)</span>
+            </div>
+            <div class="arch-node small">
+              <span class="arch-icon">📬</span>
+              <span>Webhooks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical decisions -->
+        <div class="tech-decisions">
+          <h3>Decisions techniques</h3>
+          <div class="decisions-grid">
+            <div class="decision">
+              <h4>Pourquoi API Platform ?</h4>
+              <p>Generation automatique OpenAPI, serialisation, pagination, filtres. Gain de temps considerable.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi PostgreSQL ?</h4>
+              <p>Performance sur les requetes complexes, types JSON natifs, fiabilite eprouvee en production.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi pas un ERP ?</h4>
+              <p>80% des PME n'utilisent que 20% des fonctions. Stock API fait une chose, mais la fait bien.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="challenges">
+          <h3>Challenges & Solutions</h3>
+          <div class="challenges-table">
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Concurrence sur mises a jour stock</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Verrouillage optimiste + transactions Doctrine</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Performance sur gros catalogues</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Index PostgreSQL + cache Redis</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Historique mouvements volumineux</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Partitionnement par date + archivage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ROLE & PROCESS -->
+    <section class="role-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Mon role</span>
+          <h2>Ce que j'ai fait sur ce projet</h2>
+        </div>
+
+        <div class="role-intro">
+          <div class="role-badge-box">
+            <span class="rb-icon">👤</span>
+            <div class="rb-info">
+              <strong>Projet solo</strong>
+              <span>Conception, developpement, documentation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-columns">
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🎨</span>
+              <h4>Product</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Analyse des besoins PME</li>
+              <li>Definition du scope MVP</li>
+              <li>Benchmark concurrents</li>
+              <li>Pricing & positionnement</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">⚙️</span>
+              <h4>Backend</h4>
+            </div>
+            <ul class="sc-list">
+              <li>API REST (API Platform)</li>
+              <li>Modele de donnees Doctrine</li>
+              <li>Logique metier stock</li>
+              <li>Webhooks & events</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🔧</span>
+              <h4>DevOps</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Conteneurisation Docker</li>
+              <li>Configuration PostgreSQL</li>
+              <li>Cache Redis</li>
+              <li>Scripts de deploiement</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">📊</span>
+              <h4>Qualite</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Tests PHPUnit (80%)</li>
+              <li>Analyse statique (PHPStan)</li>
+              <li>Documentation OpenAPI</li>
+              <li>Guide utilisateur</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="methodology-bar">
+          <span class="mb-label">Methodologie :</span>
+          <span class="mb-item">Clean Architecture</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">TDD</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Documentation first</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. DUAL CTA -->
+    <section id="contact" class="cta-section">
+      <div class="container">
+        <div class="dual-cta">
+          <div class="cta-product">
+            <div class="price-tag">49EUR</div>
+            <h3>Obtenir Stock API</h3>
+            <p>Licence personnelle, code source complet, 1 an de mises a jour</p>
+            <a href="#" class="btn btn-primary">Acheter maintenant</a>
+            <a href="#" class="btn-link">Voir la demo live →</a>
+          </div>
+
+          <div class="cta-divider">
+            <span>ou</span>
+          </div>
+
+          <div class="cta-freelance">
+            <h3>Un projet sur-mesure ?</h3>
+            <p>Besoin d'une solution de gestion de stock adaptee a vos besoins specifiques ?</p>
+            <div class="cta-specialization">
+              Specialisee APIs Symfony, gestion metier, integration e-commerce
+            </div>
+            <a href="/contact" class="btn btn-secondary">Discutons de votre projet</a>
+            <p class="cta-subtext">Disponible pour missions freelance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <ProjectNavigation currentSlug="stock-api" />
 </Layout>
 
 <style>
-  .project-status-demo {
-    background: rgba(96, 165, 250, 0.15);
-    color: var(--accent-primary);
-    padding: 0.4rem 1rem;
+  /* ===== GENERAL ===== */
+  .project-page {
+    padding-top: 80px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-  }
-
-  .endpoints-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .endpoint {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    background: var(--surface-light);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    flex-wrap: wrap;
-  }
-
-  .method {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
   }
 
-  .method.get {
-    background: rgba(34, 197, 94, 0.15);
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* ===== HERO SECTION (2 colonnes) ===== */
+  .hero-section {
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .context-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .badge-type {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .badge-separator {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .badge-role,
+  .badge-status {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 2rem;
+  }
+
+  .hero-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .metric {
+    text-align: left;
+  }
+
+  .metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .author-mention {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .author-mention a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  /* Hero Visual / Mockup */
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-mockup {
+    background: rgba(15, 15, 35, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .mockup-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .mockup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .mockup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mockup-title {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .mockup-status {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .mockup-status.online {
+    background: rgba(34, 197, 94, 0.2);
     color: #22c55e;
   }
 
-  .method.post {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
+  .mockup-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0.75rem 0;
   }
 
-  .endpoint code {
+  .mockup-stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mockup-output {
+    background: #1e1e3f;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .mockup-json {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
-    color: var(--text-primary);
+    font-size: 0.75rem;
+    color: #a5f3fc;
+    margin: 0;
+    line-height: 1.5;
   }
 
-  .endpoint-desc {
-    color: var(--text-muted);
+  .mockup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mockup-endpoint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mockup-response {
+    color: #22c55e;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .visual-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  /* ===== TL;DR SECTION ===== */
+  .tldr-section {
+    padding: 2rem 0;
+    background: rgba(139, 92, 246, 0.05);
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .tldr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .tldr-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  .tldr-value {
     font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .tldr-subvalue {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  /* ===== PROBLEM SECTION ===== */
+  .problem-section {
+    padding: 5rem 0;
+  }
+
+  .problem-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .problem-header h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .pain-points {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .pain-point {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .pain-icon {
+    font-size: 1.5rem;
+  }
+
+  .pain-content strong {
+    display: block;
+    color: #ef4444;
+    font-size: 1.1rem;
+  }
+
+  .pain-content span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== TRANSFORMATION ===== */
+  .transformation-section {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .transformation-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .transformation-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .split-visual {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .split-before,
+  .split-after {
+    text-align: center;
+  }
+
+  .split-label {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .split-label.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  .erp-preview {
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .erp-modules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .erp-module {
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .erp-module.used {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .erp-module.unused {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .erp-waste {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ef4444;
+    font-size: 0.8rem;
+  }
+
+  .split-caption {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .split-caption.success {
+    color: #22c55e;
+  }
+
+  .split-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .transform-icon {
+    font-size: 3rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .transform-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-text span:first-child {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .transform-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .json-preview {
+    background: #1e1e3f;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .json-preview pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .split-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .split-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .feature-check {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== DEMO / FEATURES SECTION ===== */
+  .demo-section {
+    padding: 5rem 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h4 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+  }
+
+  .feature-card ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feature-card li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .feature-card li:last-child {
+    border-bottom: none;
+  }
+
+  .code-example {
+    background: #1e1e3f;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .code-dot.red { background: #ef4444; }
+  .code-dot.yellow { background: #eab308; }
+  .code-dot.green { background: #22c55e; }
+
+  .code-title {
     margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .code-content {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  /* ===== USE CASES SECTION ===== */
+  .usecases-section {
+    padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .usecase-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .usecase-content p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+  }
+
+  .usecase-metrics {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-metric .metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .usecase-metric .metric-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .usecase-target {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    padding-top: 1rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* ===== INCLUDED SECTION ===== */
+  .included-section {
+    padding: 5rem 0;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .included-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(34, 197, 94, 0.05);
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid rgba(34, 197, 94, 0.1);
+  }
+
+  .included-icon {
+    color: #22c55e;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .included-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .included-content strong {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .included-content span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== MINI CTA FREELANCE ===== */
+  .mini-cta-section {
+    padding: 2rem 0;
+  }
+
+  .mini-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+  }
+
+  .mini-cta-icon {
+    font-size: 1.25rem;
+  }
+
+  .mini-cta-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+  }
+
+  .mini-cta-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+
+  .mini-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  /* ===== TECH SECTION ===== */
+  .tech-section {
+    padding: 5rem 0;
+    background: rgba(15, 15, 35, 0.5);
+  }
+
+  .stack-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .stack-badge {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .architecture {
+    margin-bottom: 3rem;
+  }
+
+  .architecture h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .arch-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .arch-secondary {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .arch-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 15, 35, 0.8);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    font-size: 0.85rem;
+  }
+
+  .arch-node.highlight {
+    border-color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .arch-node.small {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .arch-icon {
+    font-size: 1.5rem;
+  }
+
+  .arch-arrow {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .tech-decisions {
+    margin-bottom: 3rem;
+  }
+
+  .tech-decisions h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .decision {
+    background: rgba(15, 15, 35, 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .decision h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--color-primary);
+  }
+
+  .decision p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .challenges h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .challenges-table {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .challenge-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .challenge,
+  .solution {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .challenge {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .challenge-icon {
+    color: #ef4444;
+  }
+
+  .solution {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .solution-icon {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== ROLE SECTION ===== */
+  .role-section {
+    padding: 5rem 0;
+  }
+
+  .role-intro {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .role-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .rb-icon {
+    font-size: 1.5rem;
+  }
+
+  .rb-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-info strong {
+    font-size: 1rem;
+  }
+
+  .rb-info span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .skill-column {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .sc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sc-icon {
+    font-size: 1.25rem;
+  }
+
+  .sc-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .sc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sc-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .sc-list li:last-child {
+    border-bottom: none;
+  }
+
+  .methodology-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .mb-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mb-item {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .mb-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+  }
+
+  .dual-cta {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .cta-product,
+  .cta-freelance {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .price-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .cta-product h3,
+  .cta-freelance h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  .cta-product p,
+  .cta-freelance p {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-specialization {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .btn-link {
+    display: block;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .cta-subtext {
+    margin-top: 1rem !important;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .cta-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-divider span {
+    background: rgba(139, 92, 246, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-metrics {
+      justify-content: center;
+    }
+
+    .hero-ctas {
+      justify-content: center;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .usecases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .included-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .decisions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dual-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-divider {
+      padding: 1rem 0;
+    }
   }
 
   @media (max-width: 768px) {
-    .endpoint {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+    .hero-section h1 {
+      font-size: 2.5rem;
     }
-    .endpoint-desc {
-      margin-left: 0;
+
+    .hero-metrics {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pain-points {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .split-visual {
+      grid-template-columns: 1fr;
+    }
+
+    .split-center {
+      flex-direction: row;
+      padding: 1rem 0;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .arch-diagram {
+      flex-direction: column;
+    }
+
+    .arch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .skills-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .mini-cta-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .challenge-row {
+      grid-template-columns: 1fr;
     }
   }
 </style>

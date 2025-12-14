@@ -1,0 +1,2873 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Mockup Modules - Alternatives visuelles Impact" description="Test des différentes options visuelles pour la colonne Impact" activePage="projets">
+  <div class="mockup-page">
+    <div class="container">
+      <h1>Alternatives visuelles — Colonne Impact</h1>
+      <p class="intro">Le contenu reste identique, seul le style change</p>
+
+      <!-- ========== RECOMMANDATIONS ========== -->
+      <section class="recommendations">
+        <h2>Mes recommandations</h2>
+
+        <div class="reco-grid">
+          <div class="reco-card best">
+            <span class="reco-badge">Recommandation #1</span>
+            <h3>Option 1 (Pills) ou Option 3 (Outline)</h3>
+            <p><strong>Pour les badges Impact :</strong> Ces deux options offrent un excellent equilibre entre lisibilite et esthetique. Les pills (Option 1) sont plus modernes et colores, tandis que les outlines (Option 3) sont plus sobres et elegantes. Les deux s'integrent parfaitement dans un tableau.</p>
+          </div>
+
+          <div class="reco-card">
+            <span class="reco-badge secondary">Alternative</span>
+            <h3>Option 7 (Monochrome)</h3>
+            <p>Si vous preferez un look plus unifie et professionnel, le monochrome violet s'harmonise parfaitement avec le theme du portfolio sans distraire du contenu.</p>
+          </div>
+        </div>
+
+        <div class="reco-divider"></div>
+
+        <div class="reco-grid">
+          <div class="reco-card best">
+            <span class="reco-badge">Recommandation #1</span>
+            <h3>Option C (Tableau moderne)</h3>
+            <p><strong>Pour le tableau entier :</strong> Le tableau moderne avec lignes alternees et hover conserve une structure claire et scannnable tout en ajoutant de l'interactivite. C'est le meilleur compromis entre lisibilite et modernite.</p>
+          </div>
+
+          <div class="reco-card">
+            <span class="reco-badge secondary">Alternative</span>
+            <h3>Option B (Liste horizontale)</h3>
+            <p>Si vous souhaitez sortir du format tableau classique tout en gardant une structure organisee, cette option offre plus de respiration visuelle.</p>
+          </div>
+        </div>
+
+        <div class="reco-note">
+          <strong>A eviter :</strong> Option 6 (Gradient) - trop flashy pour un portfolio technique. Option E (Ultra minimal) - perd trop d'information sur les fonctionnalites.
+        </div>
+      </section>
+
+      <!-- ========== OPTION 1: BADGES PILLS ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 1</span>
+          <h2>Badges Pills (arrondis)</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-pill purple">Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-pill green">Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-pill blue">Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-pill cyan">Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-pill orange">10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 2: BADGES AVEC ICÔNE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 2</span>
+          <h2>Badges avec icône</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-icon-badge"><span class="iib-icon">💎</span> Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-icon-badge"><span class="iib-icon">📦</span> Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-icon-badge"><span class="iib-icon">🎮</span> Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-icon-badge"><span class="iib-icon">👁️</span> Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-icon-badge"><span class="iib-icon">👥</span> 10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 3: TAGS OUTLINE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 3</span>
+          <h2>Tags outline (bordure)</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-outline purple">Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-outline green">Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-outline blue">Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-outline cyan">Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-outline orange">10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 4: MINI CARDS ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 4</span>
+          <h2>Mini cards avec fond</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><div class="impact-card purple"><span class="ic-label">Impact</span><span class="ic-value">Coeur du WMS</span></div></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><div class="impact-card green"><span class="ic-label">Impact</span><span class="ic-value">Stock optimisé</span></div></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><div class="impact-card blue"><span class="ic-label">Impact</span><span class="ic-value">Contrôle total</span></div></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><div class="impact-card cyan"><span class="ic-label">Impact</span><span class="ic-value">Visibilité</span></div></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><div class="impact-card orange"><span class="ic-label">Impact</span><span class="ic-value">10+ rôles</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 5: CHECKMARK STYLE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 5</span>
+          <h2>Style checkmark / validé</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-check"><span class="check-icon">✓</span> Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-check"><span class="check-icon">✓</span> Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-check"><span class="check-icon">✓</span> Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-check"><span class="check-icon">✓</span> Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-check"><span class="check-icon">✓</span> 10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 6: GRADIENT BADGES ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 6</span>
+          <h2>Badges gradient</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-gradient purple">Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-gradient green">Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-gradient blue">Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-gradient cyan">Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-gradient orange">10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 7: MÊME COULEUR SOBRE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 7</span>
+          <h2>Monochrome sobre (même couleur)</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="impact-mono">Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="impact-mono">Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="impact-mono">Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="impact-mono">Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="impact-mono">10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== OPTION 8: SANS COLONNE IMPACT ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option 8</span>
+          <h2>Impact intégré à la description</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modules-table two-cols">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>
+                  <span class="func-text">Interface mobile temps réel : scan, validation, multi-opérateurs</span>
+                  <span class="impact-inline">Coeur du WMS</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>
+                  <span class="func-text">Génération des missions sur demande, suivi temps réel SSE</span>
+                  <span class="impact-inline">Stock optimisé</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>
+                  <span class="func-text">Supervision : annulation, modification, forçage des missions</span>
+                  <span class="impact-inline">Contrôle total</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>
+                  <span class="func-text">Audit, traçabilité containers, KPIs temps réel</span>
+                  <span class="impact-inline">Visibilité</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>
+                  <span class="func-text">JWT, Voters Symfony, permissions fines par rôle</span>
+                  <span class="impact-inline">10+ rôles</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- ALTERNATIVES TABLEAU ENTIER -->
+      <!-- ========================================== -->
+
+      <h2 class="section-divider">Alternatives — Tableau entier</h2>
+
+      <!-- ========== OPTION A: CARDS GRID ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option A</span>
+          <h2>Grille de cards (pas de tableau)</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== OPTIONS BOUTON "VOIR PLUS" ========== -->
+      <h2 class="section-divider">Variations — Bouton "Voir plus" (5 cards + bouton)</h2>
+
+      <!-- VARIATION 1: Bouton simple centré -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 1</span>
+          <h2>Bouton simple centré</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-btn-wrap">
+          <button class="see-more-btn v1">
+            +5 autres modules
+          </button>
+        </div>
+      </section>
+
+      <!-- VARIATION 2: Bouton avec icônes -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 2</span>
+          <h2>Bouton avec icônes des modules</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-btn-wrap">
+          <button class="see-more-btn v2">
+            <span class="smb-icons">📦 📍 🚚 ↔️ ⚙️</span>
+            <span class="smb-text">Voir les 5 autres modules</span>
+            <span class="smb-arrow">↓</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- VARIATION 3: Bouton pill gradient -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 3</span>
+          <h2>Bouton pill gradient</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-btn-wrap">
+          <button class="see-more-btn v3">
+            <span class="smb-plus">+</span>
+            <span>Afficher 5 modules supplémentaires</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- VARIATION 4: Lien discret -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 4</span>
+          <h2>Lien discret (minimaliste)</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-btn-wrap">
+          <a href="#" class="see-more-link v4">
+            + Réception, Rangement, Expédition, Transferts, Monitoring...
+            <span class="sml-expand">Voir tout</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- VARIATION 5: Barre expand full width -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 5</span>
+          <h2>Barre expand full width</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <button class="see-more-bar v5">
+          <div class="smbar-content">
+            <div class="smbar-icons">📦 📍 🚚 ↔️ ⚙️</div>
+            <div class="smbar-text">5 modules supplémentaires</div>
+          </div>
+          <div class="smbar-action">
+            <span>Afficher</span>
+            <span class="smbar-chevron">▼</span>
+          </div>
+        </button>
+      </section>
+
+      <!-- VARIATION 6: Card "teaser" à la fin -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 6</span>
+          <h2>6ème card "teaser" cliquable</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+          <!-- Card teaser -->
+          <div class="module-card-teaser">
+            <div class="mct-icons">
+              <span>📦</span><span>📍</span><span>🚚</span>
+              <span>↔️</span><span>⚙️</span>
+            </div>
+            <div class="mct-count">+5</div>
+            <div class="mct-text">autres modules</div>
+            <div class="mct-cta">Voir tout →</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VARIATION 7: Accordion style -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 7</span>
+          <h2>Style accordéon (expand)</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-accordion">
+          <div class="sma-header">
+            <div class="sma-left">
+              <span class="sma-count">+5</span>
+              <span class="sma-title">Autres modules disponibles</span>
+            </div>
+            <span class="sma-chevron">▼</span>
+          </div>
+          <div class="sma-preview">
+            <span>📦 Réception</span>
+            <span>📍 Rangement</span>
+            <span>🚚 Expédition</span>
+            <span>↔️ Transferts</span>
+            <span>⚙️ Monitoring</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VARIATION 8: Tags cliquables -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 8</span>
+          <h2>Tags cliquables (aperçu des modules)</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Picking</h4>
+              <span class="mcf-impact">Coeur du WMS</span>
+            </div>
+            <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Stock optimisé</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle total</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+        <div class="see-more-tags">
+          <div class="smt-label">Également disponibles :</div>
+          <div class="smt-row">
+            <span class="smt-tag">📦 Réception</span>
+            <span class="smt-tag">📍 Rangement</span>
+            <span class="smt-tag">🚚 Expédition</span>
+            <span class="smt-tag">↔️ Transferts</span>
+            <span class="smt-tag">⚙️ Monitoring</span>
+            <span class="smt-tag smt-more">Voir tout →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VARIATION 9: Progress bar style avec expand -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Var. 9</span>
+          <h2>Style progress (6/10 modules affichés) + Dépliable</h2>
+        </div>
+
+        <div class="cards-grid">
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📦</span>
+              <h4>Réception</h4>
+              <span class="mcf-impact">Entrées sécurisées</span>
+            </div>
+            <p>Réception marchandises avec contrôle et validation scan</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📋</span>
+              <h4>Préparation</h4>
+              <span class="mcf-impact">Picking guidé</span>
+            </div>
+            <p>Interface mobile : scan emplacement, container, saisie quantité</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔄</span>
+              <h4>Réapprovisionnement</h4>
+              <span class="mcf-impact">Rotation stocks</span>
+            </div>
+            <p>Génération des missions sur demande, suivi temps réel SSE</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">👷</span>
+              <h4>Manager</h4>
+              <span class="mcf-impact">Contrôle opérationnel</span>
+            </div>
+            <p>Supervision : annulation, modification, forçage des missions</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">📊</span>
+              <h4>Dashboards</h4>
+              <span class="mcf-impact">Visibilité complète</span>
+            </div>
+            <p>Audit, traçabilité containers, KPIs temps réel</p>
+          </div>
+          <div class="module-card-full">
+            <div class="mcf-header">
+              <span class="mcf-icon">🔐</span>
+              <h4>Sécurité</h4>
+              <span class="mcf-impact">10+ rôles</span>
+            </div>
+            <p>JWT, Voters Symfony, permissions fines par rôle</p>
+          </div>
+        </div>
+
+        <!-- Modules cachés qui s'affichent au clic (au-dessus du bouton) -->
+        <div class="sme-hidden-modules" id="hidden-modules-v9">
+          <div class="cards-grid">
+            <div class="module-card-full revealed">
+              <div class="mcf-header">
+                <span class="mcf-icon">📍</span>
+                <h4>Rangement</h4>
+                <span class="mcf-impact">Flux optimisés</span>
+              </div>
+              <p>Le WMS indique où stocker (réserve, masse ou cross-docking)</p>
+            </div>
+            <div class="module-card-full revealed">
+              <div class="mcf-header">
+                <span class="mcf-icon">🚚</span>
+                <h4>Filmage & Expédition</h4>
+                <span class="mcf-impact">Expédition fluide</span>
+              </div>
+              <p>Clôture palettes, impression étiquettes transporteur et BL</p>
+            </div>
+            <div class="module-card-full revealed">
+              <div class="mcf-header">
+                <span class="mcf-icon">↔️</span>
+                <h4>Transferts</h4>
+                <span class="mcf-impact">Traçabilité totale</span>
+              </div>
+              <p>Transferts inter-zones et inter-containers avec validation scan</p>
+            </div>
+            <div class="module-card-full revealed">
+              <div class="mcf-header">
+                <span class="mcf-icon">⚙️</span>
+                <h4>Monitoring</h4>
+                <span class="mcf-impact">Réactivité</span>
+              </div>
+              <p>Scripts serveur avec alertes Slack (état, rapports, erreurs)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton + Progress bar en dessous -->
+        <div class="see-more-expandable" id="expandable-v9">
+          <div class="sme-progress">
+            <div class="sme-bar-wrap">
+              <div class="sme-bar"><div class="sme-fill" id="progress-fill-v9"></div></div>
+              <span class="sme-count"><strong id="count-v9">6</strong> / 10 modules</span>
+            </div>
+          </div>
+          <button class="sme-btn" id="expand-btn-v9" onclick="toggleExpand('v9')">
+            <span class="sme-btn-text">Afficher les 4 autres modules</span>
+            <span class="sme-chevron" id="chevron-v9">▼</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========== OPTION B: LISTE HORIZONTALE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option B</span>
+          <h2>Liste horizontale compacte</h2>
+        </div>
+
+        <div class="horizontal-list">
+          <div class="hl-item">
+            <div class="hl-left">
+              <span class="hl-icon">📋</span>
+              <div class="hl-content">
+                <h4>Picking</h4>
+                <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+              </div>
+            </div>
+            <span class="hl-impact">Coeur du WMS</span>
+          </div>
+          <div class="hl-item">
+            <div class="hl-left">
+              <span class="hl-icon">🔄</span>
+              <div class="hl-content">
+                <h4>Réapprovisionnement</h4>
+                <p>Génération des missions sur demande, suivi temps réel SSE</p>
+              </div>
+            </div>
+            <span class="hl-impact">Stock optimisé</span>
+          </div>
+          <div class="hl-item">
+            <div class="hl-left">
+              <span class="hl-icon">👷</span>
+              <div class="hl-content">
+                <h4>Manager</h4>
+                <p>Supervision : annulation, modification, forçage des missions</p>
+              </div>
+            </div>
+            <span class="hl-impact">Contrôle total</span>
+          </div>
+          <div class="hl-item">
+            <div class="hl-left">
+              <span class="hl-icon">📊</span>
+              <div class="hl-content">
+                <h4>Dashboards</h4>
+                <p>Audit, traçabilité containers, KPIs temps réel</p>
+              </div>
+            </div>
+            <span class="hl-impact">Visibilité</span>
+          </div>
+          <div class="hl-item">
+            <div class="hl-left">
+              <span class="hl-icon">🔐</span>
+              <div class="hl-content">
+                <h4>Sécurité</h4>
+                <p>JWT, Voters Symfony, permissions fines par rôle</p>
+              </div>
+            </div>
+            <span class="hl-impact">10+ rôles</span>
+          </div>
+        </div>
+        <p class="modules-more">+ Réception, Rangement, Expédition, Transferts, Monitoring...</p>
+      </section>
+
+      <!-- ========== OPTION C: TABLEAU MODERNE ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option C</span>
+          <h2>Tableau moderne (lignes alternées + hover)</h2>
+        </div>
+
+        <div class="modules-table-wrapper">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="mt-module"><span class="mt-icon">📋</span> Picking</span></td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td><span class="mt-impact purple">Coeur du WMS</span></td>
+              </tr>
+              <tr>
+                <td><span class="mt-module"><span class="mt-icon">🔄</span> Réapprovisionnement</span></td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td><span class="mt-impact green">Stock optimisé</span></td>
+              </tr>
+              <tr>
+                <td><span class="mt-module"><span class="mt-icon">👷</span> Manager</span></td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td><span class="mt-impact blue">Contrôle total</span></td>
+              </tr>
+              <tr>
+                <td><span class="mt-module"><span class="mt-icon">📊</span> Dashboards</span></td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td><span class="mt-impact cyan">Visibilité</span></td>
+              </tr>
+              <tr>
+                <td><span class="mt-module"><span class="mt-icon">🔐</span> Sécurité</span></td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td><span class="mt-impact orange">10+ rôles</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="modules-more">+ Réception, Rangement, Expédition, Transferts, Monitoring...</p>
+      </section>
+
+      <!-- ========== OPTION D: COLONNES 2x2 ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option D</span>
+          <h2>Layout 2 colonnes (icône + texte alignés)</h2>
+        </div>
+
+        <div class="two-col-layout">
+          <div class="tcl-item">
+            <div class="tcl-icon-wrap">
+              <span class="tcl-icon">📋</span>
+            </div>
+            <div class="tcl-content">
+              <div class="tcl-header">
+                <h4>Picking</h4>
+                <span class="tcl-impact">Coeur du WMS</span>
+              </div>
+              <p>Interface mobile temps réel : scan, validation, multi-opérateurs</p>
+            </div>
+          </div>
+          <div class="tcl-item">
+            <div class="tcl-icon-wrap">
+              <span class="tcl-icon">🔄</span>
+            </div>
+            <div class="tcl-content">
+              <div class="tcl-header">
+                <h4>Réapprovisionnement</h4>
+                <span class="tcl-impact">Stock optimisé</span>
+              </div>
+              <p>Génération des missions sur demande, suivi temps réel SSE</p>
+            </div>
+          </div>
+          <div class="tcl-item">
+            <div class="tcl-icon-wrap">
+              <span class="tcl-icon">👷</span>
+            </div>
+            <div class="tcl-content">
+              <div class="tcl-header">
+                <h4>Manager</h4>
+                <span class="tcl-impact">Contrôle total</span>
+              </div>
+              <p>Supervision : annulation, modification, forçage des missions</p>
+            </div>
+          </div>
+          <div class="tcl-item">
+            <div class="tcl-icon-wrap">
+              <span class="tcl-icon">📊</span>
+            </div>
+            <div class="tcl-content">
+              <div class="tcl-header">
+                <h4>Dashboards</h4>
+                <span class="tcl-impact">Visibilité</span>
+              </div>
+              <p>Audit, traçabilité containers, KPIs temps réel</p>
+            </div>
+          </div>
+          <div class="tcl-item full-width">
+            <div class="tcl-icon-wrap">
+              <span class="tcl-icon">🔐</span>
+            </div>
+            <div class="tcl-content">
+              <div class="tcl-header">
+                <h4>Sécurité</h4>
+                <span class="tcl-impact">10+ rôles</span>
+              </div>
+              <p>JWT, Voters Symfony, permissions fines par rôle</p>
+            </div>
+          </div>
+        </div>
+        <p class="modules-more">+ Réception, Rangement, Expédition, Transferts, Monitoring...</p>
+      </section>
+
+      <!-- ========== OPTION E: MINIMAL SANS TABLEAU ========== -->
+      <section class="option-section">
+        <div class="option-header">
+          <span class="option-number">Option E</span>
+          <h2>Ultra minimal (juste le nom + impact)</h2>
+        </div>
+
+        <div class="minimal-list">
+          <div class="min-item">
+            <span class="min-icon">📋</span>
+            <span class="min-name">Picking</span>
+            <span class="min-sep">—</span>
+            <span class="min-desc">Interface mobile temps réel</span>
+            <span class="min-impact">Coeur du WMS</span>
+          </div>
+          <div class="min-item">
+            <span class="min-icon">🔄</span>
+            <span class="min-name">Réapprovisionnement</span>
+            <span class="min-sep">—</span>
+            <span class="min-desc">Missions sur demande, SSE</span>
+            <span class="min-impact">Stock optimisé</span>
+          </div>
+          <div class="min-item">
+            <span class="min-icon">👷</span>
+            <span class="min-name">Manager</span>
+            <span class="min-sep">—</span>
+            <span class="min-desc">Supervision & forçage</span>
+            <span class="min-impact">Contrôle total</span>
+          </div>
+          <div class="min-item">
+            <span class="min-icon">📊</span>
+            <span class="min-name">Dashboards</span>
+            <span class="min-sep">—</span>
+            <span class="min-desc">KPIs & traçabilité</span>
+            <span class="min-impact">Visibilité</span>
+          </div>
+          <div class="min-item">
+            <span class="min-icon">🔐</span>
+            <span class="min-name">Sécurité</span>
+            <span class="min-sep">—</span>
+            <span class="min-desc">JWT, Voters, permissions</span>
+            <span class="min-impact">10+ rôles</span>
+          </div>
+        </div>
+        <p class="modules-more">+ Réception, Rangement, Expédition, Transferts, Monitoring...</p>
+      </section>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .mockup-page {
+    padding: 100px 0 60px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .intro {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 3rem;
+  }
+
+  .option-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(139, 92, 246, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .option-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .option-number {
+    background: var(--accent-primary, #8b5cf6);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .option-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  /* ===== TABLE BASE ===== */
+  .modules-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .modules-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .modules-table th,
+  .modules-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .modules-table th {
+    background: rgba(139, 92, 246, 0.1);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .modules-table td {
+    font-size: 0.9rem;
+  }
+
+  .modules-table td:first-child {
+    white-space: nowrap;
+  }
+
+  .modules-table td:last-child {
+    text-align: center;
+  }
+
+  .module-icon {
+    margin-right: 0.5rem;
+  }
+
+  /* ===== OPTION 1: PILLS ===== */
+  .impact-pill {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .impact-pill.purple {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+  .impact-pill.green {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+  }
+  .impact-pill.blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+  .impact-pill.cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+  .impact-pill.orange {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+  }
+
+  /* ===== OPTION 2: ICON BADGE ===== */
+  .impact-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .iib-icon {
+    font-size: 0.9rem;
+  }
+
+  /* ===== OPTION 3: OUTLINE ===== */
+  .impact-outline {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: transparent;
+    border: 1.5px solid;
+  }
+
+  .impact-outline.purple {
+    border-color: #8b5cf6;
+    color: #a78bfa;
+  }
+  .impact-outline.green {
+    border-color: #22c55e;
+    color: #4ade80;
+  }
+  .impact-outline.blue {
+    border-color: #3b82f6;
+    color: #60a5fa;
+  }
+  .impact-outline.cyan {
+    border-color: #06b6d4;
+    color: #22d3ee;
+  }
+  .impact-outline.orange {
+    border-color: #f97316;
+    color: #fb923c;
+  }
+
+  /* ===== OPTION 4: MINI CARDS ===== */
+  .impact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    min-width: 90px;
+  }
+
+  .impact-card.purple {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+  .impact-card.green {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+  .impact-card.blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+  .impact-card.cyan {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.05));
+    border: 1px solid rgba(6, 182, 212, 0.2);
+  }
+  .impact-card.orange {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.05));
+    border: 1px solid rgba(249, 115, 22, 0.2);
+  }
+
+  .ic-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .ic-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* ===== OPTION 5: CHECKMARK ===== */
+  .impact-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  /* ===== OPTION 6: GRADIENT ===== */
+  .impact-gradient {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .impact-gradient.purple {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  }
+  .impact-gradient.green {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+  }
+  .impact-gradient.blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+  }
+  .impact-gradient.cyan {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+  }
+  .impact-gradient.orange {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+  }
+
+  /* ===== OPTION 7: MONOCHROME ===== */
+  .impact-mono {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  /* ===== OPTION 8: INLINE ===== */
+  .modules-table.two-cols td:last-child {
+    text-align: left;
+  }
+
+  .func-text {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .impact-inline {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    color: #a78bfa;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* ===== RECOMMANDATIONS ===== */
+  .recommendations {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(139, 92, 246, 0.08));
+    border-radius: 20px;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .recommendations h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.3rem;
+    color: #4ade80;
+  }
+
+  .reco-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .reco-card {
+    background: rgba(15, 15, 35, 0.6);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .reco-card.best {
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  .reco-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+  }
+
+  .reco-badge.secondary {
+    background: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+  }
+
+  .reco-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .reco-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .reco-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 1.5rem 0;
+  }
+
+  .reco-note {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #ef4444;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    margin: 4rem 0 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    font-size: 1.5rem;
+  }
+
+  /* ===== OPTION A: CARDS GRID ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .module-card-full {
+    background: rgba(15, 15, 35, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .module-card-full:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .mcf-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mcf-icon {
+    font-size: 1.5rem;
+  }
+
+  .mcf-header h4 {
+    margin: 0;
+    flex: 1;
+    font-size: 1rem;
+  }
+
+  .mcf-impact {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .module-card-full p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  /* ===== OPTION B: HORIZONTAL LIST ===== */
+  .horizontal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hl-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .hl-item:hover {
+    background: rgba(139, 92, 246, 0.05);
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+
+  .hl-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hl-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 8px;
+  }
+
+  .hl-content h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.95rem;
+  }
+
+  .hl-content p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .hl-impact {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ===== OPTION C: MODERN TABLE ===== */
+  .modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .modern-table th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    background: rgba(139, 92, 246, 0.15);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .modern-table td {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .modern-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.2s ease;
+  }
+
+  .modern-table tbody tr:nth-child(even) {
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .modern-table tbody tr:hover {
+    background: rgba(139, 92, 246, 0.08);
+  }
+
+  .mt-module {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .mt-icon {
+    font-size: 1.1rem;
+  }
+
+  .mt-impact {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .mt-impact.purple { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+  .mt-impact.green { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+  .mt-impact.blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+  .mt-impact.cyan { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+  .mt-impact.orange { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+
+  /* ===== OPTION D: TWO COLUMN LAYOUT ===== */
+  .two-col-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .tcl-item {
+    display: flex;
+    gap: 1rem;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .tcl-item:hover {
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+
+  .tcl-item.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .tcl-icon-wrap {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.05));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tcl-icon {
+    font-size: 1.5rem;
+  }
+
+  .tcl-content {
+    flex: 1;
+  }
+
+  .tcl-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .tcl-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .tcl-impact {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .tcl-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ===== OPTION E: MINIMAL LIST ===== */
+  .minimal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .min-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(15, 15, 35, 0.4);
+    border-radius: 8px;
+    border-left: 3px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .min-icon {
+    font-size: 1rem;
+  }
+
+  .min-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .min-sep {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .min-desc {
+    flex: 1;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .min-impact {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ===== MODULES MORE ===== */
+  .modules-more {
+    margin-top: 1rem;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  /* ===== SEE MORE CARDS ===== */
+  .see-more-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 140px;
+  }
+
+  /* Variation 1: Simple avec compteur */
+  .see-more-card.v1 {
+    background: rgba(139, 92, 246, 0.08);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .see-more-card.v1:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: scale(1.02);
+  }
+
+  .see-more-card.v1 .smc-count {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a78bfa;
+    line-height: 1;
+  }
+
+  .see-more-card.v1 .smc-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0.5rem 0;
+  }
+
+  .see-more-card.v1 .smc-cta {
+    font-size: 0.85rem;
+    color: #a78bfa;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  /* Variation 2: Liste preview */
+  .see-more-card.v2 {
+    background: rgba(15, 15, 35, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    gap: 1rem;
+  }
+
+  .see-more-card.v2:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .smc-preview-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .smc-preview-list span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .smc-preview-list span.more {
+    background: rgba(139, 92, 246, 0.25);
+    color: #a78bfa;
+    font-weight: 600;
+  }
+
+  .smc-cta-btn {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Variation 3: Gradient attractive */
+  .see-more-card.v3 {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.15));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .see-more-card.v3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .see-more-card.v3:hover::before {
+    opacity: 1;
+  }
+
+  .see-more-card.v3:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+  }
+
+  .smc-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .smc-icon-grid span {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .see-more-card.v3 .smc-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .see-more-card.v3 .smc-arrow {
+    font-size: 1.5rem;
+    color: #a78bfa;
+    margin-top: 0.5rem;
+    transition: transform 0.3s;
+  }
+
+  .see-more-card.v3:hover .smc-arrow {
+    transform: translateX(5px);
+  }
+
+  /* Variation 4: Dashed invitation */
+  .see-more-card.v4 {
+    background: transparent;
+    border: 2px dashed rgba(139, 92, 246, 0.3);
+  }
+
+  .see-more-card.v4:hover {
+    border-color: rgba(139, 92, 246, 0.6);
+    background: rgba(139, 92, 246, 0.05);
+  }
+
+  .see-more-card.v4 .smc-plus {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #a78bfa;
+    margin-bottom: 0.75rem;
+  }
+
+  .see-more-card.v4 .smc-invite {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .see-more-card.v4 .smc-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.25rem;
+  }
+
+  /* Variation 5: Icônes empilées */
+  .see-more-card.v5 {
+    background: rgba(15, 15, 35, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+  }
+
+  .see-more-card.v5:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .smc-stacked-icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .stacked-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(139, 92, 246, 0.2);
+    border: 2px solid rgba(15, 15, 35, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-left: calc(var(--i) * -10px);
+    position: relative;
+    z-index: calc(4 - var(--i));
+  }
+
+  .stacked-icon:first-child {
+    margin-left: 0;
+  }
+
+  .stacked-count {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border: 2px solid rgba(15, 15, 35, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    margin-left: -10px;
+  }
+
+  .smc-text-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .smc-text-bottom strong {
+    font-size: 1rem;
+    color: white;
+  }
+
+  .smc-text-bottom span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Variation 6: Inline button */
+  .cards-grid.six-cols {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .see-more-inline {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .smi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .smi-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .smi-icons {
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+  }
+
+  .smi-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .smi-arrow {
+    font-size: 1.2rem;
+    color: #a78bfa;
+    transition: transform 0.3s;
+  }
+
+  .smi-btn:hover .smi-arrow {
+    transform: translateY(3px);
+  }
+
+  /* ===== NEW SEE MORE BUTTONS ===== */
+  .see-more-btn-wrap {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  /* Var 1: Simple */
+  .see-more-btn.v1 {
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .see-more-btn.v1:hover {
+    background: rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Var 2: Avec icônes */
+  .see-more-btn.v2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .see-more-btn.v2:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .smb-icons {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+  }
+
+  .smb-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .smb-arrow {
+    font-size: 1rem;
+    color: #a78bfa;
+    transition: transform 0.3s;
+  }
+
+  .see-more-btn.v2:hover .smb-arrow {
+    transform: translateY(3px);
+  }
+
+  /* Var 3: Gradient pill */
+  .see-more-btn.v3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .see-more-btn.v3:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .smb-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  /* Var 4: Lien discret */
+  .see-more-link.v4 {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .see-more-link.v4:hover {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .sml-expand {
+    color: #a78bfa;
+    font-style: normal;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .see-more-link.v4:hover .sml-expand {
+    background: rgba(139, 92, 246, 0.3);
+  }
+
+  /* Var 5: Barre full width */
+  .see-more-bar.v5 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .see-more-bar.v5:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.4);
+  }
+
+  .smbar-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .smbar-icons {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .smbar-text {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .smbar-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a78bfa;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .smbar-chevron {
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+  }
+
+  .see-more-bar.v5:hover .smbar-chevron {
+    transform: translateY(2px);
+  }
+
+  /* Var 6: Card teaser */
+  .module-card-teaser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.08);
+    border: 2px dashed rgba(139, 92, 246, 0.25);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 140px;
+  }
+
+  .module-card-teaser:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .mct-icons {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .mct-count {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #a78bfa;
+    line-height: 1;
+  }
+
+  .mct-text {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.5rem;
+  }
+
+  .mct-cta {
+    font-size: 0.8rem;
+    color: #a78bfa;
+    font-weight: 600;
+  }
+
+  /* Var 7: Accordion style */
+  .see-more-accordion {
+    width: 100%;
+    background: rgba(15, 15, 35, 0.5);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .see-more-accordion:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .sma-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: rgba(139, 92, 246, 0.05);
+  }
+
+  .sma-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sma-count {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .sma-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .sma-chevron {
+    color: #a78bfa;
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+
+  .see-more-accordion:hover .sma-chevron {
+    transform: rotate(180deg);
+  }
+
+  .sma-preview {
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sma-preview span {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Var 8: Tags row */
+  .see-more-tags {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .smt-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.75rem;
+  }
+
+  .smt-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .smt-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .smt-tag:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .smt-more {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    border: none;
+  }
+
+  .smt-more:hover {
+    background: linear-gradient(135deg, #9f75fa, #7c7ff5);
+  }
+
+  /* Var 9: Progress style AVEC EXPAND */
+  .see-more-expandable {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .sme-progress {
+    margin-bottom: 1rem;
+  }
+
+  .sme-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .sme-bar {
+    width: 200px;
+    height: 8px;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .sme-fill {
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+
+  .sme-fill.complete {
+    width: 100%;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+  }
+
+  .sme-count {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .sme-count strong {
+    color: #a78bfa;
+    transition: color 0.3s ease;
+  }
+
+  .sme-count strong.complete {
+    color: #4ade80;
+  }
+
+  .sme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sme-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .sme-btn.expanded {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .sme-btn.expanded:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+
+  .sme-btn-text {
+    color: #a78bfa;
+    font-weight: 600;
+  }
+
+  .sme-btn.expanded .sme-btn-text {
+    color: #f87171;
+  }
+
+  .sme-chevron {
+    font-size: 0.8rem;
+    color: #a78bfa;
+    transition: transform 0.3s ease;
+  }
+
+  .sme-chevron.rotated {
+    transform: rotate(180deg);
+  }
+
+  .sme-btn.expanded .sme-chevron {
+    color: #f87171;
+  }
+
+  /* Hidden modules section */
+  .sme-hidden-modules {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease;
+  }
+
+  .sme-hidden-modules.visible {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+
+  .sme-hidden-modules .cards-grid {
+    padding-top: 0;
+  }
+
+  .module-card-full.revealed {
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .sme-hidden-modules.visible .module-card-full.revealed:nth-child(1) { animation-delay: 0.05s; }
+  .sme-hidden-modules.visible .module-card-full.revealed:nth-child(2) { animation-delay: 0.1s; }
+  .sme-hidden-modules.visible .module-card-full.revealed:nth-child(3) { animation-delay: 0.15s; }
+  .sme-hidden-modules.visible .module-card-full.revealed:nth-child(4) { animation-delay: 0.2s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .modules-table td:last-child {
+      text-align: left;
+    }
+
+    .reco-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .two-col-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .tcl-item.full-width {
+      grid-column: 1;
+    }
+
+    .hl-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .hl-left {
+      width: 100%;
+    }
+
+    .min-item {
+      flex-wrap: wrap;
+    }
+
+    .min-desc {
+      flex: none;
+      width: 100%;
+      margin-left: 1.75rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  function toggleExpand(version) {
+    const btn = document.getElementById('expand-btn-' + version);
+    const hiddenModules = document.getElementById('hidden-modules-' + version);
+    const chevron = document.getElementById('chevron-' + version);
+    const progressFill = document.getElementById('progress-fill-' + version);
+    const count = document.getElementById('count-' + version);
+    const btnText = btn.querySelector('.sme-btn-text');
+
+    const isExpanded = hiddenModules.classList.contains('visible');
+
+    if (isExpanded) {
+      // Fermer
+      hiddenModules.classList.remove('visible');
+      chevron.classList.remove('rotated');
+      btn.classList.remove('expanded');
+      progressFill.classList.remove('complete');
+      count.classList.remove('complete');
+      count.textContent = '6';
+      btnText.textContent = 'Afficher les 4 autres modules';
+    } else {
+      // Ouvrir
+      hiddenModules.classList.add('visible');
+      chevron.classList.add('rotated');
+      btn.classList.add('expanded');
+      progressFill.classList.add('complete');
+      count.classList.add('complete');
+      count.textContent = '10';
+      btnText.textContent = 'Masquer les modules';
+    }
+  }
+</script>

@@ -1,0 +1,1571 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Mockups Alternatifs — Sections Tech & Role" activePage="projets">
+  <div class="mockup-page">
+    <div class="container">
+
+      <header class="mockup-header">
+        <a href="/mockup-final" class="back-link">← Retour au mockup principal</a>
+        <h1>Mockups Alternatifs</h1>
+        <p>Variantes de design pour les sections "Sous le capot" et "Mon rôle"</p>
+      </header>
+
+      <!-- ========================================== -->
+      <!-- SECTION: SOUS LE CAPOT - VARIANTE A -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Tech A</span>
+          <h2>Stack + Architecture Visuelle</h2>
+          <p>Schéma d'architecture central avec stack en badges. Approche actuelle enrichie.</p>
+        </div>
+
+        <div class="variant-content tech-a">
+          <div class="section-header">
+            <span class="section-tag">Sous le capot</span>
+            <h3>Architecture & Stack technique</h3>
+          </div>
+
+          <!-- Stack badges -->
+          <div class="stack-row">
+            <div class="stack-category">
+              <span class="cat-label">Backend</span>
+              <div class="cat-badges">
+                <span class="stack-badge">PHP 8.4</span>
+                <span class="stack-badge">Symfony 7</span>
+                <span class="stack-badge">API Platform</span>
+              </div>
+            </div>
+            <div class="stack-category">
+              <span class="cat-label">Data</span>
+              <div class="cat-badges">
+                <span class="stack-badge">PostgreSQL</span>
+                <span class="stack-badge">Redis</span>
+              </div>
+            </div>
+            <div class="stack-category">
+              <span class="cat-label">IA</span>
+              <div class="cat-badges">
+                <span class="stack-badge highlight">Groq</span>
+                <span class="stack-badge highlight">LLaMA 3.2</span>
+              </div>
+            </div>
+            <div class="stack-category">
+              <span class="cat-label">Infra</span>
+              <div class="cat-badges">
+                <span class="stack-badge">Docker</span>
+                <span class="stack-badge">GitHub Actions</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture diagram -->
+          <div class="arch-visual">
+            <h4>Flux de traitement</h4>
+            <div class="arch-flow">
+              <div class="arch-node">
+                <div class="node-icon">📄</div>
+                <div class="node-label">Document</div>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">🚪</div>
+                <div class="node-label">API REST</div>
+                <div class="node-tech">Symfony</div>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">📬</div>
+                <div class="node-label">Queue</div>
+                <div class="node-tech">Messenger</div>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node highlight">
+                <div class="node-icon">🤖</div>
+                <div class="node-label">AI Worker</div>
+                <div class="node-tech">Groq + LLaMA</div>
+              </div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node">
+                <div class="node-icon">📊</div>
+                <div class="node-label">JSON</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key decisions as cards -->
+          <div class="decisions-row">
+            <div class="decision-card">
+              <div class="decision-q">Pourquoi Groq ?</div>
+              <div class="decision-a">Inference &lt;1s, 10x plus rapide qu'OpenAI, cout /5</div>
+            </div>
+            <div class="decision-card">
+              <div class="decision-q">Pourquoi Queue async ?</div>
+              <div class="decision-a">Scalabilite, 100+ docs simultanes sans blocage</div>
+            </div>
+            <div class="decision-card">
+              <div class="decision-q">Pourquoi pas OCR ?</div>
+              <div class="decision-a">LLM multimodal = contexte, 99% vs 85% precision</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION: SOUS LE CAPOT - VARIANTE B -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Tech B</span>
+          <h2>Deep Dive Technique</h2>
+          <p>Format "blog technique" avec code snippets et explications detaillees. Pour recruteurs techniques.</p>
+        </div>
+
+        <div class="variant-content tech-b">
+          <div class="section-header">
+            <span class="section-tag">Deep dive</span>
+            <h3>Comment c'est construit</h3>
+          </div>
+
+          <div class="tech-deep">
+            <!-- Architecture overview -->
+            <div class="tech-block">
+              <div class="tech-block-header">
+                <span class="block-number">01</span>
+                <h4>Architecture Hexagonale</h4>
+              </div>
+              <div class="tech-block-content">
+                <p>Separation claire entre domaine metier et infrastructure. Les ports et adapters permettent de changer de provider IA sans toucher au code metier.</p>
+                <div class="code-snippet">
+                  <pre set:text={'src/\n├── Domain/           # Logique metier pure\n│   ├── Entity/\n│   └── Service/\n├── Application/      # Use cases\n│   └── Command/\n├── Infrastructure/   # Adapters\n│   ├── AI/          # Groq, OpenAI...\n│   └── Persistence/ # Doctrine'} />
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Integration -->
+            <div class="tech-block">
+              <div class="tech-block-header">
+                <span class="block-number">02</span>
+                <h4>Integration LLM</h4>
+              </div>
+              <div class="tech-block-content">
+                <p>Utilisation de Groq pour l'inference ultra-rapide (&lt;1s). Le prompt est dynamique selon le type de document.</p>
+                <div class="code-snippet">
+                  <pre set:text={'// Extraction service\n$result = $this->aiProvider->extract(\n    document: $file,\n    schema: InvoiceSchema::class,\n    options: [\'temperature\' => 0.1]\n);'} />
+                </div>
+                <div class="tech-metrics">
+                  <div class="tech-metric">
+                    <span class="tm-value">&lt;1s</span>
+                    <span class="tm-label">inference</span>
+                  </div>
+                  <div class="tech-metric">
+                    <span class="tm-value">$0.002</span>
+                    <span class="tm-label">/document</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Queue system -->
+            <div class="tech-block">
+              <div class="tech-block-header">
+                <span class="block-number">03</span>
+                <h4>Traitement Asynchrone</h4>
+              </div>
+              <div class="tech-block-content">
+                <p>Symfony Messenger avec Redis pour gerer les pics de charge. Retry automatique avec backoff exponentiel.</p>
+                <div class="tech-highlights">
+                  <span class="th-item">3 workers paralleles</span>
+                  <span class="th-item">Retry x3 avec backoff</span>
+                  <span class="th-item">Dead letter queue</span>
+                  <span class="th-item">Monitoring Prometheus</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Challenges table -->
+          <div class="challenges-compact">
+            <h4>Challenges resolus</h4>
+            <div class="challenge-list">
+              <div class="challenge-item">
+                <span class="ch-problem">Scans basse qualite</span>
+                <span class="ch-arrow">→</span>
+                <span class="ch-solution">Preprocessing + Vision LLM</span>
+              </div>
+              <div class="challenge-item">
+                <span class="ch-problem">Formats varies</span>
+                <span class="ch-arrow">→</span>
+                <span class="ch-solution">Schema JSON flexible + prompts dynamiques</span>
+              </div>
+              <div class="challenge-item">
+                <span class="ch-problem">Rate limiting API</span>
+                <span class="ch-arrow">→</span>
+                <span class="ch-solution">Queue + circuit breaker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION: SOUS LE CAPOT - VARIANTE C -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Tech C</span>
+          <h2>Minimaliste + GitHub</h2>
+          <p>Stack epuree avec lien vers le code. Pour les recruteurs qui veulent voir le code directement.</p>
+        </div>
+
+        <div class="variant-content tech-c">
+          <div class="section-header">
+            <span class="section-tag">Stack</span>
+            <h3>Technologies utilisees</h3>
+          </div>
+
+          <div class="tech-minimal">
+            <div class="tech-grid-minimal">
+              <div class="tech-item">
+                <div class="tech-logo">🐘</div>
+                <div class="tech-info">
+                  <span class="tech-name">PHP 8.4</span>
+                  <span class="tech-why">Typed properties, attributes, performances</span>
+                </div>
+              </div>
+              <div class="tech-item">
+                <div class="tech-logo">🎵</div>
+                <div class="tech-info">
+                  <span class="tech-name">Symfony 7</span>
+                  <span class="tech-why">Framework enterprise, Messenger, Doctrine</span>
+                </div>
+              </div>
+              <div class="tech-item">
+                <div class="tech-logo">🤖</div>
+                <div class="tech-info">
+                  <span class="tech-name">Groq + LLaMA</span>
+                  <span class="tech-why">Inference ultra-rapide, multimodal</span>
+                </div>
+              </div>
+              <div class="tech-item">
+                <div class="tech-logo">🐳</div>
+                <div class="tech-info">
+                  <span class="tech-name">Docker</span>
+                  <span class="tech-why">Conteneurisation, CI/CD ready</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="github-cta">
+              <div class="github-info">
+                <span class="github-icon">📂</span>
+                <div class="github-text">
+                  <strong>Voir le code source</strong>
+                  <span>Architecture, tests, documentation</span>
+                </div>
+              </div>
+              <a href="#" class="github-btn">GitHub →</a>
+            </div>
+
+            <div class="quick-stats">
+              <div class="qs-item">
+                <span class="qs-value">15k</span>
+                <span class="qs-label">lignes de code</span>
+              </div>
+              <div class="qs-item">
+                <span class="qs-value">85%</span>
+                <span class="qs-label">test coverage</span>
+              </div>
+              <div class="qs-item">
+                <span class="qs-value">A</span>
+                <span class="qs-label">score PHPStan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION: MON ROLE - VARIANTE A -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Role A</span>
+          <h2>Timeline Horizontale</h2>
+          <p>Progression visuelle de l'idee a la production. Montre le parcours complet.</p>
+        </div>
+
+        <div class="variant-content role-a">
+          <div class="section-header">
+            <span class="section-tag">Mon role</span>
+            <h3>De l'idee a la production</h3>
+          </div>
+
+          <div class="role-badge-line">
+            <span class="role-badge">👤 Projet solo — Toutes les casquettes</span>
+          </div>
+
+          <div class="timeline-horizontal">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-phase">Phase 1</span>
+                <h4>Discovery</h4>
+                <ul>
+                  <li>Etude de marche</li>
+                  <li>Interviews utilisateurs</li>
+                  <li>Definition du MVP</li>
+                </ul>
+                <span class="tl-duration">2 semaines</span>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-phase">Phase 2</span>
+                <h4>Architecture</h4>
+                <ul>
+                  <li>Choix techniques</li>
+                  <li>Design API</li>
+                  <li>Schema base de donnees</li>
+                </ul>
+                <span class="tl-duration">1 semaine</span>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-phase">Phase 3</span>
+                <h4>Developpement</h4>
+                <ul>
+                  <li>Backend Symfony</li>
+                  <li>Integration IA</li>
+                  <li>Tests automatises</li>
+                </ul>
+                <span class="tl-duration">6 semaines</span>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-phase">Phase 4</span>
+                <h4>Production</h4>
+                <ul>
+                  <li>Deploiement CI/CD</li>
+                  <li>Monitoring</li>
+                  <li>Documentation</li>
+                </ul>
+                <span class="tl-duration">1 semaine</span>
+              </div>
+            </div>
+
+            <div class="tl-item active">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-phase">Ongoing</span>
+                <h4>Evolution</h4>
+                <ul>
+                  <li>Support client</li>
+                  <li>Nouvelles features</li>
+                  <li>Optimisations</li>
+                </ul>
+                <span class="tl-duration">En cours</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="role-highlights-row">
+            <span class="rh-item">✓ Livraison continue</span>
+            <span class="rh-item">✓ 85% test coverage</span>
+            <span class="rh-item">✓ Documentation complete</span>
+            <span class="rh-item">✓ Monitoring 24/7</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION: MON ROLE - VARIANTE B -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Role B</span>
+          <h2>Competences en colonnes</h2>
+          <p>Organisation par domaine de competence. Ideal pour recruteurs cherchant des skills specifiques.</p>
+        </div>
+
+        <div class="variant-content role-b">
+          <div class="section-header">
+            <span class="section-tag">Mon role</span>
+            <h3>Ce que j'ai fait sur ce projet</h3>
+          </div>
+
+          <div class="role-intro">
+            <div class="role-badge-box">
+              <span class="rb-icon">👤</span>
+              <div class="rb-info">
+                <strong>Projet solo</strong>
+                <span>De la conception a la maintenance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-columns">
+            <div class="skill-column">
+              <div class="sc-header">
+                <span class="sc-icon">🎨</span>
+                <h4>Product</h4>
+              </div>
+              <ul class="sc-list">
+                <li>Etude de marche & validation</li>
+                <li>Definition du MVP</li>
+                <li>User stories & specs</li>
+                <li>Pricing strategy</li>
+              </ul>
+            </div>
+
+            <div class="skill-column">
+              <div class="sc-header">
+                <span class="sc-icon">⚙️</span>
+                <h4>Backend</h4>
+              </div>
+              <ul class="sc-list">
+                <li>Architecture hexagonale</li>
+                <li>API REST (Symfony)</li>
+                <li>Integration LLM (Groq)</li>
+                <li>Queue & workers async</li>
+              </ul>
+            </div>
+
+            <div class="skill-column">
+              <div class="sc-header">
+                <span class="sc-icon">🔧</span>
+                <h4>DevOps</h4>
+              </div>
+              <ul class="sc-list">
+                <li>Conteneurisation Docker</li>
+                <li>CI/CD GitHub Actions</li>
+                <li>Monitoring & alerting</li>
+                <li>Logs centralises</li>
+              </ul>
+            </div>
+
+            <div class="skill-column">
+              <div class="sc-header">
+                <span class="sc-icon">📊</span>
+                <h4>Qualite</h4>
+              </div>
+              <ul class="sc-list">
+                <li>Tests PHPUnit (85%)</li>
+                <li>Analyse statique (PHPStan)</li>
+                <li>Code review automatise</li>
+                <li>Documentation API</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="methodology-bar">
+            <span class="mb-label">Methodologie :</span>
+            <span class="mb-item">Agile solo</span>
+            <span class="mb-sep">·</span>
+            <span class="mb-item">Sprints 1 semaine</span>
+            <span class="mb-sep">·</span>
+            <span class="mb-item">Deploiement continu</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION: MON ROLE - VARIANTE C -->
+      <!-- ========================================== -->
+      <section class="variant-section">
+        <div class="variant-header">
+          <span class="variant-badge">Role C</span>
+          <h2>Storytelling Compact</h2>
+          <p>Format narratif court. Connexion emotionnelle, montre la passion et l'engagement.</p>
+        </div>
+
+        <div class="variant-content role-c">
+          <div class="section-header">
+            <span class="section-tag">Behind the scenes</span>
+            <h3>Comment j'ai construit LogiDoc AI</h3>
+          </div>
+
+          <div class="story-content">
+            <div class="story-quote">
+              <blockquote>
+                "J'ai passe 4 ans dans la logistique a voir des equipes perdre des heures sur la saisie de documents. J'ai decide de resoudre ce probleme."
+              </blockquote>
+            </div>
+
+            <div class="story-journey">
+              <div class="journey-step">
+                <span class="js-emoji">💡</span>
+                <div class="js-content">
+                  <strong>L'idee</strong>
+                  <p>Apres avoir vu les limites de l'OCR classique, j'ai explore les LLMs multimodaux. La precision etait 10x meilleure.</p>
+                </div>
+              </div>
+
+              <div class="journey-step">
+                <span class="js-emoji">🔨</span>
+                <div class="js-content">
+                  <strong>Le build</strong>
+                  <p>3 mois de dev solo. Architecture pensee pour scaler. Tests obsessionnels. Chaque ligne de code revue 3 fois.</p>
+                </div>
+              </div>
+
+              <div class="journey-step">
+                <span class="js-emoji">🚀</span>
+                <div class="js-content">
+                  <strong>Le lancement</strong>
+                  <p>12 entreprises utilisatrices en 2 mois. 500+ documents traites par jour. ROI immediat pour les clients.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="story-creds">
+              <div class="cred-item">
+                <span class="cred-icon">🎯</span>
+                <span class="cred-text">Solo founder & developer</span>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">⏱️</span>
+                <span class="cred-text">3 mois de la V0 a la prod</span>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">💪</span>
+                <span class="cred-text">100% du code, 100% des decisions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- RECOMMENDATIONS -->
+      <!-- ========================================== -->
+      <section class="recommendations">
+        <h2>Mes recommandations</h2>
+
+        <div class="reco-grid">
+          <div class="reco-card">
+            <h3>Pour "Sous le capot"</h3>
+            <div class="reco-choice">
+              <span class="reco-badge">Recommande</span>
+              <strong>Variante A — Stack + Architecture Visuelle</strong>
+            </div>
+            <ul>
+              <li><strong>Equilibre parfait</strong> — Assez technique pour impressionner, assez visuel pour etre compris</li>
+              <li><strong>Le schema d'architecture</strong> — Les recruteurs adorent voir le flux de donnees</li>
+              <li><strong>Stack categorisee</strong> — On comprend immediatement les competences</li>
+              <li><strong>Decisions en cards</strong> — Montre la reflexion, pas juste l'execution</li>
+            </ul>
+            <p class="reco-alt"><strong>Alternative :</strong> Variante B si tu cibles des postes tres techniques (Lead, Archi) ou si tu as du code open source a montrer</p>
+          </div>
+
+          <div class="reco-card">
+            <h3>Pour "Mon role"</h3>
+            <div class="reco-choice">
+              <span class="reco-badge">Recommande</span>
+              <strong>Variante B — Competences en colonnes</strong>
+            </div>
+            <ul>
+              <li><strong>Scannable</strong> — Les recruteurs trouvent leurs keywords en 3 secondes</li>
+              <li><strong>Prouve la polyvalence</strong> — Product + Backend + DevOps + Qualite</li>
+              <li><strong>Structure claire</strong> — Pas de blabla, que des faits</li>
+              <li><strong>Methodologie visible</strong> — Montre le professionnalisme</li>
+            </ul>
+            <p class="reco-alt"><strong>Alternative :</strong> Variante C pour les projets ou tu veux raconter une histoire personnelle forte (side project passion, pivot de carriere...)</p>
+          </div>
+        </div>
+
+        <div class="reco-summary">
+          <h3>Combinaison optimale</h3>
+          <div class="combo-visual">
+            <div class="combo-item">
+              <span class="combo-section">Tech</span>
+              <span class="combo-choice">A — Architecture Visuelle</span>
+            </div>
+            <span class="combo-plus">+</span>
+            <div class="combo-item">
+              <span class="combo-section">Role</span>
+              <span class="combo-choice">B — Competences colonnes</span>
+            </div>
+            <span class="combo-equals">=</span>
+            <div class="combo-result">
+              <span>Pro + Scannable + Technique</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .mockup-page {
+    padding: 120px 0 80px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header */
+  .mockup-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .back-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .mockup-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, #fff, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mockup-header p {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  /* Variant sections */
+  .variant-section {
+    margin-bottom: 4rem;
+  }
+
+  .variant-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .variant-badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .variant-header h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .variant-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .variant-content {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  /* ===== TECH A - Stack + Architecture ===== */
+  .stack-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stack-category {
+    text-align: center;
+  }
+
+  .cat-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .stack-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .stack-badge.highlight {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--color-primary);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .arch-visual {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .arch-visual h4 {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.5rem;
+  }
+
+  .arch-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .arch-node {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .arch-node.highlight {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: var(--color-primary);
+  }
+
+  .node-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .node-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .node-tech {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.25rem;
+  }
+
+  .arch-arrow {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .decisions-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .decision-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .decision-q {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .decision-a {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+  }
+
+  /* ===== TECH B - Deep Dive ===== */
+  .tech-deep {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .tech-block {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .tech-block-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .block-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .tech-block-header h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .tech-block-content {
+    padding: 1.5rem;
+  }
+
+  .tech-block-content p {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+  }
+
+  .code-snippet {
+    background: #1e1e3f;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .code-snippet pre {
+    padding: 1rem;
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #a5f3fc;
+    overflow-x: auto;
+  }
+
+  .tech-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .tech-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tm-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .tm-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .tech-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .th-item {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+  }
+
+  .challenges-compact h4 {
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .challenge-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .ch-problem {
+    color: #f87171;
+    flex: 1;
+  }
+
+  .ch-arrow {
+    color: var(--color-primary);
+  }
+
+  .ch-solution {
+    color: #4ade80;
+    flex: 1;
+  }
+
+  /* ===== TECH C - Minimal ===== */
+  .tech-minimal {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tech-grid-minimal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .tech-logo {
+    font-size: 2rem;
+  }
+
+  .tech-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tech-name {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .tech-why {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .github-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .github-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .github-icon {
+    font-size: 1.5rem;
+  }
+
+  .github-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .github-text strong {
+    font-size: 1rem;
+  }
+
+  .github-text span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .github-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .quick-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .qs-item {
+    text-align: center;
+  }
+
+  .qs-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .qs-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ===== ROLE A - Timeline ===== */
+  .role-badge-line {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .role-badge {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.5rem 1.25rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+  }
+
+  .timeline-horizontal {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .timeline-horizontal::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: rgba(139, 92, 246, 0.2);
+  }
+
+  .tl-item {
+    flex: 1;
+    position: relative;
+    padding-right: 1rem;
+  }
+
+  .tl-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-item.active .tl-dot {
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3);
+  }
+
+  .tl-content {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .tl-phase {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+  }
+
+  .tl-content h4 {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .tl-content ul {
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .tl-content li {
+    margin-bottom: 0.25rem;
+  }
+
+  .tl-duration {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .role-highlights-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .rh-item {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ===== ROLE B - Skills Columns ===== */
+  .role-intro {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .role-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .rb-icon {
+    font-size: 1.5rem;
+  }
+
+  .rb-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-info strong {
+    font-size: 1rem;
+  }
+
+  .rb-info span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .skill-column {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .sc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sc-icon {
+    font-size: 1.25rem;
+  }
+
+  .sc-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .sc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sc-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .sc-list li:last-child {
+    border-bottom: none;
+  }
+
+  .methodology-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .mb-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mb-item {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .mb-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ===== ROLE C - Storytelling ===== */
+  .story-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .story-quote {
+    margin-bottom: 2rem;
+  }
+
+  .story-quote blockquote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1.5rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .story-journey {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .journey-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .js-emoji {
+    font-size: 1.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+
+  .js-content strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-primary);
+  }
+
+  .js-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+  }
+
+  .story-creds {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cred-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .cred-icon {
+    font-size: 1rem;
+  }
+
+  .cred-text {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ===== RECOMMENDATIONS ===== */
+  .recommendations {
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    margin-top: 2rem;
+  }
+
+  .recommendations h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0 0 2rem;
+  }
+
+  .reco-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .reco-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .reco-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .reco-choice {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .reco-badge {
+    display: inline-block;
+    background: #22c55e;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+
+  .reco-choice strong {
+    color: #4ade80;
+    font-size: 0.95rem;
+  }
+
+  .reco-card ul {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+  }
+
+  .reco-card li {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .reco-card li strong {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .reco-alt {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .reco-alt strong {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .reco-summary {
+    text-align: center;
+  }
+
+  .reco-summary h3 {
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .combo-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .combo-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+  }
+
+  .combo-section {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  .combo-choice {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .combo-plus,
+  .combo-equals {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .combo-result {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 197, 94, 0.2));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .combo-result span {
+    font-weight: 600;
+    color: white;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .decisions-row {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-horizontal {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-horizontal::before {
+      display: none;
+    }
+
+    .tl-item {
+      padding-right: 0;
+    }
+
+    .reco-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stack-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .arch-flow {
+      flex-direction: column;
+    }
+
+    .arch-arrow {
+      transform: rotate(90deg);
+    }
+
+    .tech-grid-minimal {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .story-creds {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .combo-visual {
+      flex-direction: column;
+    }
+  }
+</style>

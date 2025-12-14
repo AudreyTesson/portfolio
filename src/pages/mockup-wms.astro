@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="WMS — Warehouse Management System | Audrey Tesson" description="Système logistique critique conçu et développé seule, en production 24/7. Démonstration de compétences Full-Stack & Tech Lead." activePage="projets">
@@ -125,7 +125,7 @@ import Layout from '../../layouts/Layout.astro';
           <div class="tldr-item">
             <span class="tldr-icon">⚙️</span>
             <span class="tldr-label">Stack</span>
-            <span class="tldr-value">Symfony 6 · MariaDB · Redis</span>
+            <span class="tldr-value">Symfony 6 · MySQL · Redis</span>
             <span class="tldr-subvalue">API REST + SSE temps réel</span>
           </div>
           <div class="tldr-item">
@@ -370,7 +370,7 @@ import Layout from '../../layouts/Layout.astro';
           <div class="challenge-card">
             <span class="challenge-icon">📱</span>
             <h4>Multi-supports</h4>
-            <p>Interface adaptée aux écrans tactiles et terminaux RF industriels (Keyence)</p>
+            <p>Interface adaptée aux écrans tactiles et terminaux RF industriels</p>
             <div class="challenge-solution">
               <span class="solution-label">Solution :</span>
               <span>Design responsive + grands boutons tactiles</span>
@@ -418,106 +418,44 @@ import Layout from '../../layouts/Layout.astro';
           <h2>Modules clés développés</h2>
         </div>
 
-        <!-- 6 Cards visibles -->
-        <div class="modules-cards-grid">
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">📦</span>
-              <h4>Réception</h4>
-              <span class="module-card-impact">Entrées sécurisées</span>
-            </div>
-            <p>Réception marchandises avec contrôle et validation scan</p>
-          </div>
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">📋</span>
-              <h4>Préparation</h4>
-              <span class="module-card-impact">Picking guidé</span>
-            </div>
-            <p>Interface mobile : scan emplacement, container, saisie quantité</p>
-          </div>
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">🔄</span>
-              <h4>Réapprovisionnement</h4>
-              <span class="module-card-impact">Rotation stocks</span>
-            </div>
-            <p>Génération des missions sur demande, suivi temps réel SSE</p>
-          </div>
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">👷</span>
-              <h4>Manager</h4>
-              <span class="module-card-impact">Contrôle opérationnel</span>
-            </div>
-            <p>Supervision : annulation, modification, forçage des missions</p>
-          </div>
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">📊</span>
-              <h4>Dashboards</h4>
-              <span class="module-card-impact">Visibilité complète</span>
-            </div>
-            <p>Audit, traçabilité containers, KPIs temps réel</p>
-          </div>
-          <div class="module-card">
-            <div class="module-card-header">
-              <span class="module-card-icon">🔐</span>
-              <h4>Sécurité</h4>
-              <span class="module-card-impact">10+ rôles</span>
-            </div>
-            <p>JWT, Voters Symfony, permissions fines par rôle</p>
-          </div>
-        </div>
-
-        <!-- 4 Cards cachées (dépliables) -->
-        <div class="modules-hidden" id="hidden-modules">
-          <div class="modules-cards-grid">
-            <div class="module-card revealed">
-              <div class="module-card-header">
-                <span class="module-card-icon">📍</span>
-                <h4>Rangement</h4>
-                <span class="module-card-impact">Flux optimisés</span>
-              </div>
-              <p>Le WMS indique où stocker (réserve, masse ou cross-docking)</p>
-            </div>
-            <div class="module-card revealed">
-              <div class="module-card-header">
-                <span class="module-card-icon">🚚</span>
-                <h4>Filmage & Expédition</h4>
-                <span class="module-card-impact">Expédition fluide</span>
-              </div>
-              <p>Clôture palettes, impression étiquettes transporteur et BL</p>
-            </div>
-            <div class="module-card revealed">
-              <div class="module-card-header">
-                <span class="module-card-icon">↔️</span>
-                <h4>Transferts</h4>
-                <span class="module-card-impact">Traçabilité totale</span>
-              </div>
-              <p>Transferts inter-zones et inter-containers avec validation scan</p>
-            </div>
-            <div class="module-card revealed">
-              <div class="module-card-header">
-                <span class="module-card-icon">⚙️</span>
-                <h4>Monitoring</h4>
-                <span class="module-card-impact">Réactivité</span>
-              </div>
-              <p>Scripts serveur avec alertes Slack (état, rapports, erreurs)</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bouton + Progress bar -->
-        <div class="modules-expand-section">
-          <div class="modules-progress">
-            <div class="modules-progress-bar"><div class="modules-progress-fill" id="progress-fill"></div></div>
-            <span class="modules-progress-count"><strong id="modules-count">6</strong> / 10 modules</span>
-          </div>
-          <button class="modules-expand-btn" id="expand-btn" onclick="toggleModules()">
-            <span class="modules-expand-text">Afficher les 4 autres modules</span>
-            <span class="modules-expand-chevron" id="chevron">▼</span>
-          </button>
+        <div class="modules-table-wrapper">
+          <table class="modules-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Fonctionnalité</th>
+                <th>Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="module-icon">📋</span> Picking</td>
+                <td>Interface mobile temps réel : scan, validation, multi-opérateurs</td>
+                <td class="impact positive">Coeur du WMS</td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔄</span> Réapprovisionnement</td>
+                <td>Génération des missions sur demande, suivi temps réel SSE</td>
+                <td class="impact positive">Stock optimisé</td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">👷</span> Manager</td>
+                <td>Supervision : annulation, modification, forçage des missions</td>
+                <td class="impact positive">Contrôle total</td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">📊</span> Dashboards</td>
+                <td>Audit, traçabilité containers, KPIs temps réel</td>
+                <td class="impact positive">Visibilité</td>
+              </tr>
+              <tr>
+                <td><span class="module-icon">🔐</span> Sécurité</td>
+                <td>JWT, Voters Symfony, permissions fines par rôle</td>
+                <td class="impact positive">10+ rôles</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="modules-more">+ Réception, Rangement, Expédition, Transferts, Monitoring...</p>
         </div>
       </div>
     </section>
@@ -534,7 +472,7 @@ import Layout from '../../layouts/Layout.astro';
         <div class="stack-badges">
           <span class="stack-badge backend">PHP 8.2</span>
           <span class="stack-badge backend">Symfony 6.3</span>
-          <span class="stack-badge db">MariaDB 10.11</span>
+          <span class="stack-badge db">MySQL 8.1</span>
           <span class="stack-badge db">Redis</span>
           <span class="stack-badge api">API REST</span>
           <span class="stack-badge api">JWT</span>
@@ -543,7 +481,6 @@ import Layout from '../../layouts/Layout.astro';
           <span class="stack-badge infra">Linux</span>
           <span class="stack-badge infra">Nginx</span>
           <span class="stack-badge quality">PHPUnit</span>
-          <span class="stack-badge quality">PHPStan</span>
           <span class="stack-badge quality">Playwright</span>
         </div>
 
@@ -568,7 +505,7 @@ import Layout from '../../layouts/Layout.astro';
             <div class="arch-arrow">→</div>
             <div class="arch-node">
               <span class="arch-icon">💾</span>
-              <span>MariaDB</span>
+              <span>MySQL</span>
             </div>
           </div>
           <div class="arch-secondary">
@@ -629,7 +566,7 @@ import Layout from '../../layouts/Layout.astro';
               </div>
               <div class="solution">
                 <span class="solution-icon-sm">✓</span>
-                <span>Index MariaDB ciblés + pagination + cache Redis</span>
+                <span>Index MySQL ciblés + pagination + cache Redis</span>
               </div>
             </div>
             <div class="challenge-row">
@@ -737,11 +674,10 @@ import Layout from '../../layouts/Layout.astro';
           <h3>Ce que ce projet démontre</h3>
           <ul class="proves-list">
             <li>Concevoir une <strong>architecture backend scalable</strong> pour un environnement critique</li>
-            <li>Développer en <strong>Full-Stack</strong> (API REST Symfony + Front JS) en autonomie complète</li>
             <li>Gérer le <strong>temps réel multi-utilisateurs</strong> avec SSE et gestion des conflits</li>
-            <li>Déployer sur <strong>multi-supports</strong> : PWA, APK Android, terminaux industriels</li>
             <li>Traduire un <strong>besoin terrain</strong> en solution technique maintenable</li>
-            <li>Piloter un <strong>produit de A à Z</strong> : conception → production → support 24/7</li>
+            <li>Arbitrer entre <strong>complexité et maintenabilité</strong> (pas de sur-architecture)</li>
+            <li>Maintenir un <strong>produit en production 24/7</strong> sur le long terme</li>
           </ul>
         </div>
       </div>
@@ -1688,195 +1624,59 @@ import Layout from '../../layouts/Layout.astro';
     background: rgba(139, 92, 246, 0.03);
   }
 
-  .modules-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
+  .modules-table-wrapper {
+    overflow-x: auto;
   }
 
-  .module-card {
-    background: rgba(15, 15, 35, 0.6);
-    border: 1px solid rgba(139, 92, 246, 0.15);
-    border-radius: 12px;
-    padding: 1.25rem;
-    transition: all 0.3s ease;
-  }
-
-  .module-card:hover {
-    border-color: rgba(139, 92, 246, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .module-card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .module-card-icon {
-    font-size: 1.5rem;
-  }
-
-  .module-card-header h4 {
-    margin: 0;
-    flex: 1;
-    font-size: 1rem;
-  }
-
-  .module-card-impact {
-    background: rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-  }
-
-  .module-card p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
-  }
-
-  /* Hidden modules (expandable) */
-  .modules-hidden {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    margin-top: 0;
-    transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease;
-  }
-
-  .modules-hidden.visible {
-    max-height: 600px;
-    opacity: 1;
-    margin-top: 1rem;
-  }
-
-  .module-card.revealed {
-    animation: fadeInUp 0.4s ease forwards;
-    opacity: 0;
-  }
-
-  .modules-hidden.visible .module-card.revealed:nth-child(1) { animation-delay: 0.05s; }
-  .modules-hidden.visible .module-card.revealed:nth-child(2) { animation-delay: 0.1s; }
-  .modules-hidden.visible .module-card.revealed:nth-child(3) { animation-delay: 0.15s; }
-  .modules-hidden.visible .module-card.revealed:nth-child(4) { animation-delay: 0.2s; }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Expand section */
-  .modules-expand-section {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  .modules-progress {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .modules-progress-bar {
-    width: 200px;
-    height: 8px;
-    background: rgba(139, 92, 246, 0.15);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .modules-progress-fill {
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, #8b5cf6, #6366f1);
-    border-radius: 4px;
-    transition: width 0.5s ease, background 0.5s ease;
-  }
-
-  .modules-progress-fill.complete {
+  .modules-table {
     width: 100%;
-    background: linear-gradient(90deg, #22c55e, #16a34a);
+    border-collapse: collapse;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
   }
 
-  .modules-progress-count {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+  .modules-table th,
+  .modules-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  .modules-progress-count strong {
-    color: #a78bfa;
-    transition: color 0.3s ease;
-  }
-
-  .modules-progress-count strong.complete {
-    color: #4ade80;
-  }
-
-  .modules-expand-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: rgba(139, 92, 246, 0.12);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .modules-expand-btn:hover {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.5);
-    transform: translateY(-2px);
-  }
-
-  .modules-expand-btn.expanded {
-    background: rgba(239, 68, 68, 0.1);
-    border-color: rgba(239, 68, 68, 0.3);
-  }
-
-  .modules-expand-btn.expanded:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.5);
-  }
-
-  .modules-expand-text {
-    color: #a78bfa;
+  .modules-table th {
+    background: rgba(139, 92, 246, 0.1);
     font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  .modules-expand-btn.expanded .modules-expand-text {
-    color: #f87171;
+  .modules-table td {
+    font-size: 0.9rem;
   }
 
-  .modules-expand-chevron {
+  .module-icon {
+    margin-right: 0.5rem;
+  }
+
+  .impact {
     font-size: 0.8rem;
-    color: #a78bfa;
-    transition: transform 0.3s ease;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
   }
 
-  .modules-expand-chevron.rotated {
-    transform: rotate(180deg);
+  .impact.positive {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
   }
 
-  .modules-expand-btn.expanded .modules-expand-chevron {
-    color: #f87171;
+  .modules-more {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
   }
 
   /* ===== TECH SECTION ===== */
@@ -2459,34 +2259,3 @@ import Layout from '../../layouts/Layout.astro';
     }
   }
 </style>
-
-<script is:inline>
-  function toggleModules() {
-    var btn = document.getElementById('expand-btn');
-    var hiddenModules = document.getElementById('hidden-modules');
-    var chevron = document.getElementById('chevron');
-    var progressFill = document.getElementById('progress-fill');
-    var count = document.getElementById('modules-count');
-    var btnText = btn.querySelector('.modules-expand-text');
-
-    var isExpanded = hiddenModules.classList.contains('visible');
-
-    if (isExpanded) {
-      hiddenModules.classList.remove('visible');
-      chevron.classList.remove('rotated');
-      btn.classList.remove('expanded');
-      progressFill.classList.remove('complete');
-      count.classList.remove('complete');
-      count.textContent = '6';
-      btnText.textContent = 'Afficher les 4 autres modules';
-    } else {
-      hiddenModules.classList.add('visible');
-      chevron.classList.add('rotated');
-      btn.classList.add('expanded');
-      progressFill.classList.add('complete');
-      count.classList.add('complete');
-      count.textContent = '10';
-      btnText.textContent = 'Masquer les modules';
-    }
-  }
-</script>

@@ -1,0 +1,1375 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="LogiDoc AI — Mockup Design Riche"
+  description="Mockup avec contenu et design enrichis"
+  activePage="projets"
+>
+  <!-- Hero Section avec contexte -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-badges">
+        <a href="/projets" class="back-link">← Retour aux projets</a>
+        <div class="badges">
+          <span class="badge badge-type">API IA</span>
+          <span class="badge badge-status">Disponible</span>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>LogiDoc AI</h1>
+          <p class="hero-tagline">Transformez vos documents en données exploitables en 3 secondes.</p>
+          <p class="hero-description">
+            Une API d'analyse documentaire qui utilise l'intelligence artificielle pour extraire, structurer et valider automatiquement les informations de vos factures, bons de livraison et contrats.
+          </p>
+          <div class="hero-cta">
+            <a href="/produits/logidoc-ai" class="btn btn-primary">Essayer gratuitement</a>
+            <a href="#demo" class="btn btn-secondary">Voir la démo</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-metrics">
+            <div class="hero-metric main">
+              <span class="metric-value">3s</span>
+              <span class="metric-label">Traitement moyen</span>
+              <span class="metric-comparison">vs 5 min manuellement</span>
+            </div>
+            <div class="hero-metric-row">
+              <div class="hero-metric small">
+                <span class="metric-value">99%</span>
+                <span class="metric-label">Précision</span>
+              </div>
+              <div class="hero-metric small">
+                <span class="metric-value">100x</span>
+                <span class="metric-label">Plus rapide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le Contexte / Problème narratif -->
+  <section class="context-section">
+    <div class="container">
+      <div class="context-header">
+        <span class="section-badge">Le constat</span>
+        <h2>Chaque jour, vos équipes perdent des heures sur des tâches répétitives</h2>
+      </div>
+
+      <div class="context-content">
+        <p class="context-intro">
+          Les entreprises reçoivent quotidiennement des dizaines, voire des centaines de documents : factures fournisseurs, bons de livraison, contrats, formulaires clients. <strong>Le traitement manuel de ces documents représente un gouffre de temps et d'argent.</strong>
+        </p>
+
+        <div class="pain-points">
+          <div class="pain-point">
+            <div class="pain-icon">⏱️</div>
+            <div class="pain-content">
+              <h4>5 à 10 minutes par document</h4>
+              <p>Ouvrir, lire, identifier les champs, recopier dans Excel ou votre ERP... Pour 50 factures/jour, c'est <strong>4 heures perdues quotidiennement</strong>.</p>
+            </div>
+          </div>
+
+          <div class="pain-point">
+            <div class="pain-icon">⚠️</div>
+            <div class="pain-content">
+              <h4>4% d'erreurs de saisie en moyenne</h4>
+              <p>Un chiffre inversé, une virgule mal placée... Ces erreurs coûtent cher : litiges fournisseurs, écarts comptables, audits compliqués.</p>
+            </div>
+          </div>
+
+          <div class="pain-point">
+            <div class="pain-icon">💸</div>
+            <div class="pain-content">
+              <h4>Coûts qui explosent avec la croissance</h4>
+              <p>Plus votre activité grandit, plus les documents s'accumulent. Embaucher ne fait que décaler le problème.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparaison Avant/Après -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="comparison-header">
+        <span class="section-badge">La différence</span>
+        <h2>Avant vs Après LogiDoc AI</h2>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="comparison-card before">
+          <div class="comparison-header-card">
+            <span class="comparison-icon">❌</span>
+            <h3>Sans LogiDoc AI</h3>
+          </div>
+          <ul class="comparison-list">
+            <li>
+              <span class="list-icon bad">✗</span>
+              <div>
+                <strong>Saisie manuelle interminable</strong>
+                <p>Vos équipes passent des heures à recopier des données</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon bad">✗</span>
+              <div>
+                <strong>Erreurs de recopie fréquentes</strong>
+                <p>4% d'erreur en moyenne, générant litiges et corrections</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon bad">✗</span>
+              <div>
+                <strong>Impossible de scaler</strong>
+                <p>Plus de volume = plus de personnel = plus de coûts</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon bad">✗</span>
+              <div>
+                <strong>Formats hétérogènes</strong>
+                <p>PDF, scans, photos... chaque format demande un traitement différent</p>
+              </div>
+            </li>
+          </ul>
+          <div class="comparison-result bad">
+            <span>Résultat :</span> 4h/jour perdues, 15K€/an de coûts cachés
+          </div>
+        </div>
+
+        <div class="comparison-arrow">→</div>
+
+        <div class="comparison-card after">
+          <div class="comparison-header-card">
+            <span class="comparison-icon">✅</span>
+            <h3>Avec LogiDoc AI</h3>
+          </div>
+          <ul class="comparison-list">
+            <li>
+              <span class="list-icon good">✓</span>
+              <div>
+                <strong>Extraction automatique en 3 secondes</strong>
+                <p>L'IA lit et extrait toutes les données instantanément</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon good">✓</span>
+              <div>
+                <strong>99% de précision garantie</strong>
+                <p>Validation croisée et détection d'anomalies intégrées</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon good">✓</span>
+              <div>
+                <strong>Scalabilité illimitée</strong>
+                <p>10 ou 10 000 documents/jour, même performance</p>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon good">✓</span>
+              <div>
+                <strong>Tous formats acceptés</strong>
+                <p>PDF, PNG, JPG, scans... un seul endpoint pour tout</p>
+              </div>
+            </li>
+          </ul>
+          <div class="comparison-result good">
+            <span>Résultat :</span> ROI en 2 semaines, équipes libérées
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- La Solution - Comment ça marche -->
+  <section class="solution-section">
+    <div class="container">
+      <div class="solution-header">
+        <span class="section-badge">La solution</span>
+        <h2>Comment LogiDoc AI transforme vos documents</h2>
+        <p>LogiDoc AI utilise les derniers modèles de langage (LLM) accélérés par Groq pour analyser vos documents avec une précision et une rapidité inégalées.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-icon">📤</div>
+          <div class="step-content">
+            <h4>Envoyez votre document</h4>
+            <p>Upload via API REST ou interface web. PDF, image, scan... tous les formats sont acceptés.</p>
+            <code class="step-code">POST /api/extract - file: "facture.pdf"</code>
+          </div>
+        </div>
+
+        <div class="process-connector">↓</div>
+
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-icon">🤖</div>
+          <div class="step-content">
+            <h4>L'IA analyse et extrait</h4>
+            <p>Notre modèle LLaMA, accéléré par Groq, identifie et extrait tous les champs pertinents en moins de 3 secondes.</p>
+            <div class="step-tech">
+              <span class="tech-badge">LLaMA 3.2</span>
+              <span class="tech-badge">Groq Inference</span>
+              <span class="tech-badge">OCR avancé</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-connector">↓</div>
+
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-icon">📊</div>
+          <div class="step-content">
+            <h4>Recevez des données structurées</h4>
+            <p>JSON parfaitement formaté, prêt à être intégré dans votre ERP, CRM ou base de données.</p>
+            <pre class="step-json">
+  "vendor": "ACME Corp",
+  "invoice_number": "FAC-2024-0042",
+  "total_ht": 1250.00,
+  "tva": 250.00,
+  "total_ttc": 1500.00
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cas d'usage détaillés -->
+  <section class="usecases-section">
+    <div class="container">
+      <div class="usecases-header">
+        <span class="section-badge">Applications</span>
+        <h2>Des cas d'usage concrets pour votre métier</h2>
+      </div>
+
+      <div class="usecases-grid">
+        <div class="usecase-card featured">
+          <div class="usecase-icon">📄</div>
+          <div class="usecase-content">
+            <h4>Factures fournisseurs</h4>
+            <p>Automatisez la saisie de vos factures fournisseurs. Montants HT/TTC, TVA, références, dates d'échéance... tout est extrait et prêt pour votre comptabilité.</p>
+            <div class="usecase-stats">
+              <div class="usecase-stat">
+                <strong>-95%</strong>
+                <span>temps de traitement</span>
+              </div>
+              <div class="usecase-stat">
+                <strong>0</strong>
+                <span>erreur de saisie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">📦</div>
+          <div class="usecase-content">
+            <h4>Bons de livraison</h4>
+            <p>Réceptionnez vos marchandises plus rapidement. Articles, quantités, lots, numéros de série directement dans votre WMS.</p>
+          </div>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">📋</div>
+          <div class="usecase-content">
+            <h4>Formulaires & questionnaires</h4>
+            <p>Digitalisez vos formulaires papier scannés. Fiches clients, enquêtes terrain, bulletins d'adhésion.</p>
+          </div>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">📑</div>
+          <div class="usecase-content">
+            <h4>Contrats & documents légaux</h4>
+            <p>Extrayez les clauses clés, dates, montants et parties prenantes de vos contrats.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fonctionnalités techniques -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-header">
+        <span class="section-badge">Fonctionnalités</span>
+        <h2>Tout ce dont vous avez besoin</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Multi-formats</h3>
+          <p>PDF, PNG, JPG, TIFF, scans basse qualité... notre IA s'adapte à tous vos documents.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Sécurisé</h3>
+          <p>Authentification JWT, chiffrement TLS, données supprimées après traitement. Conforme RGPD.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Ultra-rapide</h3>
+          <p>Inférence Groq avec latence sub-seconde. Traitement moyen de 3 secondes par document.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>JSON structuré</h3>
+          <p>Sortie parfaitement formatée, prête à intégrer dans vos systèmes existants.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>Configurable</h3>
+          <p>Prompts personnalisables pour adapter l'extraction à vos besoins métier spécifiques.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>API REST documentée</h3>
+          <p>Documentation OpenAPI complète. Intégration en quelques heures avec vos outils existants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack technique -->
+  <section class="stack-section">
+    <div class="container">
+      <div class="stack-content">
+        <div class="stack-info">
+          <span class="section-badge">Technologies</span>
+          <h2>Construit avec les meilleures technologies</h2>
+          <p>Une architecture moderne, performante et maintenable.</p>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-category">
+            <h4>Backend</h4>
+            <div class="stack-items">
+              <span class="stack-item backend">PHP 8.4</span>
+              <span class="stack-item backend">Symfony 7.4</span>
+              <span class="stack-item backend">API Platform</span>
+            </div>
+          </div>
+          <div class="stack-category">
+            <h4>Intelligence Artificielle</h4>
+            <div class="stack-items">
+              <span class="stack-item ai">Groq API</span>
+              <span class="stack-item ai">LLaMA 3.2</span>
+              <span class="stack-item ai">Vision AI</span>
+            </div>
+          </div>
+          <div class="stack-category">
+            <h4>Infrastructure</h4>
+            <div class="stack-items">
+              <span class="stack-item infra">Docker</span>
+              <span class="stack-item infra">MySQL 8</span>
+              <span class="stack-item infra">Redis</span>
+            </div>
+          </div>
+          <div class="stack-category">
+            <h4>Qualité</h4>
+            <div class="stack-items">
+              <span class="stack-item quality">PHPStan L9</span>
+              <span class="stack-item quality">PHPUnit</span>
+              <span class="stack-item quality">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-content">
+          <h2>Prêt à automatiser vos documents ?</h2>
+          <p>Commencez gratuitement avec 100 documents/mois. Aucune carte bancaire requise.</p>
+          <div class="cta-features">
+            <span>✓ 100 docs/mois gratuits</span>
+            <span>✓ Setup en 5 minutes</span>
+            <span>✓ Support technique inclus</span>
+          </div>
+        </div>
+        <div class="cta-pricing">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <span class="pricing-label">À partir de</span>
+              <span class="pricing-price">49€<span class="pricing-period">/mois</span></span>
+            </div>
+            <ul class="pricing-features">
+              <li>✓ 1 000 documents/mois</li>
+              <li>✓ API REST complète</li>
+              <li>✓ Support prioritaire</li>
+            </ul>
+            <div class="pricing-buttons">
+              <a href="/produits/logidoc-ai" class="btn btn-primary">Voir les offres</a>
+              <a href="/contact" class="btn btn-secondary">Discuter du projet</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Variables & Base */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent-primary);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--accent-primary);
+  }
+
+  .badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .badge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .badge-type {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--accent-primary);
+  }
+
+  .badge-status {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .hero-metrics {
+    background: var(--surface-light);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-metrics::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top right, rgba(74, 222, 128, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-metric.main {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hero-metric .metric-value {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #4ade80;
+    line-height: 1;
+  }
+
+  .hero-metric .metric-label {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+  }
+
+  .hero-metric .metric-comparison {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .hero-metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .hero-metric.small {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 8px;
+  }
+
+  .hero-metric.small .metric-value {
+    font-size: 1.75rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-metric.small .metric-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  /* Context Section */
+  .context-section {
+    padding: 4rem 0;
+    background: var(--surface-light);
+  }
+
+  .context-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .context-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .context-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .pain-points {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pain-point {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid #f87171;
+  }
+
+  .pain-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(248, 113, 113, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .pain-content h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .pain-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Comparison Section */
+  .comparison-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .comparison-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .comparison-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .comparison-card {
+    background: var(--surface-light);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .comparison-card.before {
+    border-top: 4px solid #f87171;
+  }
+
+  .comparison-card.before::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top left, rgba(248, 113, 113, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .comparison-card.after {
+    border-top: 4px solid #4ade80;
+  }
+
+  .comparison-card.after::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top left, rgba(74, 222, 128, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .comparison-header-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .comparison-icon {
+    font-size: 1.5rem;
+  }
+
+  .comparison-header-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+  }
+
+  .comparison-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .comparison-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .list-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .list-icon.bad {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+  }
+
+  .list-icon.good {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+  }
+
+  .comparison-list li strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .comparison-list li p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .comparison-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .comparison-result.bad {
+    background: rgba(248, 113, 113, 0.1);
+    color: #f87171;
+  }
+
+  .comparison-result.good {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+  }
+
+  .comparison-result span {
+    font-weight: 600;
+  }
+
+  .comparison-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 2rem;
+  }
+
+  /* Solution Section */
+  .solution-section {
+    padding: 4rem 0;
+    background: var(--surface-light);
+  }
+
+  .solution-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .solution-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .solution-header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .process-steps {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+  }
+
+  .step-content h4 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .step-code {
+    display: block;
+    background: var(--bg-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    border: 1px solid var(--border);
+  }
+
+  .step-tech {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tech-badge {
+    padding: 0.35rem 0.75rem;
+    background: rgba(167, 139, 250, 0.15);
+    color: #a78bfa;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .step-json {
+    background: var(--bg-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .process-connector {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-left: 60px;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+  }
+
+  /* Use Cases Section */
+  .usecases-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .usecases-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .usecases-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .usecase-card {
+    background: var(--surface-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .usecase-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+  }
+
+  .usecase-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+    border-color: var(--accent-primary);
+  }
+
+  .usecase-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .usecase-content h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .usecase-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .usecase-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .usecase-stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: #4ade80;
+  }
+
+  .usecase-stat span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Features Section */
+  .features-section {
+    padding: 4rem 0;
+    background: var(--surface-light);
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--bg-primary);
+    border-radius: 12px;
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+  }
+
+  .feature-card .feature-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Stack Section */
+  .stack-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .stack-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .stack-info h2 {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .stack-info p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stack-category h4 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+  }
+
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .stack-item {
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .stack-item.backend {
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+  }
+
+  .stack-item.ai {
+    background: rgba(167, 139, 250, 0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+
+  .stack-item.infra {
+    background: rgba(251, 146, 60, 0.15);
+    color: #fb923c;
+    border: 1px solid rgba(251, 146, 60, 0.3);
+  }
+
+  .stack-item.quality {
+    background: rgba(244, 114, 182, 0.15);
+    color: #f472b6;
+    border: 1px solid rgba(244, 114, 182, 0.3);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 0;
+  }
+
+  .cta-box {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top left, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-features {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-features span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .pricing-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .pricing-price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pricing-period {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .pricing-features li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-arrow {
+      transform: rotate(90deg);
+      padding: 1rem 0;
+    }
+
+    .usecases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stack-content {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .cta-features {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-text h1 {
+      font-size: 2.25rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stack-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-step {
+      grid-template-columns: auto 1fr;
+    }
+
+    .step-icon {
+      display: none;
+    }
+  }
+</style>

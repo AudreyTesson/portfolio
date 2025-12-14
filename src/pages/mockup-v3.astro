@@ -1,44 +1,30 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProjectNavigation from '../../components/ProjectNavigation.astro';
+import Layout from '../layouts/Layout.astro';
 
 // Code content - Using variables to avoid template literal parsing issues
 const heroJsonPreview = `{
-  "channel": "email",
-  "to": "user@example.com",
-  "template": "welcome",
-  "status": "delivered"
+  "vendor": "ACME",
+  "total": 1500.00,
+  "date": "2024-01-15"
 }`;
 
-const splitJsonPreview = `// Avant : 4 integrations differentes
-sendgrid.send(email);
-twilio.send(sms);
-slack.postMessage(msg);
-firebase.send(push);
+const splitJsonPreview = `{
+  "vendor": "ACME Corp",
+  "invoice_number": "FAC-2024-0042",
+  "date": "2024-01-15",
+  "items": [...],
+  "total_ht": 1250.00,
+  "tva": 250.00,
+  "total_ttc": 1500.00
+}`;
 
-// Apres : 1 seul endpoint
-notificationService.send({
-  channels: ["email", "sms", "slack"],
-  template: "order_confirmed",
-  data: { orderId: "12345" }
-});`;
-
-const curlExample = `curl -X POST https://api.notify.dev/send \\
-  -H "Authorization: Bearer $API_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "channels": ["email", "slack"],
-    "template": "alert",
-    "to": "team@company.com",
-    "data": { "message": "Serveur down!" }
-  }'`;
+const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
+  -H "Authorization: Bearer \$API_KEY" \\
+  -F "document=@facture.pdf" \\
+  -F "type=invoice"`;
 ---
 
-<Layout
-  title="Notification Service — API de notifications multi-canal | Audrey Tesson"
-  description="API unifiee pour vos notifications Email, SMS, Slack, Push. Un seul endpoint, tous vos canaux. Open-source et self-hosted possible."
-  activePage="projets"
->
+<Layout title="LogiDoc AI — Extraction documentaire par IA" activePage="projets">
   <div class="project-page">
 
     <!-- 1. HERO SECTION (2 colonnes) -->
@@ -49,78 +35,63 @@ const curlExample = `curl -X POST https://api.notify.dev/send \\
           <div class="hero-content">
             <!-- Badge contextuel -->
             <div class="context-badge">
-              <span class="badge-type">SaaS Open-Core</span>
+              <span class="badge-type">SaaS B2B</span>
               <span class="badge-separator">·</span>
               <span class="badge-role">Solo</span>
               <span class="badge-separator">·</span>
               <span class="badge-status">En production</span>
             </div>
 
-            <h1>Notification Service</h1>
-            <p class="tagline">Un seul endpoint, tous vos canaux</p>
-            <p class="subtitle">API unifiee pour Email, SMS, Slack et Push — Simplifiez vos notifications</p>
+            <h1>LogiDoc AI</h1>
+            <p class="tagline">Transformez vos documents en donnees structurees</p>
+            <p class="subtitle">Extraction intelligente par IA — De la facture au JSON en 3 secondes</p>
 
             <!-- Metrics -->
             <div class="hero-metrics">
               <div class="metric">
-                <span class="metric-value">4</span>
-                <span class="metric-label">canaux integres</span>
+                <span class="metric-value">3s</span>
+                <span class="metric-label">par document</span>
               </div>
               <div class="metric">
-                <span class="metric-value">100ms</span>
-                <span class="metric-label">latence moyenne</span>
+                <span class="metric-value">99%</span>
+                <span class="metric-label">de precision</span>
               </div>
               <div class="metric">
-                <span class="metric-value">99.9%</span>
-                <span class="metric-label">delivrabilite</span>
+                <span class="metric-value">100x</span>
+                <span class="metric-label">plus rapide</span>
               </div>
             </div>
 
             <!-- CTAs -->
             <div class="hero-ctas">
               <a href="#demo" class="btn btn-primary">Voir la demo</a>
-              <a href="https://github.com/audrey-tech/notification-service" class="btn btn-secondary">GitHub</a>
+              <a href="https://github.com" class="btn btn-secondary">Documentation</a>
             </div>
 
             <!-- Author mention -->
             <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
           </div>
 
-          <!-- Right: Hero Mockup -->
+          <!-- Right: Hero Mockup (FAKE - A REMPLACER) -->
           <div class="hero-visual">
             <div class="hero-mockup">
               <div class="mockup-badge">PLACEHOLDER</div>
-              <!-- Mockup: Multi-channel notification -->
+              <!-- Mockup: Document to JSON transformation -->
               <div class="mockup-content">
-                <div class="mockup-channels">
-                  <div class="channel-item">
-                    <span class="channel-icon">📧</span>
-                    <span class="channel-name">Email</span>
-                    <span class="channel-status sent">Sent</span>
+                <div class="mockup-input">
+                  <div class="mockup-doc">
+                    <div class="doc-icon">📄</div>
+                    <span>facture.pdf</span>
                   </div>
-                  <div class="channel-item">
-                    <span class="channel-icon">💬</span>
-                    <span class="channel-name">Slack</span>
-                    <span class="channel-status sent">Sent</span>
-                  </div>
-                  <div class="channel-item">
-                    <span class="channel-icon">📱</span>
-                    <span class="channel-name">SMS</span>
-                    <span class="channel-status pending">Pending</span>
-                  </div>
-                  <div class="channel-item">
-                    <span class="channel-icon">🔔</span>
-                    <span class="channel-name">Push</span>
-                    <span class="channel-status sent">Sent</span>
-                  </div>
+                  <div class="mockup-arrow">→</div>
                 </div>
                 <div class="mockup-output">
                   <pre class="mockup-json" set:text={heroJsonPreview}></pre>
                 </div>
               </div>
               <div class="mockup-footer">
-                <span class="mockup-time">~100ms</span>
-                <span class="mockup-status">3/4 delivered</span>
+                <span class="mockup-time">~3s</span>
+                <span class="mockup-status">✓ Extraction reussie</span>
               </div>
             </div>
             <p class="visual-note">* Remplacer par screenshot reel ou mockup UI</p>
@@ -136,12 +107,12 @@ const curlExample = `curl -X POST https://api.notify.dev/send \\
           <div class="tldr-item">
             <span class="tldr-icon">🎯</span>
             <span class="tldr-label">Objectif</span>
-            <span class="tldr-value">Unifier tous les canaux de notification</span>
+            <span class="tldr-value">Automatiser l'extraction de documents</span>
           </div>
           <div class="tldr-item">
             <span class="tldr-icon">👥</span>
             <span class="tldr-label">Cible</span>
-            <span class="tldr-value">Startups, SaaS, DevOps</span>
+            <span class="tldr-value">PME, Comptables, Logisticiens</span>
           </div>
           <div class="tldr-item">
             <span class="tldr-icon">👤</span>
@@ -151,13 +122,13 @@ const curlExample = `curl -X POST https://api.notify.dev/send \\
           <div class="tldr-item">
             <span class="tldr-icon">⚙️</span>
             <span class="tldr-label">Stack</span>
-            <span class="tldr-value">Symfony 7 · RabbitMQ · Redis</span>
-            <span class="tldr-subvalue">Open-core, API-first</span>
+            <span class="tldr-value">Symfony 7 · Groq · LLaMA</span>
+            <span class="tldr-subvalue">Architecture scalable, API-first</span>
           </div>
           <div class="tldr-item">
             <span class="tldr-icon">📊</span>
             <span class="tldr-label">Resultat</span>
-            <span class="tldr-value">100K+ notifications/mois</span>
+            <span class="tldr-value">500+ documents traites/jour</span>
           </div>
         </div>
       </div>
@@ -169,29 +140,29 @@ const curlExample = `curl -X POST https://api.notify.dev/send \\
         <!-- 3.1 Le Constat -->
         <div class="problem-header">
           <span class="section-tag">Le constat</span>
-          <h2>Vos notifications sont un cauchemar a maintenir</h2>
+          <h2>La saisie manuelle tue votre productivite</h2>
         </div>
 
         <div class="pain-points">
           <div class="pain-point">
-            <span class="pain-icon">🔌</span>
+            <span class="pain-icon">⏱️</span>
             <div class="pain-content">
-              <strong>4+ integrations</strong>
-              <span>a maintenir separement</span>
+              <strong>4h/jour</strong>
+              <span>perdues en ressaisie</span>
             </div>
           </div>
           <div class="pain-point">
-            <span class="pain-icon">🔄</span>
+            <span class="pain-icon">❌</span>
             <div class="pain-content">
-              <strong>Code duplique</strong>
-              <span>retry, logs, templates...</span>
+              <strong>12% d'erreurs</strong>
+              <span>en moyenne par operateur</span>
             </div>
           </div>
           <div class="pain-point">
             <span class="pain-icon">💸</span>
             <div class="pain-content">
-              <strong>Changement = refonte</strong>
-              <span>changer de provider coute cher</span>
+              <strong>2 500EUR/mois</strong>
+              <span>cout cache par ETP</span>
             </div>
           </div>
         </div>
@@ -199,31 +170,45 @@ const curlExample = `curl -X POST https://api.notify.dev/send \\
         <!-- 3.2 La Transformation (Split Visual) -->
         <div class="transformation-section">
           <div class="transformation-header">
-            <span class="section-tag">La simplification</span>
-            <h3>Un seul endpoint, tous vos canaux</h3>
+            <span class="section-tag">La magie opere</span>
+            <h3>Votre document devient data</h3>
           </div>
 
           <div class="split-visual">
             <!-- Before -->
             <div class="split-before">
               <div class="split-label">Avant</div>
-              <div class="code-preview before">
-                <pre set:text={`// 4 integrations differentes
-sendgrid.send(email);
-twilio.send(sms);
-slack.postMessage(msg);
-firebase.send(push);`}></pre>
+              <div class="document-preview">
+                <div class="doc-header">
+                  <div class="doc-logo"></div>
+                  <div class="doc-title">FACTURE</div>
+                </div>
+                <div class="doc-lines">
+                  <div class="doc-line"></div>
+                  <div class="doc-line short"></div>
+                  <div class="doc-line"></div>
+                  <div class="doc-line medium"></div>
+                </div>
+                <div class="doc-table">
+                  <div class="doc-row"></div>
+                  <div class="doc-row"></div>
+                  <div class="doc-row"></div>
+                </div>
+                <div class="doc-total">
+                  <span>Total TTC</span>
+                  <span>1 500,00 EUR</span>
+                </div>
               </div>
-              <p class="split-caption">4 SDKs, 4 configs, 4 points de failure</p>
+              <p class="split-caption">Document PDF/Image</p>
             </div>
 
             <!-- Transform center -->
             <div class="split-center">
               <div class="transform-animation">
-                <div class="transform-icon">📨</div>
+                <div class="transform-icon">🤖</div>
                 <div class="transform-text">
-                  <span>Notification Service</span>
-                  <span class="transform-time">Unifie</span>
+                  <span>LogiDoc AI</span>
+                  <span class="transform-time">~3s</span>
                 </div>
               </div>
             </div>
@@ -231,14 +216,10 @@ firebase.send(push);`}></pre>
             <!-- After -->
             <div class="split-after">
               <div class="split-label success">Apres</div>
-              <div class="code-preview after">
-                <pre set:text={`// 1 seul appel
-notificationService.send({
-  channels: ["email", "slack"],
-  template: "welcome"
-});`}></pre>
+              <div class="json-preview">
+                <pre set:text={splitJsonPreview}></pre>
               </div>
-              <p class="split-caption success">1 API, N canaux, 0 friction</p>
+              <p class="split-caption success">JSON Structure pret a integrer</p>
             </div>
           </div>
 
@@ -246,74 +227,22 @@ notificationService.send({
           <div class="split-features">
             <div class="split-feature">
               <span class="feature-check">✓</span>
-              <span>Providers interchangeables</span>
+              <span>99% de precision</span>
             </div>
             <div class="split-feature">
               <span class="feature-check">✓</span>
-              <span>Retry automatique</span>
+              <span>Tous formats supportes</span>
             </div>
             <div class="split-feature">
               <span class="feature-check">✓</span>
-              <span>Analytics centralises</span>
+              <span>API REST simple</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. CANAUX DISPONIBLES -->
-    <section id="channels" class="channels-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Canaux integres</span>
-          <h2>Tous vos canaux, une seule API</h2>
-        </div>
-
-        <div class="channels-grid">
-          <div class="channel-card">
-            <div class="channel-card-icon">📧</div>
-            <h4>Email</h4>
-            <p>SMTP, SES, Mailgun, SendGrid, Resend</p>
-            <div class="channel-features">
-              <span>Templates Twig</span>
-              <span>Tracking opens</span>
-            </div>
-          </div>
-
-          <div class="channel-card">
-            <div class="channel-card-icon">💬</div>
-            <h4>Slack</h4>
-            <p>Webhooks, Blocks API, Channels & DMs</p>
-            <div class="channel-features">
-              <span>Rich formatting</span>
-              <span>Attachments</span>
-            </div>
-          </div>
-
-          <div class="channel-card">
-            <div class="channel-card-icon">📱</div>
-            <h4>SMS</h4>
-            <p>Twilio, Vonage, MessageBird</p>
-            <div class="channel-features">
-              <span>International</span>
-              <span>Delivery reports</span>
-            </div>
-          </div>
-
-          <div class="channel-card">
-            <div class="channel-card-icon">🔔</div>
-            <h4>Push</h4>
-            <p>Firebase FCM, Apple APNs</p>
-            <div class="channel-features">
-              <span>iOS & Android</span>
-              <span>Web Push</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. DEMO / FONCTIONNALITES -->
+    <!-- 4. DEMO / FONCTIONNALITES -->
     <section id="demo" class="demo-section">
       <div class="container">
         <div class="section-header">
@@ -324,22 +253,36 @@ notificationService.send({
         <div class="steps-timeline">
           <div class="step">
             <div class="step-number">1</div>
-            <div class="step-icon">📝</div>
-            <h4>Configurez</h4>
-            <p>Ajoutez vos providers et templates dans le dashboard</p>
-            <div class="step-formats">YAML, JSON, UI</div>
+            <div class="step-icon">📤</div>
+            <h4>Upload</h4>
+            <p>Envoyez votre document via API ou interface web</p>
+            <div class="step-formats">PDF, PNG, JPG, Scan</div>
+            <!-- SCREENSHOT PLACEHOLDER (OPTIONNEL) -->
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot UI upload</span>
+              </div>
+            </div>
           </div>
 
           <div class="step-arrow">→</div>
 
           <div class="step highlight">
             <div class="step-number">2</div>
-            <div class="step-icon pulse">📨</div>
-            <h4>Envoyez</h4>
-            <p>Un seul appel API pour tous vos canaux</p>
+            <div class="step-icon pulse">🤖</div>
+            <h4>Analyse IA</h4>
+            <p>LLaMA extrait les donnees en moins de 3 secondes</p>
             <div class="step-tech">
-              <span class="tech-badge">REST</span>
-              <span class="tech-badge">Async</span>
+              <span class="tech-badge">Groq</span>
+              <span class="tech-badge">LLaMA 3.2</span>
+            </div>
+            <!-- SCREENSHOT PLACEHOLDER (OPTIONNEL) -->
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot processing</span>
+              </div>
             </div>
           </div>
 
@@ -348,9 +291,16 @@ notificationService.send({
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-icon">📊</div>
-            <h4>Suivez</h4>
-            <p>Analytics, logs et statuts en temps reel</p>
-            <div class="step-ready">Webhooks disponibles</div>
+            <h4>JSON Structure</h4>
+            <p>Donnees pretes pour votre ERP/CRM/WMS</p>
+            <div class="step-ready">Ready to integrate</div>
+            <!-- SCREENSHOT PLACEHOLDER (OPTIONNEL) -->
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot resultat</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -367,105 +317,81 @@ notificationService.send({
       </div>
     </section>
 
-    <!-- 6. FONCTIONNALITES -->
-    <section class="features-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Fonctionnalites</span>
-          <h2>Tout ce dont vous avez besoin</h2>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📝</div>
-            <h4>Templates Twig</h4>
-            <p>Variables dynamiques, conditions, boucles</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h4>100% Async</h4>
-            <p>Messenger + RabbitMQ</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h4>Rate Limiting</h4>
-            <p>Par canal et destinataire</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h4>Analytics</h4>
-            <p>Sent, delivered, opened, clicked</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔄</div>
-            <h4>Retry Auto</h4>
-            <p>Backoff exponentiel, fallback</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📋</div>
-            <h4>Logs Complets</h4>
-            <p>Historique 30j, export</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. CAS D'USAGE -->
+    <!-- 5. CAS D'USAGE -->
     <section id="usecases" class="usecases-section">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Cas d'usage</span>
-          <h2>Pour chaque situation, le bon canal</h2>
+          <h2>Adapte a vos documents metier</h2>
         </div>
 
         <div class="usecases-grid">
           <div class="usecase-card">
-            <div class="usecase-icon">🚨</div>
+            <div class="usecase-icon">📄</div>
             <div class="usecase-content">
-              <h4>Alertes critiques</h4>
-              <p>Serveur down, erreur paiement, breach securite. Multi-canal simultane pour s'assurer que le message passe.</p>
+              <h4>Factures fournisseurs</h4>
+              <p>Extraction automatique des montants, TVA, references et dates d'echeance.</p>
               <div class="usecase-metrics">
                 <div class="usecase-metric">
-                  <span class="metric-value">&lt;1s</span>
-                  <span class="metric-label">latence</span>
+                  <span class="metric-value">-95%</span>
+                  <span class="metric-label">temps traitement</span>
                 </div>
                 <div class="usecase-metric">
-                  <span class="metric-value">3</span>
-                  <span class="metric-label">canaux // </span>
+                  <span class="metric-value">0</span>
+                  <span class="metric-label">erreur saisie</span>
                 </div>
               </div>
             </div>
-            <div class="usecase-target">Ideal pour : DevOps, SRE, SecOps</div>
+            <div class="usecase-target">Ideal pour : Comptabilite, Finance</div>
           </div>
 
           <div class="usecase-card">
-            <div class="usecase-icon">🛒</div>
+            <div class="usecase-icon">📦</div>
             <div class="usecase-content">
-              <h4>E-commerce</h4>
-              <p>Confirmation commande, expedition, livraison. Email + SMS pour maximiser l'engagement.</p>
+              <h4>Bons de livraison</h4>
+              <p>Articles, quantites, lots et numeros de serie extraits automatiquement.</p>
               <div class="usecase-metrics">
                 <div class="usecase-metric">
-                  <span class="metric-value">+40%</span>
-                  <span class="metric-label">open rate</span>
+                  <span class="metric-value">3s</span>
+                  <span class="metric-label">par document</span>
                 </div>
                 <div class="usecase-metric">
-                  <span class="metric-value">-80%</span>
-                  <span class="metric-label">code custom</span>
+                  <span class="metric-value">100%</span>
+                  <span class="metric-label">tracabilite</span>
                 </div>
               </div>
             </div>
-            <div class="usecase-target">Ideal pour : E-commerce, Marketplaces</div>
+            <div class="usecase-target">Ideal pour : Logistique, Supply Chain</div>
           </div>
 
           <div class="usecase-card">
-            <div class="usecase-icon">👥</div>
+            <div class="usecase-icon">📋</div>
             <div class="usecase-content">
-              <h4>SaaS B2B</h4>
-              <p>Onboarding, password reset, invoices. Templates professionnels, tracking complet.</p>
+              <h4>Formulaires scannes</h4>
+              <p>Digitalisez vos formulaires papier : fiches clients, enquetes, bulletins.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">10x</span>
+                  <span class="metric-label">plus rapide</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">24/7</span>
+                  <span class="metric-label">disponible</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : RH, Administration</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📑</div>
+            <div class="usecase-content">
+              <h4>Contrats & documents legaux</h4>
+              <p>Clauses cles, dates, montants et parties prenantes structures.</p>
               <div class="usecase-metrics">
                 <div class="usecase-metric">
                   <span class="metric-value">99%</span>
-                  <span class="metric-label">delivrabilite</span>
+                  <span class="metric-label">precision</span>
                 </div>
                 <div class="usecase-metric">
                   <span class="metric-value">RGPD</span>
@@ -473,32 +399,13 @@ notificationService.send({
                 </div>
               </div>
             </div>
-            <div class="usecase-target">Ideal pour : SaaS, Startups B2B</div>
-          </div>
-
-          <div class="usecase-card">
-            <div class="usecase-icon">🏢</div>
-            <div class="usecase-content">
-              <h4>Communication interne</h4>
-              <p>Notifications Slack pour les equipes, alertes par canal selon l'urgence.</p>
-              <div class="usecase-metrics">
-                <div class="usecase-metric">
-                  <span class="metric-value">Slack</span>
-                  <span class="metric-label">natif</span>
-                </div>
-                <div class="usecase-metric">
-                  <span class="metric-value">Teams</span>
-                  <span class="metric-label">bientot</span>
-                </div>
-              </div>
-            </div>
-            <div class="usecase-target">Ideal pour : Equipes tech, Ops</div>
+            <div class="usecase-target">Ideal pour : Juridique, Compliance</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. PREUVE & TRACTION -->
+    <!-- 6. PREUVE & TRACTION -->
     <section class="proof-section">
       <div class="container">
         <div class="section-header">
@@ -508,45 +415,89 @@ notificationService.send({
 
         <div class="proof-grid">
           <div class="proof-item">
-            <span class="proof-value">100K+</span>
-            <span class="proof-label">notifications/mois</span>
+            <span class="proof-value">500+</span>
+            <span class="proof-label">documents traites/jour</span>
           </div>
           <div class="proof-item">
             <span class="proof-value">99.9%</span>
             <span class="proof-label">uptime</span>
           </div>
           <div class="proof-item">
-            <span class="proof-value">&lt;100ms</span>
-            <span class="proof-label">latence p95</span>
+            <span class="proof-value">&lt;3s</span>
+            <span class="proof-label">temps de reponse moyen</span>
           </div>
           <div class="proof-item">
-            <span class="proof-value">4</span>
-            <span class="proof-label">canaux integres</span>
+            <span class="proof-value">12</span>
+            <span class="proof-label">entreprises utilisatrices</span>
           </div>
         </div>
 
         <!-- Testimonial -->
         <div class="testimonial">
           <blockquote>
-            "On a remplace 4 integrations differentes par un seul service. Le code est plus propre et on a enfin des analytics centralises."
+            "LogiDoc AI nous a fait gagner 15h/semaine sur la saisie des factures. Le ROI a ete immediat."
           </blockquote>
-          <cite>— Lead Developer, Startup SaaS</cite>
+          <cite>— Responsable Comptable, PME Industrielle</cite>
+        </div>
+
+        <!-- MICRO-PREUVES (OPTIONNEL - Screenshots de prod) -->
+        <div class="micro-proofs">
+          <div class="micro-proofs-header">
+            <span class="micro-proofs-badge">PLACEHOLDERS - A REMPLACER</span>
+            <h4>Preuves en production</h4>
+          </div>
+          <div class="micro-proofs-grid">
+            <!-- Dashboard / Stats -->
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">📊</span>
+                  <span class="placeholder-text">Dashboard Grafana / Stats</span>
+                  <span class="placeholder-hint">Metriques temps reel</span>
+                </div>
+              </div>
+              <span class="mp-label">Monitoring temps reel</span>
+            </div>
+            <!-- CI/CD Pipeline -->
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">✅</span>
+                  <span class="placeholder-text">GitHub Actions / CI Pipeline</span>
+                  <span class="placeholder-hint">Tests qui passent</span>
+                </div>
+              </div>
+              <span class="mp-label">CI/CD automatise</span>
+            </div>
+            <!-- Logs / Sentry -->
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">📋</span>
+                  <span class="placeholder-text">Logs / Sentry</span>
+                  <span class="placeholder-hint">0 erreurs critiques</span>
+                </div>
+              </div>
+              <span class="mp-label">Logs centralises</span>
+            </div>
+          </div>
+          <p class="micro-proofs-note">* Remplacer par vos vrais screenshots de monitoring, CI/CD, logs</p>
         </div>
       </div>
     </section>
 
-    <!-- 8.5 MINI CTA FREELANCE -->
+    <!-- 6.5 MINI CTA FREELANCE -->
     <section class="mini-cta-section">
       <div class="container">
         <div class="mini-cta-banner">
           <span class="mini-cta-icon">💼</span>
-          <span class="mini-cta-text">Besoin d'un systeme de notifications sur-mesure ?</span>
+          <span class="mini-cta-text">Besoin d'un projet similaire ?</span>
           <a href="/contact" class="mini-cta-btn">Me contacter →</a>
         </div>
       </div>
     </section>
 
-    <!-- 9. TECH & ARCHITECTURE -->
+    <!-- 7. TECH & ARCHITECTURE (avec SVG) -->
     <section id="tech" class="tech-section">
       <div class="container">
         <div class="section-header">
@@ -556,47 +507,77 @@ notificationService.send({
 
         <!-- Stack badges en ligne -->
         <div class="stack-badges">
-          <span class="stack-badge backend">PHP 8.3</span>
-          <span class="stack-badge backend">Symfony 7</span>
-          <span class="stack-badge backend">API Platform 4</span>
-          <span class="stack-badge db">PostgreSQL 16</span>
-          <span class="stack-badge db">Redis</span>
-          <span class="stack-badge infra">RabbitMQ</span>
-          <span class="stack-badge infra">Docker</span>
-          <span class="stack-badge quality">PHPStan</span>
-          <span class="stack-badge quality">PHPUnit</span>
+          <span class="stack-badge">PHP 8.4</span>
+          <span class="stack-badge">Symfony 7</span>
+          <span class="stack-badge">PostgreSQL</span>
+          <span class="stack-badge">Redis</span>
+          <span class="stack-badge">Groq</span>
+          <span class="stack-badge">LLaMA 3.2</span>
+          <span class="stack-badge">Docker</span>
         </div>
 
-        <!-- Architecture diagram (text boxes style from mockup-v2) -->
-        <div class="architecture">
+        <!-- Architecture SVG (FAKE - A PERSONNALISER) -->
+        <div class="architecture-svg">
           <h3>Architecture simplifiee</h3>
-          <div class="arch-diagram">
-            <div class="arch-node">
-              <span class="arch-icon">🌐</span>
-              <span>Client API</span>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node">
-              <span class="arch-icon">🚪</span>
-              <span>API Gateway</span>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node">
-              <span class="arch-icon">📬</span>
-              <span>Queue</span>
-              <span class="arch-detail">RabbitMQ</span>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node highlight">
-              <span class="arch-icon">📨</span>
-              <span>Workers</span>
-              <span class="arch-detail">Messenger</span>
-            </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-node">
-              <span class="arch-icon">📧💬📱🔔</span>
-              <span>Providers</span>
-            </div>
+          <div class="arch-svg-container">
+            <div class="arch-svg-badge">SCHEMA PLACEHOLDER - A REMPLACER</div>
+            <svg viewBox="0 0 800 200" class="arch-diagram-svg">
+              <!-- Background -->
+              <defs>
+                <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#6366f1" stop-opacity="0.1" />
+                </linearGradient>
+                <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#6366f1" stop-opacity="0.3" />
+                </linearGradient>
+              </defs>
+
+              <!-- Connections -->
+              <path d="M 130 100 L 210 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 310 100 L 390 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 490 100 L 570 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 670 100 L 750 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+
+              <!-- Arrows -->
+              <polygon points="205,95 215,100 205,105" fill="#8b5cf6"/>
+              <polygon points="385,95 395,100 385,105" fill="#8b5cf6"/>
+              <polygon points="565,95 575,100 565,105" fill="#8b5cf6"/>
+              <polygon points="745,95 755,100 745,105" fill="#8b5cf6"/>
+
+              <!-- Node 1: Client -->
+              <rect x="30" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="80" y="95" text-anchor="middle" fill="#fff" font-size="20">🌐</text>
+              <text x="80" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Client</text>
+
+              <!-- Node 2: API Gateway -->
+              <rect x="210" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="260" y="95" text-anchor="middle" fill="#fff" font-size="20">🚪</text>
+              <text x="260" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">API Gateway</text>
+
+              <!-- Node 3: Queue -->
+              <rect x="390" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="440" y="95" text-anchor="middle" fill="#fff" font-size="20">📬</text>
+              <text x="440" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Queue</text>
+
+              <!-- Node 4: AI Service (highlighted) -->
+              <rect x="570" y="60" width="100" height="80" rx="12" fill="url(#highlightGradient)" stroke="#8b5cf6" stroke-width="2"/>
+              <text x="620" y="95" text-anchor="middle" fill="#fff" font-size="20">🤖</text>
+              <text x="620" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">AI Service</text>
+
+              <!-- Node 5: Storage -->
+              <rect x="750" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="800" y="95" text-anchor="middle" fill="#fff" font-size="20">💾</text>
+              <text x="800" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Storage</text>
+
+              <!-- Labels -->
+              <text x="170" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">HTTPS</text>
+              <text x="350" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">Redis</text>
+              <text x="530" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">Async</text>
+              <text x="710" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">S3</text>
+            </svg>
+            <p class="arch-note">* Remplacer par diagramme personnalise (draw.io, Excalidraw, etc.)</p>
           </div>
         </div>
 
@@ -605,16 +586,16 @@ notificationService.send({
           <h3>Decisions techniques</h3>
           <div class="decisions-grid">
             <div class="decision">
-              <h4>Pourquoi RabbitMQ ?</h4>
-              <p>Fiabilite, retry natif, dead letter queues. Les notifications ne doivent jamais etre perdues.</p>
+              <h4>Pourquoi Groq ?</h4>
+              <p>Inference LLM &lt; 1s. 10x plus rapide qu'OpenAI pour les memes resultats. Cout divise par 5.</p>
             </div>
             <div class="decision">
-              <h4>Pourquoi multi-provider ?</h4>
-              <p>Fallback automatique si un provider tombe. Sendgrid down ? On bascule sur SES sans intervention.</p>
+              <h4>Pourquoi Queue async ?</h4>
+              <p>Scalabilite sans blocage. Permet de traiter 100+ documents simultanement sans degrader les perfs.</p>
             </div>
             <div class="decision">
-              <h4>Pourquoi Redis pour le rate limiting ?</h4>
-              <p>Sliding window ultra-rapide. Evite de spammer un utilisateur ou d'exploser les quotas provider.</p>
+              <h4>Pourquoi pas OCR classique ?</h4>
+              <p>Les LLM multimodaux comprennent le contexte, pas juste les caracteres. Precision 99% vs 85% pour Tesseract.</p>
             </div>
           </div>
         </div>
@@ -626,31 +607,31 @@ notificationService.send({
             <div class="challenge-row">
               <div class="challenge">
                 <span class="challenge-icon">⚠️</span>
-                <span>Garantir la delivrance meme si un provider tombe</span>
+                <span>OCR imprecis sur scans de mauvaise qualite</span>
               </div>
               <div class="solution">
                 <span class="solution-icon">✓</span>
-                <span>Multi-provider avec fallback automatique + retry</span>
+                <span>Preprocessing image + LLM multimodal (vision)</span>
               </div>
             </div>
             <div class="challenge-row">
               <div class="challenge">
                 <span class="challenge-icon">⚠️</span>
-                <span>Eviter le spam tout en gerant les pics de charge</span>
+                <span>Latence API variable selon charge</span>
               </div>
               <div class="solution">
                 <span class="solution-icon">✓</span>
-                <span>Rate limiting Redis + queue priority</span>
+                <span>Queue async + cache Redis + retry automatique</span>
               </div>
             </div>
             <div class="challenge-row">
               <div class="challenge">
                 <span class="challenge-icon">⚠️</span>
-                <span>Tracking unifie pour tous les canaux</span>
+                <span>Formats de factures tres varies</span>
               </div>
               <div class="solution">
                 <span class="solution-icon">✓</span>
-                <span>Webhooks normalises + storage PostgreSQL</span>
+                <span>Prompts dynamiques + schema JSON flexible</span>
               </div>
             </div>
           </div>
@@ -658,7 +639,7 @@ notificationService.send({
       </div>
     </section>
 
-    <!-- 10. ROLE & PROCESS -->
+    <!-- 8. ROLE & PROCESS -->
     <section class="role-section">
       <div class="container">
         <div class="section-header">
@@ -683,10 +664,10 @@ notificationService.send({
               <h4>Product</h4>
             </div>
             <ul class="sc-list">
-              <li>Etude concurrence (Knock, Novu)</li>
-              <li>Definition des canaux prioritaires</li>
-              <li>Pricing basé sur le volume</li>
-              <li>Strategie open-core</li>
+              <li>Etude de marche & validation</li>
+              <li>Definition du MVP</li>
+              <li>User stories & specs</li>
+              <li>Pricing strategy</li>
             </ul>
           </div>
 
@@ -696,10 +677,10 @@ notificationService.send({
               <h4>Backend</h4>
             </div>
             <ul class="sc-list">
-              <li>API REST (API Platform)</li>
-              <li>Messenger handlers</li>
-              <li>Multi-provider abstraction</li>
-              <li>Template engine Twig</li>
+              <li>Architecture hexagonale</li>
+              <li>API REST (Symfony)</li>
+              <li>Integration LLM (Groq)</li>
+              <li>Queue & workers async</li>
             </ul>
           </div>
 
@@ -709,10 +690,10 @@ notificationService.send({
               <h4>DevOps</h4>
             </div>
             <ul class="sc-list">
-              <li>Docker + Docker Compose</li>
-              <li>RabbitMQ cluster</li>
-              <li>Monitoring Prometheus</li>
+              <li>Conteneurisation Docker</li>
               <li>CI/CD GitHub Actions</li>
+              <li>Monitoring & alerting</li>
+              <li>Logs centralises</li>
             </ul>
           </div>
 
@@ -722,120 +703,34 @@ notificationService.send({
               <h4>Qualite</h4>
             </div>
             <ul class="sc-list">
-              <li>Tests PHPUnit (90%+)</li>
-              <li>PHPStan level 8</li>
-              <li>OpenAPI documentation</li>
-              <li>Rate limiting tests</li>
+              <li>Tests PHPUnit (85%)</li>
+              <li>Analyse statique (PHPStan)</li>
+              <li>Code review automatise</li>
+              <li>Documentation API</li>
             </ul>
           </div>
         </div>
 
         <div class="methodology-bar">
           <span class="mb-label">Methodologie :</span>
-          <span class="mb-item">Open-source first</span>
+          <span class="mb-item">Agile solo</span>
           <span class="mb-sep">·</span>
-          <span class="mb-item">Documentation-driven</span>
+          <span class="mb-item">Sprints 1 semaine</span>
           <span class="mb-sep">·</span>
-          <span class="mb-item">API-first design</span>
+          <span class="mb-item">Deploiement continu</span>
         </div>
       </div>
     </section>
 
-    <!-- 11. PRICING -->
-    <section class="pricing-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Tarifs</span>
-          <h2>Simple et transparent</h2>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h4>Free</h4>
-              <div class="pricing-price">
-                <span class="price-value">0€</span>
-                <span class="price-period">/mois</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>1,000 notifications/mois</li>
-              <li>Email uniquement</li>
-              <li>1 template</li>
-              <li>7 jours de logs</li>
-            </ul>
-            <a href="#" class="btn btn-secondary">Commencer</a>
-          </div>
-
-          <div class="pricing-card popular">
-            <div class="pricing-badge">Populaire</div>
-            <div class="pricing-header">
-              <h4>Startup</h4>
-              <div class="pricing-price">
-                <span class="price-value">29€</span>
-                <span class="price-period">/mois</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>10,000 notifications/mois</li>
-              <li>Tous les canaux</li>
-              <li>Templates illimites</li>
-              <li>Analytics basiques</li>
-              <li>30 jours de logs</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Essayer</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h4>Growth</h4>
-              <div class="pricing-price">
-                <span class="price-value">99€</span>
-                <span class="price-period">/mois</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>100,000 notifications/mois</li>
-              <li>Priority support</li>
-              <li>Analytics avances</li>
-              <li>Webhooks</li>
-              <li>90 jours de logs</li>
-            </ul>
-            <a href="#" class="btn btn-secondary">Contacter</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h4>Scale</h4>
-              <div class="pricing-price">
-                <span class="price-value">299€</span>
-                <span class="price-period">/mois</span>
-              </div>
-            </div>
-            <ul class="pricing-features">
-              <li>1M notifications/mois</li>
-              <li>SLA 99.9%</li>
-              <li>Dedicated support</li>
-              <li>Custom integrations</li>
-              <li>1 an de logs</li>
-            </ul>
-            <a href="#" class="btn btn-secondary">Contacter</a>
-          </div>
-        </div>
-
-        <p class="pricing-note">Self-hosted disponible gratuitement sur GitHub</p>
-      </div>
-    </section>
-
-    <!-- 12. DUAL CTA -->
+    <!-- 9. DUAL CTA -->
     <section id="contact" class="cta-section">
       <div class="container">
         <div class="dual-cta">
           <div class="cta-product">
-            <h3>Essayer Notification Service</h3>
-            <p>1,000 notifications gratuites/mois, pas de carte requise</p>
+            <h3>Tester LogiDoc AI</h3>
+            <p>Essayez gratuitement avec 100 documents/mois</p>
             <a href="#" class="btn btn-primary">Creer un compte gratuit</a>
-            <a href="https://github.com/audrey-tech/notification-service" class="btn-link">Voir sur GitHub →</a>
+            <a href="#" class="btn-link">Voir les tarifs →</a>
           </div>
 
           <div class="cta-divider">
@@ -844,9 +739,9 @@ notificationService.send({
 
           <div class="cta-freelance">
             <h3>Un projet similaire ?</h3>
-            <p>Besoin d'un systeme de notifications sur-mesure ou d'une integration multi-canal ?</p>
+            <p>Besoin d'une solution d'extraction documentaire sur-mesure ou d'integration IA ?</p>
             <div class="cta-specialization">
-              Specialisee API backend, messaging async, integrations tierces
+              Specialisee SaaS B2B, integration IA, automatisation metier
             </div>
             <a href="/contact" class="btn btn-secondary">Discutons de votre projet</a>
             <p class="cta-subtext">Disponible pour missions freelance</p>
@@ -856,8 +751,6 @@ notificationService.send({
     </section>
 
   </div>
-
-  <ProjectNavigation currentSlug="notification-service" />
 </Layout>
 
 <style>
@@ -875,7 +768,7 @@ notificationService.send({
   .section-tag {
     display: inline-block;
     background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-primary);
+    color: var(--color-primary);
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.75rem;
@@ -924,7 +817,7 @@ notificationService.send({
   }
 
   .badge-type {
-    color: var(--accent-primary);
+    color: var(--color-primary);
     font-weight: 600;
   }
 
@@ -941,7 +834,7 @@ notificationService.send({
     font-size: 3rem;
     font-weight: 700;
     margin: 0 0 1rem;
-    background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
+    background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -973,7 +866,7 @@ notificationService.send({
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--accent-primary);
+    color: var(--color-primary);
   }
 
   .metric-label {
@@ -998,7 +891,7 @@ notificationService.send({
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, var(--accent-primary), #6366f1);
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
     color: white;
   }
 
@@ -1023,7 +916,7 @@ notificationService.send({
   }
 
   .author-mention a {
-    color: var(--accent-primary);
+    color: var(--color-primary);
     text-decoration: none;
   }
 
@@ -1061,46 +954,29 @@ notificationService.send({
     margin-bottom: 1rem;
   }
 
-  .mockup-channels {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .channel-item {
+  .mockup-input {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
+    gap: 1rem;
+  }
+
+  .mockup-doc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     font-size: 0.85rem;
   }
 
-  .channel-icon {
-    font-size: 1.1rem;
+  .doc-icon {
+    font-size: 1.25rem;
   }
 
-  .channel-name {
-    flex: 1;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .channel-status {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    font-weight: 600;
-  }
-
-  .channel-status.sent {
-    background: rgba(34, 197, 94, 0.2);
-    color: #22c55e;
-  }
-
-  .channel-status.pending {
-    background: rgba(234, 179, 8, 0.2);
-    color: #eab308;
+  .mockup-arrow {
+    color: var(--color-primary);
+    font-size: 1.5rem;
   }
 
   .mockup-output {
@@ -1210,9 +1086,8 @@ notificationService.send({
   .pain-points {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     margin-bottom: 4rem;
-    flex-wrap: wrap;
   }
 
   .pain-point {
@@ -1285,30 +1160,69 @@ notificationService.send({
     color: #22c55e;
   }
 
-  .code-preview {
-    background: #1e1e3f;
+  .document-preview {
+    background: white;
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.5rem;
+    color: #333;
     text-align: left;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   }
 
-  .code-preview.before {
-    border: 1px solid rgba(239, 68, 68, 0.3);
+  .doc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #8b5cf6;
   }
 
-  .code-preview.after {
-    border: 1px solid rgba(34, 197, 94, 0.3);
+  .doc-logo {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border-radius: 6px;
   }
 
-  .code-preview pre {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #a5f3fc;
-    margin: 0;
-    overflow-x: auto;
-    white-space: pre;
-    line-height: 1.5;
+  .doc-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1f2937;
+  }
+
+  .doc-lines {
+    margin-bottom: 1rem;
+  }
+
+  .doc-line {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-line.short { width: 60%; }
+  .doc-line.medium { width: 80%; }
+
+  .doc-table {
+    margin-bottom: 1rem;
+  }
+
+  .doc-row {
+    height: 12px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding-top: 0.75rem;
+    border-top: 2px solid #e5e7eb;
   }
 
   .split-caption {
@@ -1353,12 +1267,29 @@ notificationService.send({
 
   .transform-text span:first-child {
     font-weight: 600;
-    color: var(--accent-primary);
+    color: var(--color-primary);
   }
 
   .transform-time {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.5);
+  }
+
+  .json-preview {
+    background: #1e1e3f;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .json-preview pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
   }
 
   .split-features {
@@ -1377,65 +1308,6 @@ notificationService.send({
   .feature-check {
     color: #22c55e;
     font-weight: 700;
-  }
-
-  /* ===== CHANNELS SECTION ===== */
-  .channels-section {
-    padding: 5rem 0;
-    background: rgba(139, 92, 246, 0.03);
-  }
-
-  .channels-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-
-  .channel-card {
-    background: rgba(15, 15, 35, 0.5);
-    border-radius: 16px;
-    padding: 1.5rem;
-    border: 1px solid rgba(139, 92, 246, 0.1);
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .channel-card:hover {
-    border-color: var(--accent-primary);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
-  }
-
-  .channel-card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .channel-card h4 {
-    margin: 0 0 0.5rem;
-    font-size: 1.1rem;
-  }
-
-  .channel-card p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0 0 1rem;
-  }
-
-  .channel-features {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .channel-features span {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-primary);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 500;
   }
 
   /* ===== DEMO SECTION ===== */
@@ -1463,7 +1335,7 @@ notificationService.send({
   }
 
   .step.highlight {
-    border-color: var(--accent-primary);
+    border-color: var(--color-primary);
     background: rgba(139, 92, 246, 0.1);
   }
 
@@ -1472,7 +1344,7 @@ notificationService.send({
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--accent-primary);
+    background: var(--color-primary);
     color: white;
     width: 24px;
     height: 24px;
@@ -1518,7 +1390,7 @@ notificationService.send({
 
   .tech-badge {
     background: rgba(139, 92, 246, 0.2);
-    color: var(--accent-primary);
+    color: var(--color-primary);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-size: 0.7rem;
@@ -1527,8 +1399,50 @@ notificationService.send({
 
   .step-arrow {
     font-size: 1.5rem;
-    color: var(--accent-primary);
+    color: var(--color-primary);
     padding-top: 3rem;
+  }
+
+  /* Step Screenshots (OPTIONNEL) */
+  .step-screenshot {
+    margin-top: 1rem;
+  }
+
+  .screenshot-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px dashed rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 80px;
+  }
+
+  .screenshot-placeholder.large {
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+
+  .placeholder-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .placeholder-text {
+    font-size: 0.7rem;
+    color: #ef4444;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .placeholder-hint {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
   }
 
   .code-example {
@@ -1572,51 +1486,10 @@ notificationService.send({
     overflow-x: auto;
   }
 
-  /* ===== FEATURES SECTION ===== */
-  .features-section {
-    padding: 5rem 0;
-    background: rgba(15, 15, 35, 0.3);
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  .feature-card {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    border-color: var(--accent-primary);
-    transform: translateY(-4px);
-  }
-
-  .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .feature-card h4 {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-  }
-
-  .feature-card p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-  }
-
   /* ===== USE CASES SECTION ===== */
   .usecases-section {
     padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
   }
 
   .usecases-grid {
@@ -1675,7 +1548,7 @@ notificationService.send({
   .usecase-target {
     margin-top: auto;
     font-size: 0.8rem;
-    color: var(--accent-primary);
+    color: var(--color-primary);
     padding-top: 1rem;
     border-top: 1px solid rgba(139, 92, 246, 0.1);
   }
@@ -1683,7 +1556,6 @@ notificationService.send({
   /* ===== PROOF SECTION ===== */
   .proof-section {
     padding: 5rem 0;
-    background: rgba(139, 92, 246, 0.03);
   }
 
   .proof-grid {
@@ -1701,7 +1573,7 @@ notificationService.send({
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent-primary);
+    color: var(--color-primary);
   }
 
   .proof-label {
@@ -1714,7 +1586,7 @@ notificationService.send({
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
-    border-left: 4px solid var(--accent-primary);
+    border-left: 4px solid var(--color-primary);
   }
 
   .testimonial blockquote {
@@ -1727,6 +1599,67 @@ notificationService.send({
   .testimonial cite {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== MICRO-PREUVES (OPTIONNEL) ===== */
+  .micro-proofs {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    position: relative;
+  }
+
+  .micro-proofs-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .micro-proofs-badge {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .micro-proofs-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .micro-proofs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .micro-proof-card {
+    text-align: center;
+  }
+
+  .mp-screenshot {
+    margin-bottom: 0.75rem;
+  }
+
+  .mp-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .micro-proofs-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 1.5rem;
+    font-style: italic;
   }
 
   /* ===== MINI CTA FREELANCE ===== */
@@ -1755,7 +1688,7 @@ notificationService.send({
   }
 
   .mini-cta-btn {
-    background: var(--accent-primary);
+    background: var(--color-primary);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -1785,89 +1718,60 @@ notificationService.send({
   }
 
   .stack-badge {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.2);
   }
 
-  .stack-badge.backend {
-    background: rgba(96, 165, 250, 0.15);
-    color: #60a5fa;
-    border: 1px solid rgba(96, 165, 250, 0.3);
-  }
-
-  .stack-badge.db {
-    background: rgba(74, 222, 128, 0.15);
-    color: #4ade80;
-    border: 1px solid rgba(74, 222, 128, 0.3);
-  }
-
-  .stack-badge.infra {
-    background: rgba(251, 146, 60, 0.15);
-    color: #fb923c;
-    border: 1px solid rgba(251, 146, 60, 0.3);
-  }
-
-  .stack-badge.quality {
-    background: rgba(244, 114, 182, 0.15);
-    color: #f472b6;
-    border: 1px solid rgba(244, 114, 182, 0.3);
-  }
-
-  .architecture {
+  /* Architecture SVG */
+  .architecture-svg {
     margin-bottom: 3rem;
   }
 
-  .architecture h3 {
+  .architecture-svg h3 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.25rem;
   }
 
-  .arch-diagram {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    padding: 2rem;
+  .arch-svg-container {
+    position: relative;
     background: rgba(15, 15, 35, 0.5);
     border-radius: 16px;
+    padding: 2rem;
     border: 1px solid rgba(139, 92, 246, 0.1);
   }
 
-  .arch-node {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    background: rgba(15, 15, 35, 0.8);
-    padding: 1rem 1.25rem;
-    border-radius: 12px;
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    font-size: 0.8rem;
-    min-width: 100px;
+  .arch-svg-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .arch-diagram-svg {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .arch-note {
     text-align: center;
-  }
-
-  .arch-node.highlight {
-    border-color: var(--accent-primary);
-    background: rgba(139, 92, 246, 0.1);
-  }
-
-  .arch-icon {
-    font-size: 1.25rem;
-  }
-
-  .arch-detail {
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .arch-arrow {
-    color: var(--accent-primary);
-    font-size: 1.25rem;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 1rem;
+    font-style: italic;
   }
 
   .tech-decisions {
@@ -1896,7 +1800,7 @@ notificationService.send({
   .decision h4 {
     margin: 0 0 0.5rem;
     font-size: 1rem;
-    color: var(--accent-primary);
+    color: var(--color-primary);
   }
 
   .decision p {
@@ -2055,106 +1959,12 @@ notificationService.send({
   }
 
   .mb-item {
-    color: var(--accent-primary);
+    color: var(--color-primary);
     font-weight: 500;
   }
 
   .mb-sep {
     color: rgba(255, 255, 255, 0.2);
-  }
-
-  /* ===== PRICING SECTION ===== */
-  .pricing-section {
-    padding: 5rem 0;
-    background: rgba(139, 92, 246, 0.03);
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .pricing-card {
-    background: rgba(15, 15, 35, 0.5);
-    border-radius: 16px;
-    padding: 2rem;
-    border: 1px solid rgba(139, 92, 246, 0.1);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-
-  .pricing-card.popular {
-    border-color: var(--accent-primary);
-    transform: scale(1.05);
-  }
-
-  .pricing-badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent-primary);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 600;
-  }
-
-  .pricing-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .pricing-header h4 {
-    margin: 0 0 0.5rem;
-    font-size: 1.25rem;
-  }
-
-  .pricing-price {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.25rem;
-  }
-
-  .price-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent-primary);
-  }
-
-  .price-period {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .pricing-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem;
-    flex: 1;
-  }
-
-  .pricing-features li {
-    padding: 0.5rem 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .pricing-features li::before {
-    content: "✓ ";
-    color: #22c55e;
-  }
-
-  .pricing-note {
-    text-align: center;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
   }
 
   /* ===== CTA SECTION ===== */
@@ -2193,7 +2003,7 @@ notificationService.send({
 
   .cta-specialization {
     background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-primary);
+    color: var(--color-primary);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-size: 0.85rem;
@@ -2205,7 +2015,7 @@ notificationService.send({
   .btn-link {
     display: block;
     margin-top: 1rem;
-    color: var(--accent-primary);
+    color: var(--color-primary);
     text-decoration: none;
     font-size: 0.9rem;
   }
@@ -2253,14 +2063,6 @@ notificationService.send({
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .channels-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .usecases-grid {
       grid-template-columns: 1fr;
     }
@@ -2277,20 +2079,16 @@ notificationService.send({
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .pricing-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .pricing-card.popular {
-      transform: none;
-    }
-
     .dual-cta {
       grid-template-columns: 1fr;
     }
 
     .cta-divider {
       padding: 1rem 0;
+    }
+
+    .micro-proofs-grid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -2322,10 +2120,6 @@ notificationService.send({
       padding: 1rem 0;
     }
 
-    .channels-grid {
-      grid-template-columns: 1fr;
-    }
-
     .steps-timeline {
       flex-direction: column;
     }
@@ -2335,23 +2129,11 @@ notificationService.send({
       padding: 0;
     }
 
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .arch-diagram {
-      flex-direction: column;
-    }
-
-    .arch-arrow {
-      transform: rotate(90deg);
+    .arch-diagram-svg {
+      min-height: 150px;
     }
 
     .skills-columns {
-      grid-template-columns: 1fr;
-    }
-
-    .pricing-grid {
       grid-template-columns: 1fr;
     }
 

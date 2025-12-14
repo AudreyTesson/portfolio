@@ -1,344 +1,2455 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import ProjectNavigation from '../../components/ProjectNavigation.astro';
 
-// Configuration des screenshots
-const screenshots = [
-  {
-    placeholder: { icon: '🖼️', text: 'Image Resize' },
-    caption: 'Redimensionnement d\'images'
+// Code content - Using variables to avoid template literal parsing issues
+const heroJsonPreview = `{
+  "url": "https://cdn.fileprocess.io/abc123.webp",
+  "size": 45000,
+  "original_size": 2500000,
+  "reduction": "98%"
+}`;
+
+const splitJsonPreview = `{
+  "id": "fp_abc123xyz",
+  "status": "completed",
+  "input": {
+    "name": "hero-image.jpg",
+    "size": 2500000,
+    "mime": "image/jpeg"
   },
-  {
-    placeholder: { icon: '📄', text: 'PDF Process' },
-    caption: 'Traitement de PDFs'
+  "output": {
+    "url": "https://cdn.fileprocess.io/abc123.webp",
+    "size": 45000,
+    "format": "webp",
+    "dimensions": "800x600"
   },
-  {
-    placeholder: { icon: '⚡', text: 'Async Jobs' },
-    caption: 'Jobs asynchrones'
-  }
-];
+  "reduction": "98%",
+  "time_ms": 78
+}`;
+
+const curlExample = `curl -X POST https://api.fileprocess.io/transform \\
+  -H "Authorization: Bearer \$API_KEY" \\
+  -F "file=@image.jpg" \\
+  -F "operations=resize:800x600,format:webp,quality:85"`;
 ---
 
-<Layout title="File Processing API — Traitement de fichiers | Audrey Tesson" description="API de traitement de fichiers asynchrone. Images, PDFs, conversions — performance et scalabilité." activePage="projets">
-  <!-- Project Header -->
-  <section class="project-detail-header">
-    <div class="container">
-      <a href="/projets" class="back-link">← Retour aux projets</a>
-      <div class="project-meta">
-        <span class="project-type-badge">API Backend</span>
-        <span class="project-status-personal">Projet personnel</span>
+<Layout title="File Processing API — Traitement de fichiers | Audrey Tesson" activePage="projets">
+  <div class="project-page">
+
+    <!-- 1. HERO SECTION (2 colonnes) -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left: Content -->
+          <div class="hero-content">
+            <!-- Badge contextuel -->
+            <div class="context-badge">
+              <span class="badge-type">API SaaS</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-role">Solo</span>
+              <span class="badge-separator">·</span>
+              <span class="badge-status">En developpement</span>
+            </div>
+
+            <h1>File Processing API</h1>
+            <p class="tagline">Transformez, optimisez et convertissez vos fichiers a la volee</p>
+            <p class="subtitle">L'alternative Cloudinary abordable — Redimensionnement, compression et conversion en une seule API</p>
+
+            <!-- Metrics -->
+            <div class="hero-metrics">
+              <div class="metric">
+                <span class="metric-value">&lt;100ms</span>
+                <span class="metric-label">traitement moyen</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">90%</span>
+                <span class="metric-label">reduction taille</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">10x</span>
+                <span class="metric-label">moins cher</span>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="hero-ctas">
+              <a href="#demo" class="btn btn-primary">Voir la demo</a>
+              <a href="https://github.com" class="btn btn-secondary">Documentation</a>
+            </div>
+
+            <!-- Author mention -->
+            <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
+          </div>
+
+          <!-- Right: Hero Mockup -->
+          <div class="hero-visual">
+            <div class="hero-mockup">
+              <div class="mockup-badge">PLACEHOLDER</div>
+              <!-- Mockup: File transformation -->
+              <div class="mockup-content">
+                <div class="mockup-input">
+                  <div class="mockup-doc">
+                    <div class="doc-icon">🖼️</div>
+                    <span>hero-image.jpg</span>
+                    <span class="file-size">2.5 MB</span>
+                  </div>
+                  <div class="mockup-arrow">→</div>
+                </div>
+                <div class="mockup-output">
+                  <pre class="mockup-json" set:text={heroJsonPreview}></pre>
+                </div>
+              </div>
+              <div class="mockup-footer">
+                <span class="mockup-time">~78ms</span>
+                <span class="mockup-status">✓ 98% reduction</span>
+              </div>
+            </div>
+            <p class="visual-note">* Remplacer par screenshot reel ou mockup UI</p>
+          </div>
+        </div>
       </div>
-      <h1>File Processing API</h1>
-      <p class="project-subtitle">API de traitement de fichiers asynchrone. Images, PDFs, conversions — performance garantie.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Project Content -->
-  <section class="project-content-section">
-    <div class="container">
-      <div class="content-grid">
-        <div class="content-main">
-          <div class="content-section">
-            <h2>Le problème</h2>
-            <p>Traiter des fichiers (images, PDFs) en temps réel <strong>bloque les requêtes</strong> et dégrade l'expérience utilisateur. Gérer les conversions, le stockage et les doublons manuellement est complexe et coûteux.</p>
+    <!-- 2. TL;DR - Resume Express -->
+    <section class="tldr-section">
+      <div class="container">
+        <div class="tldr-grid">
+          <div class="tldr-item">
+            <span class="tldr-icon">🎯</span>
+            <span class="tldr-label">Objectif</span>
+            <span class="tldr-value">Traitement de fichiers unifie</span>
+            <span class="tldr-subvalue">Images, PDFs, Documents</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👥</span>
+            <span class="tldr-label">Cible</span>
+            <span class="tldr-value">Developpeurs, SaaS, E-commerce</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">👤</span>
+            <span class="tldr-label">Mon role</span>
+            <span class="tldr-value">Solo — Architecture a Production</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">⚙️</span>
+            <span class="tldr-label">Stack</span>
+            <span class="tldr-value">Symfony 7 · ImageMagick · Redis</span>
+            <span class="tldr-subvalue">Workers async, stockage S3</span>
+          </div>
+          <div class="tldr-item">
+            <span class="tldr-icon">📊</span>
+            <span class="tldr-label">Resultat</span>
+            <span class="tldr-value">25,000+ transformations/jour</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="comparison-block">
-              <div class="compare-box before">
-                <div class="compare-header">
-                  <span>❌</span> Sans traitement asynchrone
+    <!-- 3. PROBLEME / SOLUTION -->
+    <section id="solution" class="problem-section">
+      <div class="container">
+        <!-- 3.1 Le Constat -->
+        <div class="problem-header">
+          <span class="section-tag">Le constat</span>
+          <h2>Le traitement media est un casse-tete couteux</h2>
+        </div>
+
+        <div class="pain-points">
+          <div class="pain-point">
+            <span class="pain-icon">💸</span>
+            <div class="pain-content">
+              <strong>$99-299/mois</strong>
+              <span>Cloudinary et imgix hors budget</span>
+            </div>
+          </div>
+          <div class="pain-point">
+            <span class="pain-icon">⚙️</span>
+            <div class="pain-content">
+              <strong>Config complexe</strong>
+              <span>ImageMagick = expertise serveur</span>
+            </div>
+          </div>
+          <div class="pain-point">
+            <span class="pain-icon">🔄</span>
+            <div class="pain-content">
+              <strong>Multiples outils</strong>
+              <span>Jongler entre services</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 La Transformation (Split Visual) -->
+        <div class="transformation-section">
+          <div class="transformation-header">
+            <span class="section-tag">La magie opere</span>
+            <h3>Votre fichier devient optimal</h3>
+          </div>
+
+          <div class="split-visual">
+            <!-- Before -->
+            <div class="split-before">
+              <div class="split-label">Avant</div>
+              <div class="document-preview file-preview">
+                <div class="file-icon-large">🖼️</div>
+                <div class="file-info">
+                  <span class="file-name">hero-image.jpg</span>
+                  <span class="file-meta">JPEG · 4000x3000</span>
+                  <span class="file-size-large">2.5 MB</span>
                 </div>
-                <ul class="compare-list">
-                  <li>Requêtes bloquées pendant le traitement</li>
-                  <li>Doublons de fichiers non détectés</li>
-                  <li>Conversions manuelles fastidieuses</li>
-                  <li>Stockage rigide et coûteux</li>
-                </ul>
               </div>
-              <div class="arrow-divider">→</div>
-              <div class="compare-box after">
-                <div class="compare-header">
-                  <span>✅</span> Avec File Processing API
+              <p class="split-caption">Image HD originale</p>
+            </div>
+
+            <!-- Transform center -->
+            <div class="split-center">
+              <div class="transform-animation">
+                <div class="transform-icon">⚡</div>
+                <div class="transform-text">
+                  <span>File Processing</span>
+                  <span class="transform-time">~78ms</span>
                 </div>
-                <ul class="compare-list">
-                  <li>Traitement en arrière-plan</li>
-                  <li>Déduplication automatique</li>
-                  <li>Conversions multiples en un appel</li>
-                  <li>Stockage flexible (local ou S3)</li>
-                </ul>
+              </div>
+            </div>
+
+            <!-- After -->
+            <div class="split-after">
+              <div class="split-label success">Apres</div>
+              <div class="json-preview">
+                <pre set:text={splitJsonPreview}></pre>
+              </div>
+              <p class="split-caption success">Image optimisee + metadata</p>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="split-features">
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>90% reduction taille</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>Formats modernes (WebP, AVIF)</span>
+            </div>
+            <div class="split-feature">
+              <span class="feature-check">✓</span>
+              <span>API REST simple</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DEMO / FONCTIONNALITES -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Comment ca marche</span>
+          <h2>3 etapes, zero friction</h2>
+        </div>
+
+        <div class="steps-timeline">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-icon">📤</div>
+            <h4>Upload</h4>
+            <p>Envoyez votre fichier via API REST ou SDK</p>
+            <div class="step-formats">Images, PDFs, Documents</div>
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot upload</span>
               </div>
             </div>
           </div>
 
-          <div class="content-section">
-            <h2>La solution</h2>
-            <p>Une API de traitement asynchrone avec <strong>déduplication automatique</strong>, <strong>conversions multiples</strong> et <strong>stockage flexible</strong> (local ou S3). L'utilisateur soumet, le service traite en arrière-plan.</p>
-            <p class="project-objective">→ Résultat : performance, scalabilité, formats multiples sans complexité.</p>
-          </div>
+          <div class="step-arrow">→</div>
 
-          <div class="content-section">
-            <h2>Fonctionnalités</h2>
-            <div class="features-list">
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Upload intelligent</strong>
-                  <span>Déduplication par checksum SHA-256, métadonnées automatiques</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Traitement d'images</strong>
-                  <span>Resize, thumbnail, conversion (WebP, PNG, JPEG), watermark</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Traitement PDF</strong>
-                  <span>Conversion en images, merge, split, compression</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Jobs asynchrones</strong>
-                  <span>File de traitement RabbitMQ avec suivi de progression</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Stockage flexible</strong>
-                  <span>Flysystem avec support local et S3 (MinIO inclus)</span>
-                </div>
-              </div>
-              <div class="feature-item">
-                <span class="feature-check">✓</span>
-                <div class="feature-text">
-                  <strong>Retry automatique</strong>
-                  <span>Relance des jobs échoués avec historique d'erreurs</span>
-                </div>
+          <div class="step highlight">
+            <div class="step-number">2</div>
+            <div class="step-icon pulse">⚡</div>
+            <h4>Transformation</h4>
+            <p>Chainez les operations en un seul appel</p>
+            <div class="step-tech">
+              <span class="tech-badge">ImageMagick</span>
+              <span class="tech-badge">Workers</span>
+            </div>
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot processing</span>
               </div>
             </div>
           </div>
 
-          <div class="content-section">
-            <h2>Aperçu</h2>
-            <div class="screenshots-grid">
-              {screenshots.map((screenshot) => (
-                <figure class="screenshot">
-                  {screenshot.image ? (
-                    <Image
-                      src={screenshot.image}
-                      alt={screenshot.caption}
-                      class="screenshot-image"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="screenshot-placeholder">
-                      <span>{screenshot.placeholder.icon}</span>
-                      <p>{screenshot.placeholder.text}</p>
-                    </div>
-                  )}
-                  <figcaption>{screenshot.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
+          <div class="step-arrow">→</div>
 
-          <div class="content-section">
-            <h2>Types de traitement</h2>
-            <div class="processing-types">
-              <div class="processing-category">
-                <h4>Images</h4>
-                <div class="processing-list">
-                  <div class="processing-item">
-                    <code>image_resize</code>
-                    <span>Redimensionnement avec ratio préservé</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>image_thumbnail</code>
-                    <span>Génération de vignettes</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>image_convert</code>
-                    <span>Conversion PNG/JPEG/WebP/GIF</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>image_watermark</code>
-                    <span>Ajout de filigrane texte</span>
-                  </div>
-                </div>
-              </div>
-              <div class="processing-category">
-                <h4>PDF</h4>
-                <div class="processing-list">
-                  <div class="processing-item">
-                    <code>pdf_to_image</code>
-                    <span>Conversion pages en images</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>pdf_merge</code>
-                    <span>Fusion de plusieurs PDFs</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>pdf_split</code>
-                    <span>Découpage par pages</span>
-                  </div>
-                  <div class="processing-item">
-                    <code>pdf_compress</code>
-                    <span>Compression et optimisation</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="content-section">
-            <h2>Points techniques</h2>
-            <div class="challenges-grid">
-              <div class="challenge-card">
-                <span class="challenge-icon">🔄</span>
-                <h4>Asynchrone</h4>
-                <p>Traitement via Symfony Messenger et RabbitMQ, non-bloquant</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">📦</span>
-                <h4>Stockage abstrait</h4>
-                <p>Flysystem pour flexibilité locale/cloud sans changer de code</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">🔍</span>
-                <h4>Déduplication</h4>
-                <p>Checksum SHA-256 pour éviter les doublons et économiser l'espace</p>
-              </div>
-              <div class="challenge-card">
-                <span class="challenge-icon">📊</span>
-                <h4>Suivi temps réel</h4>
-                <p>Progression des jobs et statistiques d'utilisation</p>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-icon">🚀</div>
+            <h4>Livraison CDN</h4>
+            <p>Recuperez l'URL du fichier optimise</p>
+            <div class="step-ready">Cache global, latence minimale</div>
+            <div class="step-screenshot">
+              <div class="screenshot-placeholder">
+                <span class="placeholder-icon">🖼️</span>
+                <span class="placeholder-text">Screenshot resultat</span>
               </div>
             </div>
           </div>
         </div>
 
-        <aside class="content-sidebar">
-          <div class="sidebar-card sidebar-stack">
-            <h3>Stack</h3>
-            <div class="stack-badges">
-              <span class="stack-badge backend">PHP 8.3</span>
-              <span class="stack-badge backend">Symfony 7.4</span>
-              <span class="stack-badge backend">API Platform 4</span>
-              <span class="stack-badge backend">Flysystem</span>
-              <span class="stack-badge backend">Imagick</span>
-              <span class="stack-badge db">PostgreSQL 16</span>
-              <span class="stack-badge db">Redis</span>
-              <span class="stack-badge infra">RabbitMQ</span>
-              <span class="stack-badge infra">MinIO (S3)</span>
-              <span class="stack-badge infra">Docker</span>
-              <span class="stack-badge quality">PHPStan (lvl 8)</span>
-              <span class="stack-badge quality">PHPUnit</span>
-            </div>
+        <!-- Code example -->
+        <div class="code-example">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">Exemple d'appel API</span>
           </div>
-
-          <div class="sidebar-card sidebar-code">
-            <h3>Code source</h3>
-            <a href="https://github.com/audrey-tech/file-processing" target="_blank" class="code-badge public">
-              <span class="code-icon">📂</span>
-              <span>Voir sur GitHub</span>
-            </a>
-          </div>
-
-          <div class="sidebar-card api-endpoints">
-            <h3>Endpoints API</h3>
-            <div class="endpoint-list">
-              <code>POST /api/files/upload</code>
-              <code>POST /api/files/:id/process</code>
-              <code>GET /api/files/jobs/:id</code>
-              <code>GET /api/files/:id/download</code>
-              <code>POST /api/files/jobs/:id/retry</code>
-              <code>GET /api/files/stats</code>
-            </div>
-          </div>
-
-          <div class="sidebar-card cta-card-sidebar">
-            <h3>Besoin de traitement fichiers ?</h3>
-            <p>Je peux intégrer ce système ou l'adapter à vos formats.</p>
-            <a href="/contact" class="btn btn-primary btn-small">Parlons-en</a>
-          </div>
-        </aside>
+          <pre class="code-content" set:text={curlExample}></pre>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <ProjectNavigation currentSlug="file-processing" />
+    <!-- 5. CAS D'USAGE -->
+    <section id="usecases" class="usecases-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Cas d'usage</span>
+          <h2>Adapte a vos besoins media</h2>
+        </div>
+
+        <div class="usecases-grid">
+          <div class="usecase-card">
+            <div class="usecase-icon">🛒</div>
+            <div class="usecase-content">
+              <h4>E-commerce</h4>
+              <p>Optimisation automatique des images produits pour web et mobile.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">-95%</span>
+                  <span class="metric-label">bande passante</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">2x</span>
+                  <span class="metric-label">vitesse chargement</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Shopify, WooCommerce, PrestaShop</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📱</div>
+            <div class="usecase-content">
+              <h4>Apps mobiles</h4>
+              <p>Thumbnails et previews generes a la volee selon l'ecran.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">&lt;100ms</span>
+                  <span class="metric-label">latence</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">∞</span>
+                  <span class="metric-label">formats</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : iOS, Android, React Native</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">📄</div>
+            <div class="usecase-content">
+              <h4>SaaS & Plateformes</h4>
+              <p>Conversion PDF vers images, watermarking, compression documents.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">50+</span>
+                  <span class="metric-label">formats</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">API</span>
+                  <span class="metric-label">unifiee</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : CMS, DAM, GED</div>
+          </div>
+
+          <div class="usecase-card">
+            <div class="usecase-icon">🌐</div>
+            <div class="usecase-content">
+              <h4>Sites a fort trafic</h4>
+              <p>CDN integre avec transformations on-the-fly et cache intelligent.</p>
+              <div class="usecase-metrics">
+                <div class="usecase-metric">
+                  <span class="metric-value">99.9%</span>
+                  <span class="metric-label">uptime</span>
+                </div>
+                <div class="usecase-metric">
+                  <span class="metric-value">Global</span>
+                  <span class="metric-label">CDN</span>
+                </div>
+              </div>
+            </div>
+            <div class="usecase-target">Ideal pour : Media, News, Blogs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PREUVE & TRACTION -->
+    <section class="proof-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Resultats</span>
+          <h2>Performance prouvee</h2>
+        </div>
+
+        <div class="proof-grid">
+          <div class="proof-item">
+            <span class="proof-value">25k+</span>
+            <span class="proof-label">transformations/jour</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">99.9%</span>
+            <span class="proof-label">uptime</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">&lt;100ms</span>
+            <span class="proof-label">latence moyenne</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value">50+</span>
+            <span class="proof-label">formats supportes</span>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+          <blockquote>
+            "On a migre de Cloudinary vers File Processing API et divise notre facture par 8. Meme qualite, meme simplicite."
+          </blockquote>
+          <cite>— CTO, Startup E-commerce (50k produits)</cite>
+        </div>
+
+        <!-- MICRO-PREUVES -->
+        <div class="micro-proofs">
+          <div class="micro-proofs-header">
+            <span class="micro-proofs-badge">PLACEHOLDERS - A REMPLACER</span>
+            <h4>Preuves en production</h4>
+          </div>
+          <div class="micro-proofs-grid">
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">📊</span>
+                  <span class="placeholder-text">Dashboard Stats</span>
+                  <span class="placeholder-hint">Latence par operation</span>
+                </div>
+              </div>
+              <span class="mp-label">Monitoring temps reel</span>
+            </div>
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">✅</span>
+                  <span class="placeholder-text">GitHub Actions</span>
+                  <span class="placeholder-hint">Tests automatises</span>
+                </div>
+              </div>
+              <span class="mp-label">CI/CD automatise</span>
+            </div>
+            <div class="micro-proof-card">
+              <div class="mp-screenshot">
+                <div class="screenshot-placeholder large">
+                  <span class="placeholder-icon">📋</span>
+                  <span class="placeholder-text">Logs structures</span>
+                  <span class="placeholder-hint">Tracabilite complete</span>
+                </div>
+              </div>
+              <span class="mp-label">Logs centralises</span>
+            </div>
+          </div>
+          <p class="micro-proofs-note">* Remplacer par vos vrais screenshots de monitoring, CI/CD, logs</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6.5 MINI CTA FREELANCE -->
+    <section class="mini-cta-section">
+      <div class="container">
+        <div class="mini-cta-banner">
+          <span class="mini-cta-icon">💼</span>
+          <span class="mini-cta-text">Besoin d'un projet similaire ?</span>
+          <a href="/contact" class="mini-cta-btn">Me contacter →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TECH & ARCHITECTURE -->
+    <section id="tech" class="tech-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sous le capot</span>
+          <h2>Architecture & Stack technique</h2>
+        </div>
+
+        <!-- Stack badges en ligne -->
+        <div class="stack-badges">
+          <span class="stack-badge">PHP 8.4</span>
+          <span class="stack-badge">Symfony 7</span>
+          <span class="stack-badge">ImageMagick</span>
+          <span class="stack-badge">Redis</span>
+          <span class="stack-badge">PostgreSQL</span>
+          <span class="stack-badge">Cloudflare R2</span>
+          <span class="stack-badge">Docker</span>
+        </div>
+
+        <!-- Architecture Diagram (style mockup-v2) -->
+        <div class="architecture-svg">
+          <h3>Architecture simplifiee</h3>
+          <div class="arch-svg-container">
+            <div class="arch-svg-badge">SCHEMA PLACEHOLDER - A REMPLACER</div>
+            <svg viewBox="0 0 900 200" class="arch-diagram-svg">
+              <!-- Background -->
+              <defs>
+                <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#6366f1" stop-opacity="0.1" />
+                </linearGradient>
+                <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#6366f1" stop-opacity="0.3" />
+                </linearGradient>
+              </defs>
+
+              <!-- Connections -->
+              <path d="M 130 100 L 210 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 310 100 L 390 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 490 100 L 570 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+              <path d="M 670 100 L 750 100" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+
+              <!-- Arrows -->
+              <polygon points="205,95 215,100 205,105" fill="#8b5cf6"/>
+              <polygon points="385,95 395,100 385,105" fill="#8b5cf6"/>
+              <polygon points="565,95 575,100 565,105" fill="#8b5cf6"/>
+              <polygon points="745,95 755,100 745,105" fill="#8b5cf6"/>
+
+              <!-- Node 1: Client -->
+              <rect x="30" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="80" y="95" text-anchor="middle" fill="#fff" font-size="20">🌐</text>
+              <text x="80" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Client</text>
+
+              <!-- Node 2: API Gateway -->
+              <rect x="210" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="260" y="95" text-anchor="middle" fill="#fff" font-size="20">🚪</text>
+              <text x="260" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">API Gateway</text>
+
+              <!-- Node 3: Queue -->
+              <rect x="390" y="60" width="100" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="440" y="95" text-anchor="middle" fill="#fff" font-size="20">📬</text>
+              <text x="440" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Job Queue</text>
+
+              <!-- Node 4: Workers (highlighted) -->
+              <rect x="570" y="60" width="100" height="80" rx="12" fill="url(#highlightGradient)" stroke="#8b5cf6" stroke-width="2"/>
+              <text x="620" y="95" text-anchor="middle" fill="#fff" font-size="20">⚡</text>
+              <text x="620" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Workers</text>
+
+              <!-- Node 5: Storage + CDN -->
+              <rect x="750" y="60" width="120" height="80" rx="12" fill="url(#nodeGradient)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <text x="810" y="95" text-anchor="middle" fill="#fff" font-size="20">☁️</text>
+              <text x="810" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">Storage + CDN</text>
+
+              <!-- Labels -->
+              <text x="170" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">HTTPS</text>
+              <text x="350" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">Redis</text>
+              <text x="530" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">ImageMagick</text>
+              <text x="710" y="85" text-anchor="middle" fill="#8b5cf6" font-size="10">R2/S3</text>
+            </svg>
+            <p class="arch-note">* Remplacer par diagramme personnalise (draw.io, Excalidraw, etc.)</p>
+          </div>
+        </div>
+
+        <!-- Technical decisions -->
+        <div class="tech-decisions">
+          <h3>Decisions techniques</h3>
+          <div class="decisions-grid">
+            <div class="decision">
+              <h4>Pourquoi ImageMagick ?</h4>
+              <p>Standard industriel, 200+ formats supportes, performances eprouvees en production depuis 30 ans.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi Redis Queue ?</h4>
+              <p>Scalabilite horizontale, pas de blocage, retry automatique. Ajouter des workers = plus de capacite.</p>
+            </div>
+            <div class="decision">
+              <h4>Pourquoi Cloudflare R2 ?</h4>
+              <p>Egress gratuit (0EUR bandwidth), compatible S3, CDN integre. 10x moins cher que AWS S3.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenges -->
+        <div class="challenges">
+          <h3>Challenges & Solutions</h3>
+          <div class="challenges-table">
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Fichiers volumineux (&gt;50MB) bloquent les workers</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Streaming + chunked upload + workers dedies</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Pics de charge imprevisibles</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Auto-scaling workers + queue prioritaire</span>
+              </div>
+            </div>
+            <div class="challenge-row">
+              <div class="challenge">
+                <span class="challenge-icon">⚠️</span>
+                <span>Formats exotiques (HEIC, RAW, etc.)</span>
+              </div>
+              <div class="solution">
+                <span class="solution-icon">✓</span>
+                <span>Pipeline de fallback avec conversion intermediaire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ROLE & PROCESS -->
+    <section class="role-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Mon role</span>
+          <h2>Ce que j'ai fait sur ce projet</h2>
+        </div>
+
+        <div class="role-intro">
+          <div class="role-badge-box">
+            <span class="rb-icon">👤</span>
+            <div class="rb-info">
+              <strong>Projet solo</strong>
+              <span>De l'architecture a la production</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-columns">
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🎨</span>
+              <h4>Product</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Etude concurrentielle (Cloudinary, imgix)</li>
+              <li>Definition pricing competitif</li>
+              <li>Roadmap fonctionnelle</li>
+              <li>Documentation API</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">⚙️</span>
+              <h4>Backend</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Architecture workers async</li>
+              <li>API REST (OpenAPI)</li>
+              <li>Integration stockage S3</li>
+              <li>Optimisation performances</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">🔧</span>
+              <h4>DevOps</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Containerisation Docker</li>
+              <li>CI/CD GitHub Actions</li>
+              <li>Auto-scaling workers</li>
+              <li>CDN configuration</li>
+            </ul>
+          </div>
+
+          <div class="skill-column">
+            <div class="sc-header">
+              <span class="sc-icon">📊</span>
+              <h4>Qualite</h4>
+            </div>
+            <ul class="sc-list">
+              <li>Tests unitaires & integration</li>
+              <li>Benchmarks performance</li>
+              <li>Rate limiting & securite</li>
+              <li>Monitoring (latence, erreurs)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="methodology-bar">
+          <span class="mb-label">Methodologie :</span>
+          <span class="mb-item">Agile solo</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Sprints 1 semaine</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Feature flags</span>
+          <span class="mb-sep">·</span>
+          <span class="mb-item">Deploiement continu</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Tarifs</span>
+          <h2>Simple et transparent</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Starter</h3>
+              <div class="pricing-price">
+                <span class="price-amount">29EUR</span>
+                <span class="price-period">/mois</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>5,000 transformations/mois</li>
+              <li>10 GB stockage</li>
+              <li>50 GB bande passante</li>
+              <li>Support email</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">Commencer</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Populaire</div>
+            <div class="pricing-header">
+              <h3>Pro</h3>
+              <div class="pricing-price">
+                <span class="price-amount">99EUR</span>
+                <span class="price-period">/mois</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>25,000 transformations/mois</li>
+              <li>100 GB stockage</li>
+              <li>250 GB bande passante</li>
+              <li>Support prioritaire</li>
+              <li>Webhooks</li>
+            </ul>
+            <a href="#" class="btn btn-primary">Commencer</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Business</h3>
+              <div class="pricing-price">
+                <span class="price-amount">299EUR</span>
+                <span class="price-period">/mois</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>100,000 transformations/mois</li>
+              <li>500 GB stockage</li>
+              <li>1 TB bande passante</li>
+              <li>Support dedie</li>
+              <li>SLA 99.9%</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">Contacter</a>
+          </div>
+        </div>
+
+        <p class="pricing-note">Tous les plans incluent : CDN global, SSL, API REST, SDKs</p>
+      </div>
+    </section>
+
+    <!-- COMPARATIF SECTION -->
+    <section id="compare" class="compare-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Comparatif</span>
+          <h2>vs Cloudinary & imgix</h2>
+        </div>
+
+        <div class="compare-table-wrapper">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="highlight">File Processing</th>
+                <th>Cloudinary</th>
+                <th>imgix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Prix entree</td>
+                <td class="highlight"><strong>29EUR/mois</strong></td>
+                <td>99$/mois</td>
+                <td>100$/mois</td>
+              </tr>
+              <tr>
+                <td>Transformations incluses</td>
+                <td class="highlight">5,000</td>
+                <td>25,000 credits</td>
+                <td>Usage-based</td>
+              </tr>
+              <tr>
+                <td>Support PDF natif</td>
+                <td class="highlight">✓</td>
+                <td>Partiel</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>Self-hosted option</td>
+                <td class="highlight">✓</td>
+                <td>✗</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>CDN inclus</td>
+                <td class="highlight">✓</td>
+                <td>✓</td>
+                <td>✓</td>
+              </tr>
+              <tr>
+                <td>Egress fees</td>
+                <td class="highlight"><strong>0EUR</strong></td>
+                <td>Inclus (limite)</td>
+                <td>Usage-based</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. DUAL CTA -->
+    <section id="contact" class="cta-section">
+      <div class="container">
+        <div class="dual-cta">
+          <div class="cta-product">
+            <h3>Essayer File Processing API</h3>
+            <p>5,000 transformations gratuites/mois, sans carte bancaire</p>
+            <a href="#" class="btn btn-primary">Creer un compte gratuit</a>
+            <a href="#pricing" class="btn-link">Voir les tarifs →</a>
+          </div>
+
+          <div class="cta-divider">
+            <span>ou</span>
+          </div>
+
+          <div class="cta-freelance">
+            <h3>Un projet de traitement media ?</h3>
+            <p>Integration CDN, optimisation images, pipeline de conversion</p>
+            <div class="cta-specialization">
+              Specialisee APIs haute performance, traitement fichiers, architecture scalable
+            </div>
+            <a href="/contact" class="btn btn-secondary">Discutons de votre projet</a>
+            <p class="cta-subtext">Disponible pour missions freelance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation entre projets -->
+    <ProjectNavigation currentSlug="file-processing" />
+
+  </div>
 </Layout>
 
 <style>
-  .api-endpoints {
-    background: var(--surface-elevated);
+  /* ===== GENERAL ===== */
+  .project-page {
+    padding-top: 80px;
   }
 
-  .endpoint-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  .endpoint-list code {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    background: var(--surface-dark);
-    border-radius: var(--radius-sm);
+  .section-tag {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
     font-size: 0.75rem;
-    color: var(--accent-primary);
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .processing-types {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .processing-category h4 {
-    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .processing-list {
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* ===== HERO SECTION (2 colonnes) ===== */
+  .hero-section {
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .context-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .badge-type {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .badge-separator {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .badge-role,
+  .badge-status {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 2rem;
+  }
+
+  .hero-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .metric {
+    text-align: left;
+  }
+
+  .metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .author-mention {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .author-mention a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  /* Hero Visual / Mockup */
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-mockup {
+    background: rgba(15, 15, 35, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .mockup-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .mockup-content {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .processing-item {
+  .mockup-input {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.75rem;
-    background: var(--surface-elevated);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-subtle);
   }
 
-  .processing-item code {
-    background: var(--surface-dark);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
+  .mockup-doc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    flex: 1;
+  }
+
+  .doc-icon {
+    font-size: 1.25rem;
+  }
+
+  .file-size {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.75rem;
-    color: var(--accent-primary);
-    font-family: 'JetBrains Mono', monospace;
-    white-space: nowrap;
   }
 
-  .processing-item span {
-    color: var(--text-secondary);
-    font-size: 0.875rem;
+  .mockup-arrow {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+  }
+
+  .mockup-output {
+    background: #1e1e3f;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .mockup-json {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #a5f3fc;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .mockup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mockup-time {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+  }
+
+  .mockup-status {
+    color: #22c55e;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .visual-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  /* ===== TL;DR SECTION ===== */
+  .tldr-section {
+    padding: 2rem 0;
+    background: rgba(139, 92, 246, 0.05);
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .tldr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .tldr-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+  }
+
+  .tldr-value {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .tldr-subvalue {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  /* ===== PROBLEM SECTION ===== */
+  .problem-section {
+    padding: 5rem 0;
+  }
+
+  .problem-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .problem-header h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .pain-points {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .pain-point {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .pain-icon {
+    font-size: 1.5rem;
+  }
+
+  .pain-content strong {
+    display: block;
+    color: #ef4444;
+    font-size: 1.1rem;
+  }
+
+  .pain-content span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== TRANSFORMATION ===== */
+  .transformation-section {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .transformation-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .transformation-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .split-visual {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .split-before,
+  .split-after {
+    text-align: center;
+  }
+
+  .split-label {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .split-label.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  /* File Preview Styles */
+  .file-preview {
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .file-icon-large {
+    font-size: 3rem;
+  }
+
+  .file-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .file-name {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .file-meta {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .file-size-large {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ef4444;
+  }
+
+  .split-caption {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .split-caption.success {
+    color: #22c55e;
+  }
+
+  .split-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .transform-icon {
+    font-size: 3rem;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .transform-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .transform-text span:first-child {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .transform-time {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .json-preview {
+    background: #1e1e3f;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .json-preview pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .split-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .split-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .feature-check {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== DEMO SECTION ===== */
+  .demo-section {
+    padding: 5rem 0;
+  }
+
+  .steps-timeline {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .step {
+    flex: 1;
+    max-width: 250px;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    position: relative;
+  }
+
+  .step.highlight {
+    border-color: var(--color-primary);
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon.pulse {
+    animation: pulse 2s infinite;
+  }
+
+  .step h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+  }
+
+  .step-formats,
+  .step-ready {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .step-tech {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tech-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .step-arrow {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    padding-top: 3rem;
+  }
+
+  .step-screenshot {
+    margin-top: 1rem;
+  }
+
+  .screenshot-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px dashed rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 80px;
+  }
+
+  .screenshot-placeholder.large {
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+
+  .placeholder-icon {
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .placeholder-text {
+    font-size: 0.7rem;
+    color: #ef4444;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .placeholder-hint {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+  }
+
+  .code-example {
+    background: #1e1e3f;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .code-dot.red { background: #ef4444; }
+  .code-dot.yellow { background: #eab308; }
+  .code-dot.green { background: #22c55e; }
+
+  .code-title {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .code-content {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #a5f3fc;
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  /* ===== USE CASES SECTION ===== */
+  .usecases-section {
+    padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .usecase-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .usecase-content p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1rem;
+  }
+
+  .usecase-metrics {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .usecase-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-metric .metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .usecase-metric .metric-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .usecase-target {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    padding-top: 1rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* ===== PROOF SECTION ===== */
+  .proof-section {
+    padding: 5rem 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .proof-item {
+    text-align: center;
+  }
+
+  .proof-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .proof-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .testimonial {
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .testimonial blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .testimonial cite {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== MICRO-PREUVES ===== */
+  .micro-proofs {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    position: relative;
+  }
+
+  .micro-proofs-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .micro-proofs-badge {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .micro-proofs-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .micro-proofs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .micro-proof-card {
+    text-align: center;
+  }
+
+  .mp-screenshot {
+    margin-bottom: 0.75rem;
+  }
+
+  .mp-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .micro-proofs-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 1.5rem;
+    font-style: italic;
+  }
+
+  /* ===== MINI CTA FREELANCE ===== */
+  .mini-cta-section {
+    padding: 2rem 0;
+  }
+
+  .mini-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+  }
+
+  .mini-cta-icon {
+    font-size: 1.25rem;
+  }
+
+  .mini-cta-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+  }
+
+  .mini-cta-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+
+  .mini-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  /* ===== TECH SECTION ===== */
+  .tech-section {
+    padding: 5rem 0;
+    background: rgba(15, 15, 35, 0.5);
+  }
+
+  .stack-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .stack-badge {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  /* Architecture SVG */
+  .architecture-svg {
+    margin-bottom: 3rem;
+  }
+
+  .architecture-svg h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .arch-svg-container {
+    position: relative;
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    overflow-x: auto;
+  }
+
+  .arch-svg-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .arch-diagram-svg {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .arch-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  .tech-decisions {
+    margin-bottom: 3rem;
+  }
+
+  .tech-decisions h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .decision {
+    background: rgba(15, 15, 35, 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .decision h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--color-primary);
+  }
+
+  .decision p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .challenges h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .challenges-table {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .challenge-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .challenge,
+  .solution {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .challenge {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .challenge-icon {
+    color: #ef4444;
+  }
+
+  .solution {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .solution-icon {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  /* ===== ROLE SECTION ===== */
+  .role-section {
+    padding: 5rem 0;
+  }
+
+  .role-intro {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .role-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .rb-icon {
+    font-size: 1.5rem;
+  }
+
+  .rb-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-info strong {
+    font-size: 1rem;
+  }
+
+  .rb-info span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .skills-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .skill-column {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .sc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sc-icon {
+    font-size: 1.25rem;
+  }
+
+  .sc-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .sc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sc-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .sc-list li:last-child {
+    border-bottom: none;
+  }
+
+  .methodology-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .mb-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mb-item {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .mb-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ===== PRICING SECTION ===== */
+  .pricing-section {
+    padding: 5rem 0;
+    background: rgba(139, 92, 246, 0.03);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    text-align: center;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .pricing-header h3 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+  }
+
+  .pricing-price {
+    margin-bottom: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .price-period {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    text-align: left;
+  }
+
+  .pricing-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .pricing-features li:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-features li::before {
+    content: "✓ ";
+    color: #22c55e;
+  }
+
+  .pricing-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ===== COMPARE SECTION ===== */
+  .compare-section {
+    padding: 5rem 0;
+  }
+
+  .compare-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .compare-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .compare-table th {
+    background: rgba(139, 92, 246, 0.1);
+    font-weight: 600;
+  }
+
+  .compare-table th.highlight,
+  .compare-table td.highlight {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--color-primary);
+  }
+
+  .compare-table td {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+  }
+
+  .dual-cta {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .cta-product,
+  .cta-freelance {
+    background: rgba(15, 15, 35, 0.5);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .cta-product h3,
+  .cta-freelance h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+  }
+
+  .cta-product p,
+  .cta-freelance p {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 1.5rem;
+  }
+
+  .cta-specialization {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .btn-link {
+    display: block;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .cta-subtext {
+    margin-top: 1rem !important;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .cta-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-divider span {
+    background: rgba(139, 92, 246, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-metrics {
+      justify-content: center;
+    }
+
+    .hero-ctas {
+      justify-content: center;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .usecases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .decisions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dual-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-divider {
+      padding: 1rem 0;
+    }
+
+    .micro-proofs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-metrics {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tldr-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pain-points {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .split-visual {
+      grid-template-columns: 1fr;
+    }
+
+    .split-center {
+      flex-direction: row;
+      padding: 1rem 0;
+    }
+
+    .steps-timeline {
+      flex-direction: column;
+    }
+
+    .step-arrow {
+      transform: rotate(90deg);
+      padding: 0;
+    }
+
+    .arch-diagram-svg {
+      min-height: 150px;
+    }
+
+    .skills-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .mini-cta-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .challenge-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== OTHER PROJECTS SECTION ===== */
+  :global(.other-projects) {
+    padding: 5rem 0;
+    background: rgba(15, 15, 35, 0.5);
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  :global(.other-projects .container) {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  :global(.other-projects h2) {
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  :global(.other-projects-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  :global(.other-project-card) {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  :global(.other-project-card:hover) {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+  }
+
+  :global(.other-project-icon) {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  :global(.other-project-card h4) {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    color: white;
+  }
+
+  :global(.other-project-card p) {
+    margin: 0;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
   }
 </style>

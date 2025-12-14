@@ -1,13 +1,26 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title: string;
   description?: string;
   activePage?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  keywords?: string[];
+  canonical?: string;
 }
 
-const { title, description = "Développeuse Full-Stack PHP/Symfony et Tech Lead. Architecture robuste, intégration IA, DevOps. Disponible en remote.", activePage = "" } = Astro.props;
+const {
+  title,
+  description = "Développeuse Full-Stack PHP/Symfony et Tech Lead. Architecture robuste, intégration IA, DevOps. Disponible en remote.",
+  activePage = "",
+  image = "/og-image.svg",
+  type = "website",
+  keywords = ['Symfony', 'PHP', 'Développeur Freelance', 'API', 'Full-Stack', 'Tech Lead'],
+  canonical
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,7 +29,14 @@ const { title, description = "Développeuse Full-Stack PHP/Symfony et Tech Lead.
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
-  <meta name="description" content={description}>
+  <SEO
+    title={title}
+    description={description}
+    image={image}
+    type={type}
+    keywords={keywords}
+    canonical={canonical}
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -91,9 +111,8 @@ const { title, description = "Développeuse Full-Stack PHP/Symfony et Tech Lead.
         <div class="footer-social">
           <h4>Me suivre</h4>
           <div class="social-links">
-            <a href="#" class="social-link">in</a>
-            <a href="#" class="social-link">gh</a>
-            <a href="#" class="social-link">𝕏</a>
+            <a href="https://www.linkedin.com/in/audrey-tesson-dev/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/AudreyTesson" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">gh</a>
           </div>
         </div>
       </div>

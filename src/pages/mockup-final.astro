@@ -1,109 +1,59 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProjectNavigation from '../../components/ProjectNavigation.astro';
-
-// Code content - Using variables to avoid template literal parsing issues
-const heroJsonPreview = `{
-  "vendor": "ACME",
-  "total": 1500.00,
-  "date": "2024-01-15"
-}`;
-
-const splitJsonPreview = `{
-  "vendor": "ACME Corp",
-  "invoice_number": "FAC-2024-0042",
-  "date": "2024-01-15",
-  "items": [...],
-  "total_ht": 1250.00,
-  "tva": 250.00,
-  "total_ttc": 1500.00
-}`;
-
-const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
-  -H "Authorization: Bearer \$API_KEY" \\
-  -F "document=@facture.pdf" \\
-  -F "type=invoice"`;
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-  title="LogiDoc AI — Extraction documentaire par IA | Audrey Tesson"
-  description="Transformez vos documents en donnees structurees. Extraction intelligente par IA — De la facture au JSON en 3 secondes."
-  keywords={['API IA', 'Extraction documentaire', 'OCR', 'LLM', 'Groq', 'Symfony', 'SaaS B2B']}
-  activePage="projets"
->
+<Layout title="LogiDoc AI — Extraction documentaire par IA" activePage="projets">
   <div class="project-page">
 
-    <!-- 1. HERO SECTION (2 colonnes) -->
+    <!-- Navigation anchors -->
+    <nav class="page-anchors">
+      <a href="#hero">Produit</a>
+      <a href="#solution">Comment ca marche</a>
+      <a href="#usecases">Cas d'usage</a>
+      <a href="#tech">Technique</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
     <section id="hero" class="hero-section">
       <div class="container">
-        <div class="hero-grid">
-          <!-- Left: Content -->
-          <div class="hero-content">
-            <!-- Back link -->
-            <a href="/projets" class="back-link">← Retour aux projets</a>
+        <!-- Badge contextuel -->
+        <div class="context-badge">
+          <span class="badge-type">SaaS B2B</span>
+          <span class="badge-separator">·</span>
+          <span class="badge-role">Solo</span>
+          <span class="badge-separator">·</span>
+          <span class="badge-status">En production</span>
+        </div>
 
-            <!-- Badge contextuel -->
-            <div class="context-badge">
-              <span class="badge-type">SaaS B2B</span>
-              <span class="badge-separator">·</span>
-              <span class="badge-role">Solo</span>
-              <span class="badge-separator">·</span>
-              <span class="badge-status">En production</span>
-            </div>
+        <h1>LogiDoc AI</h1>
+        <p class="tagline">Transformez vos documents en donnees structurees</p>
+        <p class="subtitle">Extraction intelligente par IA — De la facture au JSON en 3 secondes</p>
 
-            <h1>LogiDoc AI</h1>
-            <p class="tagline">Transformez vos documents en donnees structurees</p>
-            <p class="subtitle">Extraction intelligente par IA — De la facture au JSON en 3 secondes</p>
-
-            <!-- Metrics -->
-            <div class="hero-metrics">
-              <div class="metric">
-                <span class="metric-value">3s</span>
-                <span class="metric-label">par document</span>
-              </div>
-              <div class="metric">
-                <span class="metric-value">99%</span>
-                <span class="metric-label">de precision</span>
-              </div>
-              <div class="metric">
-                <span class="metric-value">100x</span>
-                <span class="metric-label">plus rapide</span>
-              </div>
-            </div>
-
-            <!-- CTAs -->
-            <div class="hero-ctas">
-              <a href="#demo" class="btn btn-primary">Voir la demo</a>
-              <a href="#tech" class="btn btn-secondary">Architecture</a>
-            </div>
-
-            <!-- Author mention -->
-            <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
+        <!-- Metrics -->
+        <div class="hero-metrics">
+          <div class="metric">
+            <span class="metric-value">3s</span>
+            <span class="metric-label">par document</span>
           </div>
-
-          <!-- Right: Hero Mockup -->
-          <div class="hero-visual">
-            <div class="hero-mockup">
-              <!-- Mockup: Document to JSON transformation -->
-              <div class="mockup-content">
-                <div class="mockup-input">
-                  <div class="mockup-doc">
-                    <div class="doc-icon">📄</div>
-                    <span>facture.pdf</span>
-                  </div>
-                  <div class="mockup-arrow">→</div>
-                </div>
-                <div class="mockup-output">
-                  <pre class="mockup-json" set:text={heroJsonPreview}></pre>
-                </div>
-              </div>
-              <div class="mockup-footer">
-                <span class="mockup-time">~3s</span>
-                <span class="mockup-status">✓ Extraction reussie</span>
-              </div>
-            </div>
+          <div class="metric">
+            <span class="metric-value">99%</span>
+            <span class="metric-label">de precision</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">100x</span>
+            <span class="metric-label">plus rapide</span>
           </div>
         </div>
+
+        <!-- CTAs -->
+        <div class="hero-ctas">
+          <a href="#demo" class="btn btn-primary">Voir la demo</a>
+          <a href="https://github.com" class="btn btn-secondary">Documentation</a>
+        </div>
+
+        <!-- Author mention -->
+        <p class="author-mention">Concu et developpe par <a href="/about">Audrey Tesson</a></p>
       </div>
     </section>
 
@@ -129,8 +79,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
           <div class="tldr-item">
             <span class="tldr-icon">⚙️</span>
             <span class="tldr-label">Stack</span>
-            <span class="tldr-value">Symfony 7 · Groq · LLaMA</span>
-            <span class="tldr-subvalue">Architecture scalable, API-first</span>
+            <span class="tldr-value">Symfony 7 · PHP 8.4 · Groq</span>
           </div>
           <div class="tldr-item">
             <span class="tldr-icon">📊</span>
@@ -177,71 +126,58 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
         <!-- 3.2 La Transformation (Split Visual) -->
         <div class="transformation-section">
           <div class="transformation-header">
-            <span class="section-tag">La magie opere</span>
+            <span class="section-tag">La transformation</span>
             <h3>Votre document devient data</h3>
           </div>
 
           <div class="split-visual">
             <!-- Before -->
             <div class="split-before">
-              <div class="split-label">Avant</div>
+              <span class="split-label">Avant</span>
               <div class="document-preview">
-                <div class="doc-header">
-                  <div class="doc-logo"></div>
-                  <div class="doc-title">FACTURE</div>
-                </div>
+                <div class="doc-header">FACTURE</div>
                 <div class="doc-lines">
                   <div class="doc-line"></div>
                   <div class="doc-line short"></div>
                   <div class="doc-line"></div>
-                  <div class="doc-line medium"></div>
                 </div>
-                <div class="doc-table">
-                  <div class="doc-row"></div>
-                  <div class="doc-row"></div>
-                  <div class="doc-row"></div>
-                </div>
-                <div class="doc-total">
+                <div class="doc-footer">
                   <span>Total TTC</span>
                   <span>1 500,00 EUR</span>
                 </div>
               </div>
-              <p class="split-caption">Document PDF/Image</p>
+              <span class="split-caption">Document PDF/Image</span>
             </div>
 
-            <!-- Transform center -->
-            <div class="split-center">
-              <div class="transform-animation">
-                <div class="transform-icon">🤖</div>
-                <div class="transform-text">
-                  <span>LogiDoc AI</span>
-                  <span class="transform-time">~3s</span>
-                </div>
+            <!-- Transform -->
+            <div class="split-transform">
+              <div class="transform-icon">🤖</div>
+              <div class="transform-info">
+                <span class="transform-name">LogiDoc AI</span>
+                <span class="transform-time">~3s</span>
               </div>
             </div>
 
             <!-- After -->
             <div class="split-after">
-              <div class="split-label success">Apres</div>
-              <div class="json-preview">
-                <pre set:text={splitJsonPreview}></pre>
-              </div>
-              <p class="split-caption success">JSON Structure pret a integrer</p>
+              <span class="split-label">Apres</span>
+              <pre class="json-preview" set:text={'{\n  "vendor": "ACME Corp",\n  "invoice_number": "FAC-2024-0042",\n  "date": "2024-01-15",\n  "total_ht": 1250.00,\n  "tva": 250.00,\n  "total_ttc": 1500.00\n}'} />
+              <span class="split-caption">JSON structure pret a integrer</span>
             </div>
           </div>
 
           <!-- Results -->
-          <div class="split-features">
-            <div class="split-feature">
-              <span class="feature-check">✓</span>
+          <div class="transformation-results">
+            <div class="result-item">
+              <span class="result-icon">✓</span>
               <span>99% de precision</span>
             </div>
-            <div class="split-feature">
-              <span class="feature-check">✓</span>
+            <div class="result-item">
+              <span class="result-icon">✓</span>
               <span>Tous formats supportes</span>
             </div>
-            <div class="split-feature">
-              <span class="feature-check">✓</span>
+            <div class="result-item">
+              <span class="result-icon">✓</span>
               <span>API REST simple</span>
             </div>
           </div>
@@ -268,9 +204,9 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
 
           <div class="step-arrow">→</div>
 
-          <div class="step highlight">
+          <div class="step">
             <div class="step-number">2</div>
-            <div class="step-icon pulse">🤖</div>
+            <div class="step-icon">🤖</div>
             <h4>Analyse IA</h4>
             <p>LLaMA extrait les donnees en moins de 3 secondes</p>
             <div class="step-tech">
@@ -298,7 +234,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
             <span class="code-dot green"></span>
             <span class="code-title">Exemple d'appel API</span>
           </div>
-          <pre class="code-content" set:text={curlExample}></pre>
+          <pre class="code-content" set:text={'curl -X POST https://api.logidoc.ai/extract \\\n  -H "Authorization: Bearer $API_KEY" \\\n  -F "document=@facture.pdf" \\\n  -F "type=invoice"'} />
         </div>
       </div>
     </section>
@@ -418,7 +354,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
           </div>
         </div>
 
-        <!-- Testimonial -->
+        <!-- Testimonial placeholder -->
         <div class="testimonial">
           <blockquote>
             "LogiDoc AI nous a fait gagner 15h/semaine sur la saisie des factures. Le ROI a ete immediat."
@@ -428,18 +364,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
       </div>
     </section>
 
-    <!-- 6.5 MINI CTA FREELANCE -->
-    <section class="mini-cta-section">
-      <div class="container">
-        <div class="mini-cta-banner">
-          <span class="mini-cta-icon">💼</span>
-          <span class="mini-cta-text">Besoin d'un projet similaire ?</span>
-          <a href="/contact" class="mini-cta-btn">Me contacter →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. TECH & ARCHITECTURE -->
+    <!-- 7. TECH & ARCHITECTURE (Zone Recruteur) -->
     <section id="tech" class="tech-section">
       <div class="container">
         <div class="section-header">
@@ -447,7 +372,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
           <h2>Architecture & Stack technique</h2>
         </div>
 
-        <!-- Stack badges en ligne -->
+        <!-- Stack -->
         <div class="stack-badges">
           <span class="stack-badge">PHP 8.4</span>
           <span class="stack-badge">Symfony 7</span>
@@ -458,7 +383,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
           <span class="stack-badge">Docker</span>
         </div>
 
-        <!-- Architecture diagram (text boxes style from mockup-v2) -->
+        <!-- Architecture diagram -->
         <div class="architecture">
           <h3>Architecture simplifiee</h3>
           <div class="arch-diagram">
@@ -552,80 +477,61 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Mon role</span>
-          <h2>Ce que j'ai fait sur ce projet</h2>
+          <h2>De l'idee a la production</h2>
         </div>
 
-        <div class="role-intro">
-          <div class="role-badge-box">
-            <span class="rb-icon">👤</span>
-            <div class="rb-info">
-              <strong>Projet solo</strong>
-              <span>De la conception a la maintenance</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="skills-columns">
-          <div class="skill-column">
-            <div class="sc-header">
-              <span class="sc-icon">🎨</span>
-              <h4>Product</h4>
-            </div>
-            <ul class="sc-list">
-              <li>Etude de marche & validation</li>
-              <li>Definition du MVP</li>
-              <li>User stories & specs</li>
-              <li>Pricing strategy</li>
-            </ul>
+        <div class="role-content">
+          <div class="role-badge">
+            <span class="role-icon">👤</span>
+            <span>Projet solo — Toutes les casquettes</span>
           </div>
 
-          <div class="skill-column">
-            <div class="sc-header">
-              <span class="sc-icon">⚙️</span>
-              <h4>Backend</h4>
+          <div class="process-timeline">
+            <div class="process-step">
+              <div class="process-icon">💡</div>
+              <h4>Conception</h4>
+              <p>Etude de marche, definition du MVP, choix techniques</p>
             </div>
-            <ul class="sc-list">
-              <li>Architecture hexagonale</li>
-              <li>API REST (Symfony)</li>
-              <li>Integration LLM (Groq)</li>
-              <li>Queue & workers async</li>
-            </ul>
+            <div class="process-step">
+              <div class="process-icon">⌨️</div>
+              <h4>Developpement</h4>
+              <p>Backend Symfony, integration IA, API REST</p>
+            </div>
+            <div class="process-step">
+              <div class="process-icon">🧪</div>
+              <h4>Tests</h4>
+              <p>Tests unitaires, integration, benchmarks perfs</p>
+            </div>
+            <div class="process-step">
+              <div class="process-icon">🚀</div>
+              <h4>Deploiement</h4>
+              <p>CI/CD, Docker, monitoring, alerting</p>
+            </div>
+            <div class="process-step">
+              <div class="process-icon">📈</div>
+              <h4>Maintenance</h4>
+              <p>Support client, iterations, nouvelles features</p>
+            </div>
           </div>
 
-          <div class="skill-column">
-            <div class="sc-header">
-              <span class="sc-icon">🔧</span>
-              <h4>DevOps</h4>
+          <div class="role-highlights">
+            <div class="highlight">
+              <span class="highlight-icon">✓</span>
+              <span>Livraison continue</span>
             </div>
-            <ul class="sc-list">
-              <li>Conteneurisation Docker</li>
-              <li>CI/CD GitHub Actions</li>
-              <li>Monitoring & alerting</li>
-              <li>Logs centralises</li>
-            </ul>
-          </div>
-
-          <div class="skill-column">
-            <div class="sc-header">
-              <span class="sc-icon">📊</span>
-              <h4>Qualite</h4>
+            <div class="highlight">
+              <span class="highlight-icon">✓</span>
+              <span>Tests automatises (85% coverage)</span>
             </div>
-            <ul class="sc-list">
-              <li>Tests PHPUnit (85%)</li>
-              <li>Analyse statique (PHPStan)</li>
-              <li>Code review automatise</li>
-              <li>Documentation API</li>
-            </ul>
+            <div class="highlight">
+              <span class="highlight-icon">✓</span>
+              <span>Documentation complete</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon">✓</span>
+              <span>Monitoring 24/7</span>
+            </div>
           </div>
-        </div>
-
-        <div class="methodology-bar">
-          <span class="mb-label">Methodologie :</span>
-          <span class="mb-item">Agile solo</span>
-          <span class="mb-sep">·</span>
-          <span class="mb-item">Sprints 1 semaine</span>
-          <span class="mb-sep">·</span>
-          <span class="mb-item">Deploiement continu</span>
         </div>
       </div>
     </section>
@@ -648,9 +554,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
           <div class="cta-freelance">
             <h3>Un projet similaire ?</h3>
             <p>Besoin d'une solution d'extraction documentaire sur-mesure ou d'integration IA ?</p>
-            <div class="cta-specialization">
-              Specialisee SaaS B2B, integration IA, automatisation metier
-            </div>
             <a href="/contact" class="btn btn-secondary">Discutons de votre projet</a>
             <p class="cta-subtext">Disponible pour missions freelance</p>
           </div>
@@ -659,8 +562,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     </section>
 
   </div>
-
-  <ProjectNavigation currentSlug="logidoc-ai" />
 </Layout>
 
 <style>
@@ -699,33 +600,37 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     margin: 0;
   }
 
-  /* ===== HERO SECTION (2 colonnes) ===== */
-  .hero-section {
-    padding: 4rem 0 4rem;
+  /* ===== NAVIGATION ANCHORS ===== */
+  .page-anchors {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 15, 35, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    z-index: 100;
+    display: flex;
+    gap: 1.5rem;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .hero-content {
-    text-align: left;
-  }
-
-  .back-link {
-    display: inline-block;
-    color: rgba(255, 255, 255, 0.5);
+  .page-anchors a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
     text-decoration: none;
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
     transition: color 0.2s;
   }
 
-  .back-link:hover {
+  .page-anchors a:hover {
     color: var(--color-primary);
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero-section {
+    padding: 6rem 0 4rem;
+    text-align: center;
   }
 
   .context-badge {
@@ -735,7 +640,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     background: rgba(139, 92, 246, 0.1);
     padding: 0.5rem 1rem;
     border-radius: 30px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-size: 0.85rem;
   }
 
@@ -754,7 +659,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
   }
 
   .hero-section h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin: 0 0 1rem;
     background: linear-gradient(135deg, #fff 0%, #8b5cf6 100%);
@@ -764,43 +669,45 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
   }
 
   .tagline {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.9);
     margin: 0 0 0.5rem;
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.6);
     margin: 0 0 2rem;
   }
 
   .hero-metrics {
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    gap: 3rem;
     margin-bottom: 2rem;
   }
 
   .metric {
-    text-align: left;
+    text-align: center;
   }
 
   .metric-value {
     display: block;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--color-primary);
   }
 
   .metric-label {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
   }
 
   .hero-ctas {
     display: flex;
+    justify-content: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .btn {
@@ -834,92 +741,13 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
   }
 
   .author-mention {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.5);
   }
 
   .author-mention a {
     color: var(--color-primary);
     text-decoration: none;
-  }
-
-  /* Hero Visual / Mockup */
-  .hero-visual {
-    position: relative;
-  }
-
-  .hero-mockup {
-    background: rgba(15, 15, 35, 0.8);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 16px;
-    padding: 1.5rem;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  }
-
-  .mockup-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .mockup-input {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .mockup-doc {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-  }
-
-  .doc-icon {
-    font-size: 1.25rem;
-  }
-
-  .mockup-arrow {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-  }
-
-  .mockup-output {
-    background: #1e1e3f;
-    border-radius: 8px;
-    padding: 1rem;
-  }
-
-  .mockup-json {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #a5f3fc;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .mockup-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .mockup-time {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.8rem;
-  }
-
-  .mockup-status {
-    color: #22c55e;
-    font-size: 0.8rem;
-    font-weight: 500;
   }
 
   /* ===== TL;DR SECTION ===== */
@@ -961,13 +789,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
-  }
-
-  .tldr-subvalue {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 0.25rem;
-    font-style: italic;
   }
 
   /* ===== PROBLEM SECTION ===== */
@@ -1017,7 +838,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     color: rgba(255, 255, 255, 0.6);
   }
 
-  /* ===== TRANSFORMATION ===== */
+  /* ===== TRANSFORMATION (Split Visual) ===== */
   .transformation-section {
     background: rgba(15, 15, 35, 0.5);
     border-radius: 20px;
@@ -1057,40 +878,19 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     margin-bottom: 1rem;
   }
 
-  .split-label.success {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-  }
-
   .document-preview {
     background: white;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 1.5rem;
     color: #333;
     text-align: left;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   }
 
   .doc-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #8b5cf6;
-  }
-
-  .doc-logo {
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
-    border-radius: 6px;
-  }
-
-  .doc-title {
     font-weight: 700;
-    font-size: 1rem;
-    color: #1f2937;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #8b5cf6;
   }
 
   .doc-lines {
@@ -1104,27 +904,17 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     margin-bottom: 0.5rem;
   }
 
-  .doc-line.short { width: 60%; }
-  .doc-line.medium { width: 80%; }
-
-  .doc-table {
-    margin-bottom: 1rem;
+  .doc-line.short {
+    width: 60%;
   }
 
-  .doc-row {
-    height: 12px;
-    background: #f3f4f6;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-  }
-
-  .doc-total {
+  .doc-footer {
     display: flex;
     justify-content: space-between;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    padding-top: 0.75rem;
-    border-top: 2px solid #e5e7eb;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e5e7eb;
   }
 
   .split-caption {
@@ -1134,17 +924,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     color: rgba(255, 255, 255, 0.5);
   }
 
-  .split-caption.success {
-    color: #22c55e;
-  }
-
-  .split-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .transform-animation {
+  .split-transform {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1161,13 +941,13 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     50% { transform: scale(1.1); }
   }
 
-  .transform-text {
+  .transform-info {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .transform-text span:first-child {
+  .transform-name {
     font-weight: 600;
     color: var(--color-primary);
   }
@@ -1179,35 +959,30 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
 
   .json-preview {
     background: #1e1e3f;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 1rem;
-    text-align: left;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .json-preview pre {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     color: #a5f3fc;
-    margin: 0;
+    text-align: left;
     overflow-x: auto;
     white-space: pre;
   }
 
-  .split-features {
+  .transformation-results {
     display: flex;
     justify-content: center;
     gap: 2rem;
   }
 
-  .split-feature {
+  .result-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
   }
 
-  .feature-check {
+  .result-icon {
     color: #22c55e;
     font-weight: 700;
   }
@@ -1236,11 +1011,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     position: relative;
   }
 
-  .step.highlight {
-    border-color: var(--color-primary);
-    background: rgba(139, 92, 246, 0.1);
-  }
-
   .step-number {
     position: absolute;
     top: -12px;
@@ -1261,10 +1031,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
   .step-icon {
     font-size: 2rem;
     margin-bottom: 1rem;
-  }
-
-  .step-icon.pulse {
-    animation: pulse 2s infinite;
   }
 
   .step h4 {
@@ -1461,47 +1227,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     color: rgba(255, 255, 255, 0.6);
   }
 
-  /* ===== MINI CTA FREELANCE ===== */
-  .mini-cta-section {
-    padding: 2rem 0;
-  }
-
-  .mini-cta-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 12px;
-    padding: 1rem 2rem;
-  }
-
-  .mini-cta-icon {
-    font-size: 1.25rem;
-  }
-
-  .mini-cta-text {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-  }
-
-  .mini-cta-btn {
-    background: var(--color-primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-  }
-
-  .mini-cta-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-  }
-
   /* ===== TECH SECTION ===== */
   .tech-section {
     padding: 5rem 0;
@@ -1657,110 +1382,91 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     padding: 5rem 0;
   }
 
-  .role-intro {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
+  .role-content {
+    max-width: 900px;
+    margin: 0 auto;
   }
 
-  .role-badge-box {
-    display: flex;
+  .role-badge {
+    display: inline-flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     background: rgba(139, 92, 246, 0.1);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-  }
-
-  .rb-icon {
-    font-size: 1.5rem;
-  }
-
-  .rb-info {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .rb-info strong {
-    font-size: 1rem;
-  }
-
-  .rb-info span {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .skills-columns {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
     margin-bottom: 2rem;
   }
 
-  .skill-column {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .sc-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .sc-icon {
+  .role-icon {
     font-size: 1.25rem;
   }
 
-  .sc-header h4 {
-    margin: 0;
+  .process-timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(139, 92, 246, 0.2);
+  }
+
+  .process-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+  }
+
+  .process-step h4 {
+    margin: 0 0 0.5rem;
     font-size: 0.95rem;
   }
 
-  .sc-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .sc-list li {
+  .process-step p {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    padding: 0 0.5rem;
   }
 
-  .sc-list li:last-child {
-    border-bottom: none;
-  }
-
-  .methodology-bar {
+  .role-highlights {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .highlight {
+    display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    background: rgba(139, 92, 246, 0.05);
-    border-radius: 8px;
-    font-size: 0.85rem;
+    gap: 0.5rem;
+    font-size: 0.9rem;
   }
 
-  .mb-label {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .mb-item {
-    color: var(--color-primary);
-    font-weight: 500;
-  }
-
-  .mb-sep {
-    color: rgba(255, 255, 255, 0.2);
+  .highlight-icon {
+    color: #22c55e;
+    font-weight: 700;
   }
 
   /* ===== CTA SECTION ===== */
@@ -1797,17 +1503,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
     margin: 0 0 1.5rem;
   }
 
-  .cta-specialization {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--color-primary);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-  }
-
   .btn-link {
     display: block;
     margin-top: 1rem;
@@ -1838,28 +1533,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 1024px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    .hero-content {
-      text-align: center;
-    }
-
-    .back-link {
-      display: block;
-      text-align: left;
-    }
-
-    .hero-metrics {
-      justify-content: center;
-    }
-
-    .hero-ctas {
-      justify-content: center;
-    }
-
     .tldr-grid {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -1876,10 +1549,6 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
       grid-template-columns: 1fr;
     }
 
-    .skills-columns {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .dual-cta {
       grid-template-columns: 1fr;
     }
@@ -1890,6 +1559,10 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
   }
 
   @media (max-width: 768px) {
+    .page-anchors {
+      display: none;
+    }
+
     .hero-section h1 {
       font-size: 2.5rem;
     }
@@ -1912,7 +1585,7 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
       grid-template-columns: 1fr;
     }
 
-    .split-center {
+    .split-transform {
       flex-direction: row;
       padding: 1rem 0;
     }
@@ -1934,17 +1607,17 @@ const curlExample = `curl -X POST https://api.logidoc.ai/extract \\
       transform: rotate(90deg);
     }
 
-    .skills-columns {
-      grid-template-columns: 1fr;
-    }
-
-    .mini-cta-banner {
-      flex-direction: column;
-      text-align: center;
-    }
-
     .challenge-row {
       grid-template-columns: 1fr;
+    }
+
+    .process-timeline {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .process-timeline::before {
+      display: none;
     }
   }
 </style>

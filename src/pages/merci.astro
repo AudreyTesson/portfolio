@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Message envoyé — Audrey Tesson"
+  description="Votre message a bien été envoyé. Je vous répondrai sous 24h."
+  keywords={['Contact', 'Message envoyé']}
+>
+  <section class="thank-you-section">
+    <div class="container">
+      <div class="thank-you-card">
+        <div class="thank-you-icon">✓</div>
+        <h1>Message envoyé</h1>
+        <p class="thank-you-message">Merci pour votre message ! Je vous répondrai sous 24h.</p>
+        <p class="thank-you-sub">En attendant, vous pouvez consulter mes projets ou me suivre sur LinkedIn.</p>
+        <div class="thank-you-buttons">
+          <a href="/projets" class="btn btn-primary">Voir mes projets</a>
+          <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .thank-you-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .thank-you-card {
+      text-align: center;
+      max-width: 500px;
+      padding: 3rem;
+      background: var(--bg-darker);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .thank-you-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, #4ade80, #22c55e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .thank-you-card h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .thank-you-message {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .thank-you-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .thank-you-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 480px) {
+      .thank-you-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .thank-you-buttons {
+        flex-direction: column;
+      }
+
+      .thank-you-buttons .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</Layout>
